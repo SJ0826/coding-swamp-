@@ -6,6 +6,13 @@
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "@/*": ["./*"],
+      "@layout/*": ["/*"],
+      "@components/*": ["components/*"],
+      "@public/*": ["public/*"],
+      "@types.*": ["types/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,7 +25,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
   },
   "include": [
     "src"
