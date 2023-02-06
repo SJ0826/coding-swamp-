@@ -1,4 +1,5 @@
 export const SIGNIN_URL = '/api/auth/login/common'
 export const SIGNUP_URL = '/api/member'
 export const EMAILAUTH_URL = '/api/auth/email'
+export const EMAILAUTHCODE_URL = '/api/auth/email/confirm'
 export const REFRESHTOKEN_URL = '/api/auth/refresh'

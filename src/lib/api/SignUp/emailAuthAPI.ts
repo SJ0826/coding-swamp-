@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 
 import HttpClient from '../httpClient'
-import { EMAILAUTH_URL } from '../../constants/Url'
+import { EMAILAUTHCODE_URL, EMAILAUTH_URL } from '../../constants/Url'
 
 class EmailAuth extends HttpClient {
   public constructor() {
@@ -17,6 +17,7 @@ class EmailAuth extends HttpClient {
   private _handleResponse = (response: AxiosResponse) => {
     const responseCode = response.status
     // 409: 에러코드
+    // 401: 이메일코드 만료
     // TODO: http 코드에 따른 응답처리
     return response
   }
@@ -30,7 +31,9 @@ class EmailAuth extends HttpClient {
     return errorCode
   }
 
-  public emailAuth = () => this.instance.post(EMAILAUTH_URL, { email: 'ikosdu60@gmail.com' })
+  public emailAuth = (data: string) => this.instance.post(EMAILAUTH_URL, { email: data })
+
+  public emailAuthCode = (data: string) => this.instance.post(EMAILAUTHCODE_URL, { data })
 }
 
 const emailAuthAPI = new EmailAuth()

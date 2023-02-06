@@ -3,7 +3,7 @@ import SignInput from 'src/components/sign/signInput/SignInput'
 import SignButton from 'src/components/sign/SignButton'
 import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from 'react'
-import { UserParam, ValidationParam } from 'src/lib/types/UserInterface'
+import { UserParam } from 'src/lib/types/UserInterface'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
@@ -11,12 +11,6 @@ import { changeUserValue, postUserForm, userValidation } from 'src/lib/store/use
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
-
-const initialValidation: ValidationParam = {
-  username: false,
-  email: false,
-  password: false,
-}
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch()

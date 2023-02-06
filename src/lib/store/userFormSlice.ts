@@ -1,11 +1,11 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { UserParam } from '../types/UserInterface'
 import { signUpAPI } from '../api/SignUp/SignUpAPI'
 
 const initialValidation = {
   value: [
     { key: 'imageFile', value: null, isValidate: true },
-    { key: 'username', value: '', isValidate: false },
+    { key: 'username', value: '', isValidate: false, emailAuth: false },
     { key: 'email', value: '', isValidate: false },
     { key: 'password', value: '', isValidate: false },
   ],
@@ -29,6 +29,14 @@ export const userFormSlice = createSlice({
       state.value = state.value.map((userValue) => {
         if (userValue.key === payload.key) {
           return { ...userValue, isValidate: payload.isValidate }
+        }
+        return userValue
+      })
+    },
+    isAuthorizatedEmail: (state, { payload }) => {
+      state.value = state.value.map((userValue) => {
+        if (userValue.key === 'email') {
+          return { ...userValue, emailAuth: payload }
         }
         return userValue
       })
