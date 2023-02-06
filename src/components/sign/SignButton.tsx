@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styled from 'styled-components'
 
 interface Props {
@@ -11,7 +12,7 @@ const SignButton = ({ signState, width, disabled }: Props) => (
   </SignButtonComp>
 )
 
-export default SignButton
+export default memo(SignButton)
 
 export const SignButtonComp = styled.button<{ width: string }>`
   display: flex;

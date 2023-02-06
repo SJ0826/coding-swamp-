@@ -7,12 +7,7 @@
       "esnext"
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@layout/*": ["/*"],
-      "@components/*": ["./components/*"],
-      "@public/*": ["public/*"],
-      "@types/*": ["./lib/types/*"],
-      "@constants/*": ["./constants/*"]
+
     },
     "allowJs": true,
     "skipLibCheck": true,
