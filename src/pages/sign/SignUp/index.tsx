@@ -1,9 +1,11 @@
 import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from 'react'
 import * as S from './styles'
-import { UserParam, ValidationParam } from '@/lib/types/UserInterface'
-import getValidation from '@/lib/util/getValidation'
-import { ValidationMessage } from '@/lib/util/constants/ValidationMessage'
-import { signUpAPI } from '@/lib/api/Sign/SignUpAPI'
+import getValidation from '@/src/lib/util/getValidation'
+import SignInput from '@/src/components/signInput/SignInput'
+import SignButton from '@/src/components/SignButton'
+import { UserParam, ValidationParam } from '@/src/lib/util/types/UserInterface'
+import { ValidationMessage } from '@/src/lib/constants/ValidationMessage'
+import { signUpAPI } from '@/src/lib/api/SignUp/SignUpAPI'
 
 const initialValidation: ValidationParam = {
   username: false,

@@ -9,9 +9,10 @@
     "paths": {
       "@/*": ["./*"],
       "@layout/*": ["/*"],
-      "@components/*": ["components/*"],
+      "@components/*": ["./components/*"],
       "@public/*": ["public/*"],
-      "@types.*": ["types/*"]
+      "@types/*": ["./lib/types/*"],
+      "@constants/*": ["./constants/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
