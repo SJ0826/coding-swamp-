@@ -1,9 +1,13 @@
+import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './style/GlobalStyles'
+import theme from './style/theme'
 
 function App() {
   return (
     <>
-      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+      </ThemeProvider>
       <div>test</div>
     </>
   )
