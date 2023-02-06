@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import logger from 'redux-logger'
+import userFormSlice from './userFormSlice'
 
-export const store = configureStore({
-  reducer: {},
+const store = configureStore({
+  reducer: {
+    userForm: userFormSlice,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
 })
 
 export type RootState = ReturnType<typeof store.getState>

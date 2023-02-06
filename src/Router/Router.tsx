@@ -8,7 +8,7 @@ const Router = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/signUp"
         element={
           <Suspense fallback={loading()}>
             <SignUpPage />
