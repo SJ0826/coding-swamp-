@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import HttpClient from '../httpClient'
-import { UserParam } from '../../util/types/UserInterface'
+import { UserParam } from '../../types/UserInterface'
 import { SIGNUP_URL } from '../../constants/Url'
 
 class SignUpAPI extends HttpClient {

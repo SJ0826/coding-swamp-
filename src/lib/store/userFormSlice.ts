@@ -1,35 +1,37 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { UserParam } from '../util/types/UserInterface'
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
+import { UserParam } from '../types/UserInterface'
 import { signUpAPI } from '../api/SignUp/SignUpAPI'
 
-const initialUserForm: UserParam = {
-  imageFile: null,
-  username: '',
-  email: '',
-  password: '',
+const initialValidation = {
+  value: [
+    { key: 'imageFile', value: null, isValidate: true },
+    { key: 'username', value: '', isValidate: false },
+    { key: 'email', value: '', isValidate: false },
+    { key: 'password', value: '', isValidate: false },
+  ],
 }
 
 export const postUserForm = createAsyncThunk('user/postUser', (userForm: UserParam) => signUpAPI.SignUp(userForm))
 
-const userFormSlice = createSlice({
-  name: 'userForm',
-  initialState: initialUserForm,
+export const userFormSlice = createSlice({
+  name: 'userValidation',
+  initialState: initialValidation,
   reducers: {
-    changeImage: (state, { payload }) => {
-      state = { ...state, imageFile: payload }
-      return state
+    changeUserValue: (state, { payload }) => {
+      state.value = state.value.map((userValue) => {
+        if (userValue.key === payload.key) {
+          return { ...userValue, value: payload.value }
+        }
+        return userValue
+      })
     },
-    changeUserName: (state, { payload }) => {
-      state = { ...state, username: payload }
-      return state
-    },
-    changeEmail: (state, { payload }) => {
-      state = { ...state, email: payload }
-      return state
-    },
-    changePassword: (state, { payload }) => {
-      state = { ...state, password: payload }
-      return state
+    userValidation: (state, { payload }) => {
+      state.value = state.value.map((userValue) => {
+        if (userValue.key === payload.key) {
+          return { ...userValue, isValidate: payload.isValidate }
+        }
+        return userValue
+      })
     },
   },
   extraReducers: (builder) => {
@@ -37,5 +39,5 @@ const userFormSlice = createSlice({
   },
 })
 
-export const { changeImage, changeEmail, changeUserName, changePassword } = userFormSlice.actions
+export const { changeUserValue, userValidation } = userFormSlice.actions
 export default userFormSlice.reducer
