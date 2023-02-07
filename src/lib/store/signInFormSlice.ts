@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { UserParam } from '../types/UserInterface'
+import { SignInParam, UserParam } from '../types/UserInterface'
 import { signInAPI } from '../api/Sign/SignInAPI'
 
 const initialSignInForm = {
@@ -9,9 +9,8 @@ const initialSignInForm = {
   ],
 }
 
-export const postSignInForm = createAsyncThunk(
-  'signIn/postUser',
-  (signInForm: Omit<UserParam, 'username' & 'imageFile'>) => signInAPI.SignIn(signInForm),
+export const postSignInForm = createAsyncThunk('signIn/postUser', (signInForm: SignInParam) =>
+  signInAPI.SignIn(signInForm),
 )
 
 export const signInFormSlice = createSlice({
@@ -34,11 +33,15 @@ export const signInFormSlice = createSlice({
         return userValue
       })
     },
+    allClearSignInForm: (state) => {
+      state.value = state.value.map((userValue) => ({ ...userValue, value: '' }))
+      return state
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(postSignInForm.fulfilled, (state) => state)
   },
 })
 
-export const { changeSignInForm, SignInValidation } = signInFormSlice.actions
+export const { changeSignInForm, SignInValidation, allClearSignInForm } = signInFormSlice.actions
 export default signInFormSlice.reducer

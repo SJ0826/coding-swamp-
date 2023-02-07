@@ -41,11 +41,15 @@ export const userFormSlice = createSlice({
         return userValue
       })
     },
+    allClearSignUpForm: (state) => {
+      state.value = state.value.map((userValue) => ({ ...userValue, value: '' }))
+      return state
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(postUserForm.fulfilled, (state) => state)
   },
 })
 
-export const { changeUserValue, userValidation, isAuthorizatedEmail } = userFormSlice.actions
+export const { changeUserValue, userValidation, isAuthorizatedEmail, allClearSignUpForm } = userFormSlice.actions
 export default userFormSlice.reducer

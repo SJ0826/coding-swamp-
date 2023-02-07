@@ -6,8 +6,7 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { ChangeEvent, FormEvent, useMemo } from 'react'
 import getValidation from 'src/lib/util/getValidation'
 import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
-import { SignInValidation, changeSignInForm } from 'src/lib/store/signInFormSlice'
-import { signInAPI } from 'src/lib/api/Sign/SignInAPI'
+import { SignInValidation, allClearSignInForm, changeSignInForm, postSignInForm } from 'src/lib/store/signInFormSlice'
 import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
 
@@ -33,7 +32,8 @@ const SignIn = () => {
       email: SignInForm[0].value,
       password: SignInForm[1].value,
     }
-    await signInAPI.SignIn(result)
+    dispatch(postSignInForm(result))
+    dispatch(allClearSignInForm())
     navigate('/todo')
   }
 

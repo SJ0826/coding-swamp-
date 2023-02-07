@@ -7,7 +7,7 @@ import { UserParam } from 'src/lib/types/UserInterface'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
-import { changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
+import { allClearSignUpForm, changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
 import { signUpAPI } from 'src/lib/api/Sign/SignUpAPI'
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
@@ -66,6 +66,7 @@ const SignUpForm = () => {
     }
     await signUpAPI.SignUp(result)
     navigate('/signIn')
+    dispatch(allClearSignUpForm())
   }
   return (
     <S.SignUpForm encType="multipart/form-data" onSubmit={onSubmitUserForm}>
