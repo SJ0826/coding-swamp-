@@ -10,3 +10,8 @@ export interface UserParam {
   email: string
   password: string
 }
+
+export interface SignInParam {
+  email: string
+  password: string
+}
