@@ -8,6 +8,7 @@ import getValidation from 'src/lib/util/getValidation'
 import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
 import { SignInValidation, allClearSignInForm, changeSignInForm, postSignInForm } from 'src/lib/store/signInFormSlice'
 import { useNavigate } from 'react-router-dom'
+import { GITHUB_LOGIN_URL } from 'src/lib/constants/Url'
 import * as S from './styles'
 
 const SignIn = () => {
@@ -73,8 +74,9 @@ const SignIn = () => {
             <span>다른 방법으로 로그인 하기</span>
             <S.GoToSignUpButton onClick={onClickGoToSignUp}>회원가입</S.GoToSignUpButton>
           </S.TextWrapper>
-
-          <S.GitHubLogin />
+          <a href={GITHUB_LOGIN_URL}>
+            <S.GitHubLogin />
+          </a>
         </S.Footer>
       </S.ContentWrapper>
     </>
