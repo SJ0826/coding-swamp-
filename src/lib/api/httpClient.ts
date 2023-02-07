@@ -1,11 +1,11 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
 abstract class HttpClient {
   protected readonly instance: AxiosInstance
 
   public constructor() {
     this.instance = axios.create({
-      baseURL: 'http://52.79.50.196:8080',
+      baseURL: '',
     })
   }
 }

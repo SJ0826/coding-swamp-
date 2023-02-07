@@ -10,10 +10,9 @@ import SignInput from '../signInput/SignInput'
 import * as S from './styles'
 
 const EmailAuth = () => {
-  const userData = useAppSelector(({ userForm }) => userForm.value)
+  const userData = useAppSelector(({ userForm }) => userForm.value[2])
   const dispatch = useDispatch()
   const [authCode, setAuthCode] = useState<string>('')
-  const [isAuthorizate, setIsAuthorizate] = useState<boolean>(false)
 
   const onChangeInputText = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
@@ -24,8 +23,7 @@ const EmailAuth = () => {
   }
 
   const onClickEmailAuthButton = async () => {
-    const a = await emailAuthAPI.emailAuth(userData[2].value!)
-    console.log(a)
+    await emailAuthAPI.emailAuth(userData.value!)
   }
 
   const onChangeCodeNumber = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,29 +31,24 @@ const EmailAuth = () => {
     setAuthCode(value)
   }
 
-  const onClickPostEmailCodeButton = async () => {
-    const response = await emailAuthAPI.emailAuthCode(authCode)
-    console.log(response)
+  const onClickPostEmailCodeButton = () => {
+    emailAuthAPI.emailAuthCode(authCode)
   }
 
-  // 이메일 인증하면 is인증 true
-  // dispatch로 값 쏴주기
-  // input disabled
-  // 다시하기 > input 살리고, is인증 다시 false
   return (
     <>
       <SignInput
         id="email"
         type="email"
-        value={userData[2].value!}
+        value={userData.value!}
         onChange={onChangeInputText}
-        warningText={userData[2].isValidate || userData[2].value!.length === 0 ? '' : ValidationMessage.email}
+        warningText={userData.isValidate || userData.value!.length === 0 ? '' : ValidationMessage.email}
         placeholder={'example@example.com'}
       />
-      <S.EmailAuthButton type="button" onClick={onClickEmailAuthButton} disabled={!userData[2].isValidate}>
+      <S.EmailAuthButton type="button" onClick={onClickEmailAuthButton} disabled={!userData.isValidate}>
         이메일 인증하기
       </S.EmailAuthButton>
-      <S.authResultMessage isAuthorizate={isAuthorizate}>인증 성공!</S.authResultMessage>
+      <S.authResultMessage isAuthorizate={userData.emailAuth!}>인증 성공!</S.authResultMessage>
 
       <S.EmailAuthWrapper>
         <S.EmailAuthInput value={authCode} onChange={onChangeCodeNumber} type="text" />

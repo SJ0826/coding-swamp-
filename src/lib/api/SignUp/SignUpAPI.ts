@@ -30,6 +30,9 @@ class SignUpAPI extends HttpClient {
       case 200:
         alert('회원가입이 완료되었습니다. 로그인 페이지로 돌아갑니다.')
         break
+      case 201:
+        alert('회원가입이 완료되었습니다. 로그인 페이지로 돌아갑니다.')
+        break
       default:
         alert('로그인/회원가입 요청이 거절되었습니다. 네트워크를 확인하거나 관리자에게 문의해주세요.')
     }

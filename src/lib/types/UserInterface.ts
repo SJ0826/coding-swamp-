@@ -5,7 +5,7 @@ export interface ValidationParam {
 }
 
 export interface UserParam {
-  imageFile: File | null
+  imageFile: File | null | string
   username: string
   email: string
   password: string

@@ -47,5 +47,5 @@ export const userFormSlice = createSlice({
   },
 })
 
-export const { changeUserValue, userValidation } = userFormSlice.actions
+export const { changeUserValue, userValidation, isAuthorizatedEmail } = userFormSlice.actions
 export default userFormSlice.reducer

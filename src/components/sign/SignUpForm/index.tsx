@@ -7,7 +7,8 @@ import { UserParam } from 'src/lib/types/UserInterface'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
-import { changeUserValue, postUserForm, userValidation } from 'src/lib/store/userFormSlice'
+import { changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
+import { signUpAPI } from 'src/lib/api/SignUp/SignUpAPI'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
@@ -25,10 +26,11 @@ const SignUpForm = () => {
   const onChangeProfileImg = useCallback(
     (e: ChangeEvent<HTMLElement>) => {
       const ImageFiles = (e.target as HTMLInputElement).files
+      const { id } = e.target
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
         setImageForBackGround(url)
-        dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
+        dispatch(changeUserValue({ key: id, value: ImageFiles[0] }))
       }
     },
     [imgInputRef],
@@ -54,6 +56,13 @@ const SignUpForm = () => {
 
   const onSubmitUserForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const result: UserParam = {
+      imageFile: userData[0].value,
+      username: userData[1].value!,
+      email: userData[2].value!,
+      password: userData[3].value!,
+    }
+    signUpAPI.SignUp(result)
   }
   return (
     <S.SignUpForm encType="multipart/form-data" onSubmit={onSubmitUserForm}>

@@ -1,7 +1,6 @@
 import { AxiosResponse } from 'axios'
-
+import { EMAILAUTH_URL } from '../../constants/Url'
 import HttpClient from '../httpClient'
-import { EMAILAUTHCODE_URL, EMAILAUTH_URL } from '../../constants/Url'
 
 class EmailAuth extends HttpClient {
   public constructor() {
@@ -14,26 +13,42 @@ class EmailAuth extends HttpClient {
     this.instance.interceptors.response.use(this._handleResponse, this._handleError)
   }
 
-  private _handleResponse = (response: AxiosResponse) => {
+  private _handleResponse = (response: AxiosResponse | any) => {
     const responseCode = response.status
-    // 409: 에러코드
-    // 401: 이메일코드 만료
-    // TODO: http 코드에 따른 응답처리
-    return response
+    switch (responseCode) {
+      case 200:
+        alert('이메일 인증이 완료되었습니다.')
+        break
+      case 201:
+        alert('작성하신 이메일로 인증코드가 전송되었습니다.')
+        break
+      default:
+        break
+    }
+    return responseCode
   }
 
-  protected _handleError = (error: any) => {
+  private _handleError = (error: any) => {
     const { response: errorResponse } = error
     const errorCode = errorResponse.status
 
-    if (errorCode) alert('이메일 인증이 거절되었습니다. 관리자에게 문의해주세요.')
-
-    return errorCode
+    if (errorCode === 401) {
+      alert('인증번호를 다시 확인해주세요. 5분이 경과한 경우 다시 이메일 인증을 진행해주세요.')
+    }
   }
 
   public emailAuth = (data: string) => this.instance.post(EMAILAUTH_URL, { email: data })
 
-  public emailAuthCode = (data: string) => this.instance.post(EMAILAUTHCODE_URL, { data })
+  public emailAuthCode = async (data: string) => {
+    const params = new URLSearchParams()
+    params.append('authCode', data)
+
+    await this.instance.post(
+      '/api/auth/email/confirm',
+      {},
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, params },
+    )
+  }
 }
 
 const emailAuthAPI = new EmailAuth()
