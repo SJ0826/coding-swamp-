@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
+import { SignInParam } from 'src/lib/types/UserInterface'
 import { SIGNIN_URL } from 'src/lib/constants/Url'
 import HttpClient from '../httpClient'
 
