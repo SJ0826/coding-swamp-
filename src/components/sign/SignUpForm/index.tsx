@@ -9,6 +9,7 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
 import { signUpAPI } from 'src/lib/api/Sign/SignUpAPI'
+import { useNavigate } from 'react-router-dom'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
@@ -17,6 +18,7 @@ const SignUpForm = () => {
   const dispatch = useAppDispatch()
   const userData = useAppSelector(({ userForm }) => userForm.value)
   const imgInputRef = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate()
   const [imageForBackBround, setImageForBackGround] = useState<string | null>(BGImage) // 보여주는 이미지 state
 
   const onClickUploadButton = () => {
@@ -62,7 +64,8 @@ const SignUpForm = () => {
       email: userData[2].value!,
       password: userData[3].value!,
     }
-    signUpAPI.SignUp(result)
+    await signUpAPI.SignUp(result)
+    navigate('/signIn')
   }
   return (
     <S.SignUpForm encType="multipart/form-data" onSubmit={onSubmitUserForm}>

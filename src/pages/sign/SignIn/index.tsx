@@ -8,14 +8,16 @@ import getValidation from 'src/lib/util/getValidation'
 import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
 import { SignInValidation, changeSignInForm } from 'src/lib/store/signInFormSlice'
 import { signInAPI } from 'src/lib/api/Sign/SignInAPI'
+import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
 
 const SignIn = () => {
   const SignInForm = useAppSelector(({ signInForm }) => signInForm.value)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const onClickGoToSignUp = () => {
-    console.log('click')
+    navigate('/signUp')
   }
   const onChangeSignInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
@@ -32,6 +34,7 @@ const SignIn = () => {
       password: SignInForm[1].value,
     }
     await signInAPI.SignIn(result)
+    navigate('/todo')
   }
 
   const isValidation = useMemo(() => !(SignInForm[0].isValidate && SignInForm[1].isValidate), [SignInForm])
