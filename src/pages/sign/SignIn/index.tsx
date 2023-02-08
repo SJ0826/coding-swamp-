@@ -33,6 +33,7 @@ const SignIn = () => {
       email: SignInForm[0].value,
       password: SignInForm[1].value,
     }
+
     dispatch(postSignInForm(result))
     dispatch(allClearSignInForm())
     navigate('/')

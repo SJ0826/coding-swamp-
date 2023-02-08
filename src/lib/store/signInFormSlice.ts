@@ -9,9 +9,9 @@ const initialSignInForm = {
   ],
 }
 
-export const postSignInForm = createAsyncThunk('signIn/postUser', (signInForm: SignInParam) =>
-  signInAPI.SignIn(signInForm),
-)
+export const postSignInForm = createAsyncThunk('signIn/postUser', (signInForm: SignInParam) => {
+  signInAPI.SignIn(signInForm)
+})
 
 export const signInFormSlice = createSlice({
   name: 'signInForm',

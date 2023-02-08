@@ -68,6 +68,7 @@ const SignUpForm = () => {
     navigate('/signIn')
     dispatch(allClearSignUpForm())
   }
+
   return (
     <S.SignUpForm encType="multipart/form-data" onSubmit={onSubmitUserForm}>
       <S.ImageWrapper>

@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import HttpClient from '../httpClient'
 import { UserParam } from '../../types/UserInterface'
 import { SIGNUP_URL } from '../../constants/Url'
@@ -11,16 +11,7 @@ class SignUpAPI extends HttpClient {
   }
 
   private _initializeResponseInterceptor = () => {
-    this.instance.interceptors.request.use(this._handleRequest)
     this.instance.interceptors.response.use(this._handleResponse, this._handleError)
-  }
-
-  _handleRequest = (config: AxiosRequestConfig | any) => {
-    if (config.headers) {
-      config.headers['Content-Type'] = 'multipart/form-data'
-    }
-
-    return config
   }
 
   private _handleResponse = (response: AxiosResponse) => {
@@ -55,7 +46,8 @@ class SignUpAPI extends HttpClient {
     }
   }
 
-  public SignUp = (data: UserParam) => this.instance.post(SIGNUP_URL, data)
+  public SignUp = (data: UserParam) =>
+    this.instance.post(SIGNUP_URL, data, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 
 const signUpAPI = new SignUpAPI()
