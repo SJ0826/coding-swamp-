@@ -6,19 +6,17 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   width: 100vw;
   height: 10vh;
-  padding: 30px;
-  background: gray;
+  padding: 1.5rem 10% 1.5rem 10%;
 `
 
 export const Logo = styled.div``
 
-export const User = styled.div`
+export const User = styled.div<{ BGImage: string }>`
   width: 2.5rem;
   height: 2.5rem;
-  padding: 
 
   border-radius: 50%;
-  object-fit: cover;
-  background: black;
+  background-size: cover;
+  background-image: url('${(props) => props.BGImage}');
   cursor: pointer;
 `
