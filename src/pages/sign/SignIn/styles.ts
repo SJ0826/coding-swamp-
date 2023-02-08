@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import github from '../../../lib/assets/image/github.png'
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -51,7 +52,7 @@ export const GitHubLogin = styled.div`
   margin: 10px 0 20px 0;
 
   border-radius: 50%;
-  background: black;
-  opacity: 50%;
+  background-image: url(${github});
+  background-size: cover;
   cursor: pointer;
 `
