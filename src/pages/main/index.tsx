@@ -1,15 +1,12 @@
 import { useEffect } from 'react'
 import Header from 'src/components/Header'
-import { inquiryMemberAPI } from 'src/lib/api/Member/MemberAPI'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { getMemberInfo } from 'src/lib/store/memberSlice'
 
 const main = () => {
-  const test = async () => {
-    const a = await inquiryMemberAPI.inquiryMember()
-    console.log(a)
-    return a
-  }
+  const dispatch = useAppDispatch()
   useEffect(() => {
-    test()
+    dispatch(getMemberInfo())
   }, [])
   return <Header />
 }

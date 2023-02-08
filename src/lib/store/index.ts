@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import userFormSlice from './signForm/userFormSlice'
 import signInFormSlice from './signForm/signInFormSlice'
+import { memberInfoSlice } from './memberSlice'
+
+const rootReducer = combineReducers({
+  userForm: userFormSlice,
+  signInForm: signInFormSlice,
+  memberInfo: memberInfoSlice.reducer,
+})
 
 const store = configureStore({
-  reducer: {
-    userForm: userFormSlice,
-    signInForm: signInFormSlice,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
 })
 

@@ -2,7 +2,7 @@ import decodeJWT from 'src/lib/util/decodeJWT'
 import { USER_URL } from 'src/lib/constants/Url'
 import HttpClient from '../httpClient'
 
-class InquiryMemberAPI extends HttpClient {
+class MemberAPI extends HttpClient {
   public constructor() {
     super()
 
@@ -13,7 +13,7 @@ class InquiryMemberAPI extends HttpClient {
     this.instance.interceptors.response.use()
   }
 
-  public inquiryMember = async () => {
+  public getMemberInfo = async () => {
     const params = new URLSearchParams()
     params.append('memberId', decodeJWT())
     const response = await this.instance.get(USER_URL + decodeJWT().id)
@@ -21,6 +21,6 @@ class InquiryMemberAPI extends HttpClient {
   }
 }
 
-const inquiryMemberAPI = new InquiryMemberAPI()
+const memberAPI = new MemberAPI()
 
-export { inquiryMemberAPI }
+export { memberAPI }
