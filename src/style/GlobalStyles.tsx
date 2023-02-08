@@ -21,8 +21,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: none;
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 `
 
