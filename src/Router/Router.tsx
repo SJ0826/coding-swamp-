@@ -1,5 +1,7 @@
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import PrivateRouter from './PrivateRouter'
+import PublicRouter from './PublicRouter'
 
 const Router = () => {
   const SignUpPage = lazy(() => import('../pages/sign/SignUp'))
@@ -14,7 +16,9 @@ const Router = () => {
         path="/signUp"
         element={
           <Suspense fallback={loading()}>
-            <SignUpPage />
+            <PublicRouter>
+              <SignUpPage />
+            </PublicRouter>
           </Suspense>
         }
       />
@@ -22,7 +26,9 @@ const Router = () => {
         path="/signIn"
         element={
           <Suspense fallback={loading()}>
-            <SignInPage />
+            <PublicRouter>
+              <SignInPage />
+            </PublicRouter>
           </Suspense>
         }
       />
@@ -38,7 +44,9 @@ const Router = () => {
         path="/"
         element={
           <Suspense fallback={loading()}>
-            <MainPage />
+            <PrivateRouter>
+              <MainPage />
+            </PrivateRouter>
           </Suspense>
         }
       />
