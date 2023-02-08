@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { getLocalStorageToken } from 'src/lib/store/localStorage'
+import { getLocalStorageToken } from 'src/lib/util/localStorage'
 
 interface Props {
   children: JSX.Element

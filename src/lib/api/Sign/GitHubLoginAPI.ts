@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { GITHUB_AUTH_URL } from 'src/lib/constants/Url'
-import { setLocalStorageToken } from 'src/lib/store/localStorage'
+import { setLocalStorageToken } from 'src/lib/util/localStorage'
 import HttpClient from '../httpClient'
 
 class GitHubLoginAPI extends HttpClient {

@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { getLocalStorageToken } from '../store/localStorage'
+import { getLocalStorageToken } from '../util/localStorage'
 
 declare module 'axios' {
   type AxiosRequest<T = any> = Promise<T>
