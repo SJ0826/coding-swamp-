@@ -35,7 +35,7 @@ const SignIn = () => {
     }
     dispatch(postSignInForm(result))
     dispatch(allClearSignInForm())
-    navigate('/todo')
+    navigate('/')
   }
 
   const isValidation = useMemo(() => !(SignInForm[0].isValidate && SignInForm[1].isValidate), [SignInForm])

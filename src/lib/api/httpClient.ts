@@ -1,4 +1,9 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { getLocalStorageToken } from '../store/localStorage'
+
+declare module 'axios' {
+  type AxiosRequest<T = any> = Promise<T>
+}
 
 abstract class HttpClient {
   protected readonly instance: AxiosInstance
@@ -7,8 +12,22 @@ abstract class HttpClient {
     this.instance = axios.create({
       baseURL: '',
     })
+
+    this._initializeRequestInterceptor()
+  }
+
+  private _initializeRequestInterceptor = () => {
+    this.instance.interceptors.request.use(this._handleRequest)
+  }
+
+  _handleRequest = (config: AxiosRequestConfig | any) => {
+    const accessToken = getLocalStorageToken()
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+      config.headers['Content-Type'] = `application/json`
+    }
+    return config
   }
 }
-// TODO: Refreshtoken 관리: 토큰이 만료되면 refresh token요청
 
 export default HttpClient

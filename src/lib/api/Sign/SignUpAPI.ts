@@ -15,7 +15,7 @@ class SignUpAPI extends HttpClient {
     this.instance.interceptors.response.use(this._handleResponse, this._handleError)
   }
 
-  private _handleRequest = (config: AxiosRequestConfig | any) => {
+  _handleRequest = (config: AxiosRequestConfig | any) => {
     if (config.headers) {
       config.headers['Content-Type'] = 'multipart/form-data'
     }
@@ -25,7 +25,6 @@ class SignUpAPI extends HttpClient {
 
   private _handleResponse = (response: AxiosResponse) => {
     const responseCode = response.status
-
     switch (responseCode) {
       case 200:
         alert('회원가입이 완료되었습니다. 로그인 페이지로 돌아갑니다.')
@@ -45,6 +44,9 @@ class SignUpAPI extends HttpClient {
     const errorCode = errorResponse.status
 
     switch (errorCode) {
+      case 400:
+        alert('이메일 인증을 완료해 주세요')
+        break
       case 409:
         alert('동일한 이메일이 이미 존재합니다.')
         break

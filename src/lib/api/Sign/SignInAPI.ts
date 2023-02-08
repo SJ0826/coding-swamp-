@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { SignInParam } from 'src/lib/types/UserInterface'
 import { SIGNIN_URL } from 'src/lib/constants/Url'
+import { setLocalStorageToken } from 'src/lib/store/localStorage'
 import HttpClient from '../httpClient'
 
 class SignInAPI extends HttpClient {
@@ -15,9 +16,7 @@ class SignInAPI extends HttpClient {
   }
 
   private _handleResponse = (response: AxiosResponse) => {
-    const responseCode = response.status
-    // 409: 에러코드
-    // TODO: http 코드에 따른 응답처리
+    setLocalStorageToken(response.data.accessToken)
     return response
   }
 
@@ -30,6 +29,7 @@ class SignInAPI extends HttpClient {
         alert('회원정보가 없습니다. 회원가입을 진행해 주세요.')
         break
       default:
+        alert('요청하신 작업을 수행할 수 없습니다. 관리자에게 문의해주세요.')
         break
     }
 

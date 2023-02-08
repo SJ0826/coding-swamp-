@@ -5,6 +5,7 @@ const Router = () => {
   const SignUpPage = lazy(() => import('../pages/sign/SignUp'))
   const SignInPage = lazy(() => import('../pages/sign/SignIn'))
   const CallBackPage = lazy(() => import('../pages/sign/Callback'))
+  const MainPage = lazy(() => import('../pages/main'))
   const loading = () => <>...loading</>
 
   return (
@@ -30,6 +31,14 @@ const Router = () => {
         element={
           <Suspense fallback={loading()}>
             <CallBackPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={loading()}>
+            <MainPage />
           </Suspense>
         }
       />
