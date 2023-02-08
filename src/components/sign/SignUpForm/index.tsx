@@ -8,7 +8,7 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { allClearSignUpForm, changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
-import { signUpAPI } from 'src/lib/api/Sign/SignUpAPI'
+import { signUpAPI } from 'src/lib/api/sign/SignUpAPI'
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
