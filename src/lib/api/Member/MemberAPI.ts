@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios'
 import decodeJWT from 'src/lib/util/decodeJWT'
 import { USER_URL } from 'src/lib/constants/Url'
 import HttpClient from '../httpClient'

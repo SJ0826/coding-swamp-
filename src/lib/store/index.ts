@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
-import userFormSlice from './userFormSlice'
-import signInFormSlice from './signInFormSlice'
+import userFormSlice from './signForm/userFormSlice'
+import signInFormSlice from './signForm/signInFormSlice'
 
 const store = configureStore({
   reducer: {
