@@ -14,7 +14,7 @@ const initialValidation = {
 export const postUserForm = createAsyncThunk('user/postUser', (userForm: UserParam) => signUpAPI.SignUp(userForm))
 
 export const userFormSlice = createSlice({
-  name: 'userValidation',
+  name: 'signUpUserForm',
   initialState: initialValidation,
   reducers: {
     changeUserValue: (state, { payload }) => {

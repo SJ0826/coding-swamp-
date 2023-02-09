@@ -20,11 +20,11 @@ export const HeaderWrapper = styled.div`
   }
 
   @media (max-width: 1080px) {
-    width: calc(100% - 5rem);
+    width: calc(100% - 8rem);
   }
 
   @media (max-width: 600px) {
-    width: calc(100% - 1rem);
+    width: calc(100% - 3rem);
   }
 `
 
