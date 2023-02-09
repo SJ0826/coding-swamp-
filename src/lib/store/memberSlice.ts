@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { UserInfoInterface } from '../types/UserInterface'
 import { memberAPI } from '../api/Member/MemberAPI'
 

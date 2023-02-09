@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
-  position: absolute;
+
   top: 20px;
 `
 export const HeaderWrapper = styled.div`
