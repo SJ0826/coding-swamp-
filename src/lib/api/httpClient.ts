@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { getLocalStorageToken } from '../store/localStorage'
+import { getLocalStorageToken } from '../util/localStorage'
 
 declare module 'axios' {
   type AxiosRequest<T = any> = Promise<T>
@@ -20,7 +20,7 @@ abstract class HttpClient {
     this.instance.interceptors.request.use(this._handleRequest)
   }
 
-  private _handleRequest = (config: AxiosRequestConfig | any) => {
+  protected _handleRequest = (config: AxiosRequestConfig | any) => {
     const accessToken = getLocalStorageToken()
     if (accessToken && config.headers) {
       config.headers.Authorization = `Bearer ${accessToken}`

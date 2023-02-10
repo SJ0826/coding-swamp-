@@ -6,9 +6,8 @@ import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from '
 import { UserParam } from 'src/lib/types/UserInterface'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
-import { allClearSignUpForm, changeUserValue, userValidation } from 'src/lib/store/userFormSlice'
 import { useNavigate } from 'react-router-dom'
-import { signUpAPI } from 'src/lib/api/sign/signUpAPI'
+import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
@@ -27,11 +26,10 @@ const SignUpForm = () => {
   const onChangeProfileImg = useCallback(
     (e: ChangeEvent<HTMLElement>) => {
       const ImageFiles = (e.target as HTMLInputElement).files
-      const { id } = e.target
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
         setImageForBackGround(url)
-        dispatch(changeUserValue({ key: id, value: ImageFiles[0] }))
+        dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
       }
     },
     [imgInputRef],
@@ -63,7 +61,7 @@ const SignUpForm = () => {
       email: userData[2].value!,
       password: userData[3].value!,
     }
-    await signUpAPI.SignUp(result)
+    await dispatch(postUserForm(result))
     navigate('/signIn')
     dispatch(allClearSignUpForm())
   }

@@ -6,7 +6,12 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { ChangeEvent, FormEvent, useMemo } from 'react'
 import getValidation from 'src/lib/util/getValidation'
 import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
-import { SignInValidation, allClearSignInForm, changeSignInForm, postSignInForm } from 'src/lib/store/signInFormSlice'
+import {
+  SignInValidation,
+  allClearSignInForm,
+  changeSignInForm,
+  postSignInForm,
+} from 'src/lib/store/signForm/signInFormSlice'
 import { useNavigate } from 'react-router-dom'
 import { GITHUB_LOGIN_URL } from 'src/lib/constants/Url'
 import * as S from './styles'
