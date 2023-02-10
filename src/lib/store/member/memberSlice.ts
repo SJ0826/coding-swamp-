@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { UserInfoInterface } from '../types/UserInterface'
-import { memberAPI } from '../api/Member/MemberAPI'
+import { type } from 'src/pages/memberInfo'
+import { UserInfoInterface } from '../../types/UserInterface'
+import { memberAPI } from '../../api/Member/MemberAPI'
 
 const initialMemberInfo: UserInfoInterface = {
   email: null,
@@ -18,11 +19,16 @@ export const getMemberInfo = createAsyncThunk('memberInfo/getMember', async () =
   return response
 })
 
+export const postMemberInfo = createAsyncThunk('memberInfo/postMember', async (data: type) => {
+  const resposne = await memberAPI.postMemberInfo(data)
+  return resposne
+})
+
 export const memberInfoSlice = createSlice({
   name: 'memberInfo',
   initialState: initialMemberInfo,
   reducers: {
-    changeUserInfo: (state, { payload }) => {
+    changeMemberInfo: (state, { payload }) => {
       const key = payload.id
       state[key] = payload.value
       return state
@@ -33,7 +39,13 @@ export const memberInfoSlice = createSlice({
       state = { ...payload }
       return state
     })
+    builder.addCase(postMemberInfo.fulfilled, (state, { payload }) => {
+      state = { ...payload }
+      return state
+    })
   },
 })
 
 export default memberInfoSlice.reducer
+
+export const { changeMemberInfo } = memberInfoSlice.actions

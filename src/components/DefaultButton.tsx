@@ -7,10 +7,19 @@ interface Props {
   hoverColor: string
   hoverBGColor: string
   text: string
+  onClick: () => void
 }
 
-const DefaultButton = ({ height, color, bgColor, text, hoverColor, hoverBGColor }: Props) => (
-  <Button height={height} color={color} bgColor={bgColor} hoverColor={hoverColor} hoverBGColor={hoverBGColor}>
+const DefaultButton = ({ height, color, bgColor, text, hoverColor, hoverBGColor, onClick }: Props) => (
+  <Button
+    height={height}
+    color={color}
+    bgColor={bgColor}
+    hoverColor={hoverColor}
+    hoverBGColor={hoverBGColor}
+    onClick={onClick}
+    type="button"
+  >
     {text}
   </Button>
 )

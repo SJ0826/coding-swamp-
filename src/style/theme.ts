@@ -15,6 +15,9 @@ const theme = {
   border3: '#DEE2E6',
   border4: '#F1F3F5',
 
+  blue: '#ABC9FF',
+  warning: '#EB4747',
+
   text1: '#212529',
   text2: '#495057',
   text3: '868E96',

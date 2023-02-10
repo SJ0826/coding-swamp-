@@ -16,14 +16,19 @@ export interface SignInParam {
   password: string
 }
 
+export interface EditMemberParam {
+  profileUrl: string | null
+  imageFile: File | null
+  username: string
+}
 export interface UserInfoInterface {
   [key: string]: string | number | null
+  imageUrl: string
+  profileUrl: string
+  username: string
   email: string | null
   githubId: number | null
-  imageUrl: string
   joinedAt: string
   memberId: number
-  profileUrl: string | null
   role: string
-  username: string
 }

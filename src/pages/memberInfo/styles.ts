@@ -43,11 +43,18 @@ export const Thumbnail = styled.div`
   }
 `
 
-export const MemberImage = styled.img`
+export const ImgUploadInput = styled.input`
+  display: none;
+`
+
+export const MemberImage = styled.img<{ image: string }>`
   width: 8rem;
   height: 8rem;
   margin-bottom: 1.25rem;
-  background-color: black;
+
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center center;
   border-radius: 50%;
 
   @media ${(props) => props.theme.small} {
@@ -82,7 +89,18 @@ export const Name = styled.h2`
   }
 `
 
-export const Email = styled.text`
+export const NameInput = styled.input`
+  font-size: 2.25rem;
+  line-height: 1.5;
+  border: 1px solid ${(props) => props.theme.border4};
+  color: ${(props) => props.theme.text1};
+
+  @media ${(props) => props.theme.small} {
+    font-size: 1.25rem;
+  }
+`
+
+export const Email = styled.div`
   font-size: 1.5rem;
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
@@ -90,6 +108,72 @@ export const Email = styled.text`
   color: ${(props) => props.theme.text4};
 
   @media ${(props) => props.theme.small} {
+    font-size: 0.875rem;
+  }
+`
+
+export const EditButton = styled.button`
+  font-size: 1.2rem;
+
+  margin-top: 6rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  background-color: transparent;
+  color: ${(props) => props.theme.text4};
+
+  :active {
+    color: ${(props) => props.theme.text1};
+  }
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+`
+
+export const SaveButton = styled.button`
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  margin-top: 6rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  background-color: transparent;
+  color: ${(props) => props.theme.text4};
+
+  :hover {
+    color: ${(props) => props.theme.blue};
+  }
+  :active {
+    color: ${(props) => props.theme.text1};
+  }
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+`
+export const CancelButton = styled.button`
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  margin-top: 6rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  background-color: transparent;
+  color: ${(props) => props.theme.text4};
+
+  :hover {
+    color: ${(props) => props.theme.warning};
+  }
+  :active {
+    color: ${(props) => props.theme.text1};
+  }
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 1rem;
     font-size: 0.875rem;
   }
 `
