@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { gitHubLoginAPI } from 'src/lib/api/sign/GitHubLoginAPI'
+import { gitHubLoginAPI } from 'src/lib/api/sign/gitHubLoginAPI'
 import styled from 'styled-components'
 
 const Callback = () => {
