@@ -8,6 +8,7 @@ const Router = () => {
   const SignInPage = lazy(() => import('../pages/sign/SignIn'))
   const CallBackPage = lazy(() => import('../pages/sign/Callback'))
   const MainPage = lazy(() => import('../pages/main'))
+  const MemberInfoPage = lazy(() => import('../pages/memberInfo'))
   const loading = () => <>...loading</>
 
   return (
@@ -46,6 +47,16 @@ const Router = () => {
           <Suspense fallback={loading()}>
             <PrivateRouter>
               <MainPage />
+            </PrivateRouter>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/user"
+        element={
+          <Suspense fallback={loading()}>
+            <PrivateRouter>
+              <MemberInfoPage />
             </PrivateRouter>
           </Suspense>
         }

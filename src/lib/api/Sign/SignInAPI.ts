@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { SignInParam } from 'src/lib/types/UserInterface'
 import { SIGNIN_URL } from 'src/lib/constants/Url'
-import { setLocalStorageToken } from 'src/lib/store/localStorage'
+import { setLocalStorageToken } from 'src/lib/util/localStorage'
 import HttpClient from '../httpClient'
 
 class SignInAPI extends HttpClient {
