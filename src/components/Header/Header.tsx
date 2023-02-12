@@ -1,6 +1,7 @@
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { removeToken } from 'src/lib/store/localStorage'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
@@ -8,18 +9,29 @@ const Header = () => {
   const navigator = useNavigate()
   const memberData = useAppSelector(({ memberInfo }) => memberInfo)
   const memberImage = memberData.imageUrl
-  const onClickUser = () => {
+
+  const onClickStudyCreateButton = () => {
     navigator('/user')
   }
+
+  const onClickSetting = () => {
+    navigator('/user')
+  }
+
+  const onClickLogout = () => {
+    removeToken()
+    navigator('/')
+  }
+
   return (
     <Container>
       <HeaderWrapper>
         <Logo>🐊 모코숲 로고 🐊</Logo>
-        <User BGImage={memberImage} onClick={onClickUser} />
+        <User BGImage={memberImage} />
         <UserMenu>
-          <UserMenuItem onClick={onClickUser}>스터디 만들기</UserMenuItem>
-          <UserMenuItem onClick={onClickUser}>설정</UserMenuItem>
-          <UserMenuItem onClick={onClickUser}>로그아웃</UserMenuItem>
+          <UserMenuItem onClick={onClickStudyCreateButton}>스터디 만들기</UserMenuItem>
+          <UserMenuItem onClick={onClickSetting}>설정</UserMenuItem>
+          <UserMenuItem onClick={onClickLogout}>로그아웃</UserMenuItem>
         </UserMenu>
       </HeaderWrapper>
     </Container>
