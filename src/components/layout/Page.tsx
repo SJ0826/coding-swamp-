@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function Page({ children }: Props) {
-  return <Container bgColor={theme.bgGroundColor}>{children}</Container>
+  return <Container bgColor={theme.bgGroundColor1}>{children}</Container>
 }
 
 const Container = styled.div<{ bgColor: string }>`

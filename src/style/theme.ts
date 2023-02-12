@@ -6,7 +6,10 @@ const size = {
 
 const theme = {
   mainColor: `#CCD6A6`,
-  bgGroundColor: '#FFFFFF',
+  bgGroundColor1: '#FFFFFF',
+  bgGroundColor2: '#F8F9FA',
+  bgGroundColor3: '#E9ECEF',
+
   button: '#61876E',
   buttonLightColor: '#a6bb8d',
   buttonText: '#FFFFFF',
