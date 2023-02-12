@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialMenuState = {
-  visible: false,
+  visible: 'hidden',
 }
 
 export const userMenuSlice = createSlice({

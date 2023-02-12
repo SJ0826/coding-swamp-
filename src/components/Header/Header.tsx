@@ -2,13 +2,25 @@ import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { removeToken } from 'src/lib/store/localStorage'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { setUserMenuVisibility } from 'src/lib/store/userMenuSlice'
+import useListenForOutsideClicks from 'src/lib/hooks/useListenForOutsideClicks'
+import { useEffect, useRef } from 'react'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
 const Header = () => {
   const navigator = useNavigate()
+  const useDispatch = useAppDispatch()
+  const userRef = useRef<HTMLDivElement>(null)
   const memberData = useAppSelector(({ memberInfo }) => memberInfo)
   const memberImage = memberData.imageUrl
+
+  useEffect(useListenForOutsideClicks({ userRef }), [])
+
+  const toggle = () => {
+    useDispatch(setUserMenuVisibility('visible'))
+  }
 
   const onClickStudyCreateButton = () => {
     navigator('/user')
@@ -27,7 +39,7 @@ const Header = () => {
     <Container>
       <HeaderWrapper>
         <Logo>🐊 모코숲 로고 🐊</Logo>
-        <User BGImage={memberImage} />
+        <User BGImage={memberImage} onClick={toggle} ref={userRef} />
         <UserMenu>
           <UserMenuItem onClick={onClickStudyCreateButton}>스터디 만들기</UserMenuItem>
           <UserMenuItem onClick={onClickSetting}>설정</UserMenuItem>
