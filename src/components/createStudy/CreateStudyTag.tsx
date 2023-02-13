@@ -1,18 +1,47 @@
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { useAppSelector } from 'src/lib/hooks/useAppSelector'
+import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 
 const CreateStudyTag = () => {
-  const test = ['모각코', '스터디', '모여요']
+  const tagData = useAppSelector<string[]>(({ studyForm }) => studyForm.value.tags)
+  const dispatch = useAppDispatch()
+  const [tagValue, setTagValue] = useState('')
+
+  const onChangeTagInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setTagValue(e.target.value)
+  }
+
+  const onSubmitTag = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const newTagData = [...tagData, tagValue]
+    dispatch(changeStudyForm({ key: 'tags', value: newTagData }))
+    setTagValue('')
+  }
+
+  const onClickRemoveTag = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const currentTag = e.currentTarget
+    const newTagData = tagData.filter((tag) => tag !== currentTag.id)
+    dispatch(changeStudyForm({ key: 'tags', value: newTagData }))
+  }
+
   return (
     <Container>
       <Wrapper>
-        <SubTitle>스터디 태그</SubTitle>
-        <TagInput />
+        <form onSubmit={onSubmitTag}>
+          <SubTitle>스터디 태그</SubTitle>
+          <TagInput value={tagValue} onChange={onChangeTagInput} />
+        </form>
       </Wrapper>
       <TagWrapper>
-        {test.map((tag, index) => (
+        {tagData.map((tag, index) => (
           <>
-            <Tag key={index}>
-              {tag} <RemoveTag>x</RemoveTag>
+            <Tag id={tag} key={tag}>
+              {tag}{' '}
+              <RemoveTag id={tag} key={tag} onClick={onClickRemoveTag}>
+                x
+              </RemoveTag>
             </Tag>
           </>
         ))}
@@ -49,9 +78,9 @@ const TagWrapper = styled.div`
   margin-top: 1.5rem;
 `
 const Tag = styled.div`
-  width: 6rem;
   height: 2rem;
   margin-right: 1rem;
+  padding: 0 1rem 0 1rem;
 
   font-size: 20px;
   font-weight: bold;
@@ -61,7 +90,12 @@ const Tag = styled.div`
   background: ${(props) => props.theme.green6};
 `
 
-const RemoveTag = styled.span`
+const RemoveTag = styled.button`
+  display: inline;
+  width: 1rem;
+  height: 1rem;
+  font-size: 1.5rem;
+  background: none;
   &:hover {
     cursor: pointer;
   }

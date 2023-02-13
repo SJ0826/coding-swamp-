@@ -1,17 +1,27 @@
+import { ChangeEvent } from 'react'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 
 const SelectDate = () => {
-  const test = 'test'
+  const dispatch = useAppDispatch()
+  const onChangeStartDate = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeStudyForm({ key: 'startDate', value: e.target.value }))
+  }
+
+  const onChangeEndDate = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeStudyForm({ key: 'endDate', value: e.target.value }))
+  }
   return (
     <Container>
       <SubTitle>스터디 기간</SubTitle>
       <DateWrapper>
         <StartText>시작 날짜</StartText>
-        <StartDate type="date" required />
+        <StartDate type="date" onChange={onChangeStartDate} required />
       </DateWrapper>
       <DateWrapper>
         <span>마지막 날짜</span>
-        <EndDate type="date" required />
+        <EndDate type="date" onChange={onChangeEndDate} required />
       </DateWrapper>
     </Container>
   )

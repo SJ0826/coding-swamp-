@@ -84,4 +84,8 @@ export const DivisionLine = styled.div`
   background: ${(props) => props.theme.border4};
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  @media ${(props) => props.theme.small} {
+    visibility: hidden;
+  }
 `

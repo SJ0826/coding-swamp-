@@ -2,13 +2,21 @@ import '@toast-ui/editor/dist/toastui-editor.css'
 import styled from 'styled-components'
 import { Editor } from '@toast-ui/react-editor'
 import { useRef } from 'react'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 
 const ToastEditor = () => {
   const editorRef = useRef<Editor>(null)
+  const dispatch = useAppDispatch()
+
+  const onChangeEditor = () => {
+    const data = editorRef.current?.getInstance().getMarkdown()
+    dispatch(changeStudyForm({ key: 'description', value: data }))
+  }
   return (
     <Container>
       <SubTitle>스터디 소개글</SubTitle>
-      <Editor ref={editorRef} placeholder="스터디를 소개해보세요" usageStatistics={false} />
+      <Editor ref={editorRef} onChange={onChangeEditor} placeholder="스터디를 소개해보세요" usageStatistics={false} />
     </Container>
   )
 }

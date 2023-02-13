@@ -1,4 +1,4 @@
-export { default as StudyTypeRadio } from './StudyTypeRadio'
+export { default as StudyTypeRadio } from './StudyTypeSelector'
 
 export { default as SelectStudyColor } from './SelectStudyColor'
 

@@ -1,15 +1,21 @@
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 
 interface Props {
-  value: string
+  colorCode: string
 }
-const Color = ({ value }: Props) => {
-  const test = 'test'
+const Color = ({ colorCode }: Props) => {
+  const dispatch = useAppDispatch()
+
+  const onClickColor = () => {
+    dispatch(changeStudyForm({ key: 'thumbnail', value: colorCode }))
+  }
   return (
     <Container>
       <Label>
         <ColorButton type="checkbox" />
-        <ColorView value={value}></ColorView>
+        <ColorView value={colorCode} onClick={onClickColor}></ColorView>
       </Label>
     </Container>
   )

@@ -1,20 +1,25 @@
 import styled from 'styled-components'
 import theme from 'src/style/theme'
+
 import Color from './Color'
 
 const SelectStudyColor = () => {
-  const a = 'test'
+  const colors = [
+    theme.bgGroundColor3,
+    theme.blue,
+    theme.green6,
+    theme.green3,
+    theme.yellow,
+    theme.orange1,
+    theme.orange2,
+  ]
   return (
     <Container>
       <SubTitle>스터디 대표 색상</SubTitle>
       <Palette>
-        <Color value={theme.bgGroundColor3} />
-        <Color value={theme.blue} />
-        <Color value={theme.green6} />
-        <Color value={theme.green3} />
-        <Color value={theme.yellow} />
-        <Color value={theme.orange1} />
-        <Color value={theme.orange2} />
+        {colors.map((color) => (
+          <Color key={color} colorCode={color} />
+        ))}
       </Palette>
     </Container>
   )

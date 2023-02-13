@@ -1,12 +1,21 @@
-import theme from 'src/style/theme'
+import { ChangeEvent } from 'react'
+import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { useAppSelector } from 'src/lib/hooks/useAppSelector'
+import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 
 const SelectMaxMemberCount = () => {
-  const test = 'test'
+  const maxnumber = useAppSelector(({ studyForm }) => studyForm.value.maxMemberCount)
+  const dispatch = useAppDispatch()
+
+  const onChangeMaxNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeStudyForm({ key: 'maxMemberCount', value: e.target.value }))
+  }
+
   return (
     <Container>
       <SubTitle>스터디 최대 인원</SubTitle>
-      <CountInput />명
+      <CountInput value={maxnumber} onChange={onChangeMaxNumber} />명
     </Container>
   )
 }
