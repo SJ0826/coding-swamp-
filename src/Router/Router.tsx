@@ -4,11 +4,12 @@ import PrivateRouter from './PrivateRouter'
 import PublicRouter from './PublicRouter'
 
 const Router = () => {
-  const SignUpPage = lazy(() => import('../pages/sign/SignUp'))
+  const SignUpPage = lazy(() => import('../pages/sign/SignUp/index'))
   const SignInPage = lazy(() => import('../pages/sign/SignIn'))
   const CallBackPage = lazy(() => import('../pages/sign/Callback'))
   const MainPage = lazy(() => import('../pages/main'))
   const MemberInfoPage = lazy(() => import('../pages/memberInfo'))
+  const CreateStudy = lazy(() => import('../pages/createStudy/index'))
   const loading = () => <>...loading</>
 
   return (
@@ -57,6 +58,16 @@ const Router = () => {
           <Suspense fallback={loading()}>
             <PrivateRouter>
               <MemberInfoPage />
+            </PrivateRouter>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/createStudy"
+        element={
+          <Suspense fallback={loading()}>
+            <PrivateRouter>
+              <CreateStudy />
             </PrivateRouter>
           </Suspense>
         }

@@ -16,18 +16,10 @@ const Header = () => {
   const memberData = useAppSelector(({ memberInfo }) => memberInfo)
   const memberImage = memberData.imageUrl
 
-  useEffect(useListenForOutsideClicks({ userRef }), [])
+  useEffect(useListenForOutsideClicks({ userRef }))
 
   const toggle = () => {
     useDispatch(setUserMenuVisibility('visible'))
-  }
-
-  const onClickStudyCreateButton = () => {
-    navigator('/user')
-  }
-
-  const onClickSetting = () => {
-    navigator('/user')
   }
 
   const onClickLogout = () => {
@@ -41,8 +33,8 @@ const Header = () => {
         <Logo>🐊 모코숲 로고 🐊</Logo>
         <User BGImage={memberImage} onClick={toggle} ref={userRef} />
         <UserMenu>
-          <UserMenuItem onClick={onClickStudyCreateButton}>스터디 만들기</UserMenuItem>
-          <UserMenuItem onClick={onClickSetting}>설정</UserMenuItem>
+          <UserMenuItem onClick={() => navigator('/createStudy')}>스터디 만들기</UserMenuItem>
+          <UserMenuItem onClick={() => navigator('/user')}>설정</UserMenuItem>
           <UserMenuItem onClick={onClickLogout}>로그아웃</UserMenuItem>
         </UserMenu>
       </HeaderWrapper>

@@ -7,6 +7,7 @@ import { changeMemberInfo, getMemberInfo } from 'src/lib/store/member/memberSlic
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { changeEditForm, postEditedMember, toggleEditMode } from 'src/lib/store/member/editModeSlice'
+import { setUserMenuVisibility } from 'src/lib/store/userMenuSlice'
 import * as S from './styles'
 
 export interface type {

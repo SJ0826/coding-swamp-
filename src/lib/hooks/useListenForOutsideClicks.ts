@@ -11,9 +11,9 @@ export default function useListenForOutsideClicks({ userRef }: Props) {
 
   return () => {
     if (!userRef.current) return
-
     document.addEventListener(`click`, (evt: MouseEvent): void => {
       if (userRef.current && userRef.current.contains(evt.target as Node)) return
+
       dispatch(setUserMenuVisibility('hidden'))
     })
   }
