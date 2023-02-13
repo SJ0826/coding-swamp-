@@ -13,8 +13,7 @@ const CreateStudyTag = () => {
     setTagValue(e.target.value)
   }
 
-  const onSubmitTag = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onClickTagButton = () => {
     const newTagData = [...tagData, tagValue]
     dispatch(changeStudyForm({ key: 'tags', value: newTagData }))
     setTagValue('')
@@ -29,10 +28,12 @@ const CreateStudyTag = () => {
   return (
     <Container>
       <Wrapper>
-        <form onSubmit={onSubmitTag}>
-          <SubTitle>스터디 태그</SubTitle>
-          <TagInput value={tagValue} onChange={onChangeTagInput} />
-        </form>
+        <SubTitle>스터디 태그</SubTitle>
+        <input type="text" style={{ display: 'none' }} />
+        <TagInput type="text" value={tagValue} onChange={onChangeTagInput} />
+        <button type="button" onClick={onClickTagButton}>
+          태그 등록
+        </button>
       </Wrapper>
       <TagWrapper>
         {tagData.map((tag, index) => (
@@ -67,6 +68,7 @@ const SubTitle = styled.span`
 const TagInput = styled.input`
   width: 18rem;
   margin-left: 1rem;
+  padding-left: 1rem;
   font-size: 24px;
 
   background-color: ${(props) => props.theme.bgGroundColor3};

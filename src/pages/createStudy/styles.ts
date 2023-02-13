@@ -1,7 +1,8 @@
+import theme from 'src/style/theme'
 import styled from 'styled-components'
 
 export const Content = styled.div`
-  width: 700px;
+  width: 600px;
   padding-bottom: 5rem;
 
   margin-top: 2rem;
@@ -88,4 +89,46 @@ export const DivisionLine = styled.div`
   @media ${(props) => props.theme.small} {
     visibility: hidden;
   }
+`
+
+export const SubmitButton = styled.button`
+  width: 8rem;
+  border-radius: 20px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  background: ${(props) => props.theme.button};
+  color: ${(props) => props.theme.buttonText};
+  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
+  :hover {
+    cursor: pointer;
+    background: ${(props) => props.theme.buttonLightColor};
+    color: ${(props) => props.theme.buttonText};
+  }
+`
+
+export const DeleteButton = styled.button`
+  width: 8rem;
+  border-radius: 20px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  background: ${(props) => props.theme.warning};
+  color: ${(props) => props.theme.buttonText};
+  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
+  :hover {
+    cursor: pointer;
+    background: #f48484;
+    color: ${(props) => props.theme.buttonText};
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  margin-top: 2rem;
+  width: 20rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
 `
