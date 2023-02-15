@@ -39,7 +39,7 @@ const CreateStudy = () => {
       <Header />
 
       <S.Content>
-        <S.Title>📖 코딩의 늪을 만들어 보세요.</S.Title>
+        <S.Title bgColor={studyFormData.thumbnail}>📖 코딩의 늪을 만들어 보세요.</S.Title>
         <form onSubmit={onSubmitForm}>
           <S.StudyName placeholder="스터디 이름" value={studyFormData.title} onChange={onChangeTitle} required />
           <S.SelectStudyType>

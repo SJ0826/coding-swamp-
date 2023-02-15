@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import theme from 'src/style/theme'
 
 const initialstudyForm = {
   value: {
     title: '',
     description: '',
     studyType: '',
-    thumbnail: '',
+    thumbnail: theme.mainColor,
     startDate: '',
     endDate: '',
     maxMemberCount: '',

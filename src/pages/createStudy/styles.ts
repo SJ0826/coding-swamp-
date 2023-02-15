@@ -22,13 +22,13 @@ export const Content = styled.div`
   }
 `
 
-export const Title = styled.h1`
+export const Title = styled.h1<{ bgColor: string }>`
   height: 3rem;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
 
-  background: ${(props) => props.theme.green6};
-  color: gray;
+  background: ${(props) => props.bgColor};
+  color: ${(props) => props.theme.text1};
   font-size: 24px;
 
   @media ${(props) => props.theme.medium} {
