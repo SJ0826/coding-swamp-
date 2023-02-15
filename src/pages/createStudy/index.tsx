@@ -30,6 +30,10 @@ const CreateStudy = () => {
     navigate('/')
   }
 
+  const onClickDeleteButton = () => {
+    navigate('/')
+  }
+
   return (
     <>
       <Header />
@@ -50,7 +54,9 @@ const CreateStudy = () => {
           <CreateStudyTag />
           <S.ButtonWrapper>
             <S.SubmitButton>저장</S.SubmitButton>
-            <S.DeleteButton>취소</S.DeleteButton>
+            <S.DeleteButton type="button" onClick={onClickDeleteButton}>
+              취소
+            </S.DeleteButton>
           </S.ButtonWrapper>
         </form>
       </S.Content>
