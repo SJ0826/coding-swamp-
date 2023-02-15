@@ -52,8 +52,6 @@ export const ImgUploadButton = styled.label`
   font-weight: bold;
   text-align: center;
 
-  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
-
   :hover {
     background: #f4ead5;
     cursor: pointer;

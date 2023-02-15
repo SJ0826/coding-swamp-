@@ -24,6 +24,9 @@ button {
   cursor: pointer;
   outline: none;
   border: none;
+  cursor: pointer;
+
+  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
 }
 `
 

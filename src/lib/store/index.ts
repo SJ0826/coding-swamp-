@@ -4,12 +4,16 @@ import userFormSlice from './signForm/userFormSlice'
 import signInFormSlice from './signForm/signInFormSlice'
 import { memberInfoSlice } from './member/memberSlice'
 import editModeSlice from './member/editModeSlice'
+import userMenuSlice from './userMenuSlice'
+import studyFormSlice from './studyFormSlice'
 
 const rootReducer = combineReducers({
   userForm: userFormSlice,
   signInForm: signInFormSlice,
   memberInfo: memberInfoSlice.reducer,
   editMode: editModeSlice,
+  userMenu: userMenuSlice,
+  studyForm: studyFormSlice,
 })
 
 const store = configureStore({
