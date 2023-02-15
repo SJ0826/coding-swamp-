@@ -5,7 +5,7 @@ const initialstudyForm = {
   value: {
     title: '',
     description: '',
-    studyType: '',
+    studyType: 'STUDY',
     thumbnail: theme.mainColor,
     startDate: '',
     endDate: '',
@@ -25,7 +25,7 @@ export const studyFormSlice = createSlice({
       state.value = {
         title: '',
         description: '',
-        studyType: '',
+        studyType: 'STUDY',
         thumbnail: '',
         startDate: '',
         endDate: '',
