@@ -42,16 +42,25 @@ const Container = styled.div`
 
   @media ${(props) => props.theme.small} {
     flex-direction: column;
+    align-items: start;
+    height: 7rem;
   }
 `
 
 const SubTitle = styled.div`
   width: 11.5rem;
+  @media ${(props) => props.theme.small} {
+  }
 `
 
 const DateWrapper = styled.div`
+  width: 100%;
   height: 3rem;
   display: flex;
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 1rem;
+  }
 `
 const DateText = styled.div`
   display: flex;
@@ -68,7 +77,7 @@ const StartDate = styled.input`
   color: ${(props) => props.theme.text1};
 
   @media ${(props) => props.theme.small} {
-    width: 5rem;
+    width: 10rem;
   }
 `
 
@@ -80,6 +89,6 @@ const EndDate = styled.input`
   color: ${(props) => props.theme.text1};
 
   @media ${(props) => props.theme.small} {
-    width: 5rem;
+    width: 10rem;
   }
 `
