@@ -5,7 +5,7 @@ import { CreateStudyTag, SelectMaxMemberCount, SelectStudyColor, ToastEditor } f
 import SelectDate from 'src/components/createStudy/SelectDate'
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { changeStudyForm } from 'src/lib/store/studyFormSlice'
+import { allClearForm, changeStudyForm } from 'src/lib/store/studyFormSlice'
 import StudyTypeSelector from 'src/components/createStudy/StudyTypeSelector'
 import { createStudyAPI } from 'src/lib/api/study/createStudyAPI'
 import { useNavigate } from 'react-router-dom'
@@ -26,10 +26,12 @@ const CreateStudy = () => {
 
   const onClickSubmitButton = () => {
     createStudyAPI.postNewStudy(studyFormData)
+    dispatch(allClearForm)
     navigate('/')
   }
 
   const onClickDeleteButton = () => {
+    dispatch(allClearForm)
     navigate('/')
   }
 

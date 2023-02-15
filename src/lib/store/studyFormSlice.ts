@@ -26,7 +26,7 @@ export const studyFormSlice = createSlice({
         title: '',
         description: '',
         studyType: 'STUDY',
-        thumbnail: '',
+        thumbnail: theme.mainColor,
         startDate: '',
         endDate: '',
         maxMemberCount: '',
@@ -38,4 +38,4 @@ export const studyFormSlice = createSlice({
 
 export default studyFormSlice.reducer
 
-export const { changeStudyForm } = studyFormSlice.actions
+export const { changeStudyForm, allClearForm } = studyFormSlice.actions

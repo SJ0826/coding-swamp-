@@ -13,7 +13,8 @@ class CreateStudyAPI extends HttpClient {
   }
 
   public postNewStudy = async (data: StudyFormParams) => {
-    await this.instance.post('/api/study', data)
+    const response = await this.instance.post('/api/study', data)
+    return response
   }
 }
 

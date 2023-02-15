@@ -2,24 +2,18 @@ import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { removeToken } from 'src/lib/store/localStorage'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { setUserMenuVisibility } from 'src/lib/store/userMenuSlice'
-import useListenForOutsideClicks from 'src/lib/hooks/useListenForOutsideClicks'
-import { useEffect, useRef } from 'react'
+import { useState } from 'react'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
 const Header = () => {
   const navigator = useNavigate()
-  const useDispatch = useAppDispatch()
-  const userRef = useRef<HTMLDivElement>(null)
+  const [toggleMenu, setToggleMenu] = useState<boolean>(false)
   const memberData = useAppSelector(({ memberInfo }) => memberInfo)
   const memberImage = memberData.imageUrl
 
-  useEffect(useListenForOutsideClicks({ userRef }))
-
-  const toggle = () => {
-    useDispatch(setUserMenuVisibility('visible'))
+  const onClickUserIcon = () => {
+    setToggleMenu(!toggleMenu)
   }
 
   const onClickLogout = () => {
@@ -31,8 +25,8 @@ const Header = () => {
     <Container>
       <HeaderWrapper>
         <Logo>🐊 모코숲 로고 🐊</Logo>
-        <User BGImage={memberImage} onClick={toggle} ref={userRef} />
-        <UserMenu>
+        <User BGImage={memberImage} onClick={onClickUserIcon} />
+        <UserMenu isVisible={toggleMenu}>
           <UserMenuItem onClick={() => navigator('/createStudy')}>스터디 만들기</UserMenuItem>
           <UserMenuItem onClick={() => navigator('/user')}>설정</UserMenuItem>
           <UserMenuItem onClick={onClickLogout}>로그아웃</UserMenuItem>

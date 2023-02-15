@@ -1,27 +1,24 @@
 import styled from 'styled-components'
 import { memo } from 'react'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 
 interface Props {
   children: React.ReactNode
+  isVisible: boolean
 }
 
-const UserMenu = ({ children }: Props) => {
-  const isVisible = useAppSelector(({ userMenu }) => userMenu.visible)
-
-  return (
-    <Positioner>
-      <MenuWrapper isVisible={isVisible}>{children}</MenuWrapper>
-    </Positioner>
-  )
-}
+const UserMenu = ({ children, isVisible }: Props) => (
+  <Positioner isVisible={isVisible}>
+    <MenuWrapper>{children}</MenuWrapper>
+  </Positioner>
+)
 
 export default memo(UserMenu)
 
-const Positioner = styled.div`
+const Positioner = styled.div<{ isVisible: boolean }>`
   position: absolute;
   right: 10rem;
   top: 6rem;
+  visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
 
   @media ${(props) => props.theme.medium} {
     right: 5rem;
@@ -31,12 +28,9 @@ const Positioner = styled.div`
     right: 3rem;
   }
 `
-type menuProps = {
-  isVisible: string
-}
-const MenuWrapper = styled.div<menuProps>`
+
+const MenuWrapper = styled.div`
   background: ${(props) => props.theme.bgColor2};
   min-width: 140px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  visibility: ${(props) => props.isVisible};
 `
