@@ -16,11 +16,11 @@ const SelectDate = () => {
     <Container>
       <SubTitle>스터디 기간</SubTitle>
       <DateWrapper>
-        <StartText>시작 날짜</StartText>
+        <DateText>시작 날짜</DateText>
         <StartDate type="date" onChange={onChangeStartDate} required />
       </DateWrapper>
       <DateWrapper>
-        <span>마지막 날짜</span>
+        <DateText>마지막 날짜</DateText>
         <EndDate type="date" onChange={onChangeEndDate} required />
       </DateWrapper>
     </Container>
@@ -31,6 +31,7 @@ export default SelectDate
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
 
   height: 3rem;
   padding-left: 1rem;
@@ -52,7 +53,9 @@ const DateWrapper = styled.div`
   height: 3rem;
   display: flex;
 `
-const StartText = styled.div`
+const DateText = styled.div`
+  display: flex;
+  align-items: center;
   @media ${(props) => props.theme.small} {
     width: 5rem;
   }
@@ -71,8 +74,12 @@ const StartDate = styled.input`
 
 const EndDate = styled.input`
   padding-left: 1rem;
-  margin-bottom: 1rem;
-  font-size: 18px;
+  margin-right: 1rem;
 
+  font-size: 18px;
   color: ${(props) => props.theme.text1};
+
+  @media ${(props) => props.theme.small} {
+    width: 5rem;
+  }
 `

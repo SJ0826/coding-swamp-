@@ -1,7 +1,8 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { changeStudyForm } from 'src/lib/store/studyFormSlice'
+import { AiOutlineDelete } from 'react-icons/ai'
 import styled from 'styled-components'
 
 const CreateStudyTag = () => {
@@ -27,23 +28,24 @@ const CreateStudyTag = () => {
 
   return (
     <Container>
-      <Wrapper>
+      <>
         <SubTitle>스터디 태그</SubTitle>
-        <input type="text" style={{ display: 'none' }} />
-        <TagInput type="text" value={tagValue} onChange={onChangeTagInput} />
-        <button type="button" onClick={onClickTagButton}>
-          태그 등록
-        </button>
-      </Wrapper>
+        <InputWrapper>
+          <TagInput type="text" value={tagValue} onChange={onChangeTagInput} />
+          <SubmitTagButton type="button" onClick={onClickTagButton}>
+            등록
+          </SubmitTagButton>
+        </InputWrapper>
+      </>
       <TagWrapper>
         {tagData.map((tag, index) => (
           <>
-            <Tag id={tag} key={tag}>
-              {tag}{' '}
-              <RemoveTag id={tag} key={tag} onClick={onClickRemoveTag}>
-                x
-              </RemoveTag>
+            <Tag id={tag} key={index}>
+              #{tag}
             </Tag>
+            <RemoveButton id={tag} key={index + 1} type="button" onClick={onClickRemoveTag}>
+              <AiOutlineDelete />
+            </RemoveButton>
           </>
         ))}
       </TagWrapper>
@@ -58,47 +60,68 @@ const Container = styled.div`
 
   color: ${(props) => props.theme.text1};
 `
-const Wrapper = styled.div``
 
 const SubTitle = styled.span`
   font-size: 18px;
   font-weight: bold;
 `
+const InputWrapper = styled.div`
+  display: flex;
+  margin-top: 1rem;
+`
 
 const TagInput = styled.input`
   width: 18rem;
-  margin-left: 1rem;
   padding-left: 1rem;
+  margin-right: 1rem;
   font-size: 24px;
 
   background-color: ${(props) => props.theme.bgGroundColor3};
   border: 1px solid ${(props) => props.theme.border4};
   border-radius: 15px;
 `
+
+const SubmitTagButton = styled.button`
+  width: 3.5rem;
+  border-radius: 20px;
+
+  font-weight: 600;
+  line-height: 1rem;
+
+  background: ${(props) => props.theme.green6};
+`
+
 const TagWrapper = styled.div`
   display: flex;
+  align-items: center;
   margin-top: 1.5rem;
 `
+
 const Tag = styled.div`
   height: 2rem;
-  margin-right: 1rem;
-  padding: 0 1rem 0 1rem;
+  margin-right: 0.5rem;
+  padding: 0.1rem 1rem 0 1rem;
 
   font-size: 20px;
   font-weight: bold;
   text-align: center;
+  color: ${(props) => props.theme.text2};
 
   border-radius: 20px;
-  background: ${(props) => props.theme.green6};
+  background: ${(props) => props.theme.bgGroundColor4};
 `
 
-const RemoveTag = styled.button`
+const RemoveButton = styled.button`
   display: inline;
   width: 1rem;
   height: 1rem;
-  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+  margin-right: 2rem;
+
+  font-size: 1.3rem;
   background: none;
+
   &:hover {
-    cursor: pointer;
+    color: ${(props) => props.theme.warning};
   }
 `

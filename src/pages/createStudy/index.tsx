@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import { Header } from 'src/components/Header'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { CreateStudyTag, SelectMaxMemberCount, SelectStudyColor, ToastEditor } from 'src/components/createStudy'
@@ -24,8 +24,7 @@ const CreateStudy = () => {
     dispatch(changeStudyForm({ key: 'title', value: e.target.value }))
   }
 
-  const onSubmitForm = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onClickSubmitButton = () => {
     createStudyAPI.postNewStudy(studyFormData)
     navigate('/')
   }
@@ -40,25 +39,25 @@ const CreateStudy = () => {
 
       <S.Content>
         <S.Title bgColor={studyFormData.thumbnail}>📖 코딩의 늪을 만들어 보세요.</S.Title>
-        <form onSubmit={onSubmitForm}>
-          <S.StudyName placeholder="스터디 이름" value={studyFormData.title} onChange={onChangeTitle} required />
-          <S.SelectStudyType>
-            <S.SubTitle>스터디 타입</S.SubTitle>
-            <StudyTypeSelector />
-          </S.SelectStudyType>
-          <SelectStudyColor />
-          <SelectMaxMemberCount />
-          <SelectDate />
-          <S.DivisionLine />
-          <ToastEditor />
-          <CreateStudyTag />
-          <S.ButtonWrapper>
-            <S.SubmitButton>저장</S.SubmitButton>
-            <S.DeleteButton type="button" onClick={onClickDeleteButton}>
-              취소
-            </S.DeleteButton>
-          </S.ButtonWrapper>
-        </form>
+
+        <S.StudyName placeholder="스터디 이름" value={studyFormData.title} onChange={onChangeTitle} required />
+        <S.SelectStudyType>
+          <S.SubTitle>스터디 타입</S.SubTitle>
+          <StudyTypeSelector />
+        </S.SelectStudyType>
+        <SelectStudyColor />
+        <SelectMaxMemberCount />
+        <SelectDate />
+        <S.DivisionLine />
+        <ToastEditor />
+        <CreateStudyTag />
+
+        <S.ButtonWrapper>
+          <S.SubmitButton onClick={onClickSubmitButton}>저장</S.SubmitButton>
+          <S.DeleteButton type="button" onClick={onClickDeleteButton}>
+            취소
+          </S.DeleteButton>
+        </S.ButtonWrapper>
       </S.Content>
     </>
   )

@@ -91,7 +91,8 @@ export const DivisionLine = styled.div`
 `
 
 export const SubmitButton = styled.button`
-  width: 8rem;
+  width: 5rem;
+  height: 2rem;
   border-radius: 20px;
 
   font-size: 18px;
@@ -108,15 +109,17 @@ export const SubmitButton = styled.button`
 `
 
 export const DeleteButton = styled.button`
-  width: 8rem;
+  width: 5rem;
+  height: 2rem;
   border-radius: 20px;
 
   font-size: 18px;
   font-weight: bold;
 
-  background: ${(props) => props.theme.warning};
+  background: ${(props) => props.theme.warning2};
   color: ${(props) => props.theme.buttonText};
   transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
+
   :hover {
     cursor: pointer;
     background: #f48484;
@@ -126,7 +129,7 @@ export const DeleteButton = styled.button`
 
 export const ButtonWrapper = styled.div`
   margin-top: 2rem;
-  width: 20rem;
+  width: 15rem;
   height: 3rem;
   display: flex;
   justify-content: space-between;

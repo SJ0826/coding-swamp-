@@ -21,6 +21,7 @@ const theme = {
 
   blue: '#ABC9FF',
   warning: '#EB4747',
+  warning2: '#FF6464',
 
   green1: '#3C6255',
   green2: '#61876E',
