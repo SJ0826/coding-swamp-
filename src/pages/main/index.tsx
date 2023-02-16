@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
 import { Banner } from 'src/components'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import * as S from './styles'
 import { DivisionLine } from '../createStudy/styles'
 
@@ -14,6 +15,13 @@ const main = () => {
     dispatch(getMemberInfo())
     refreshTokenAPI.getRefreshToken()
   }, [])
+
+  const test = async () => {
+    const response = await studyAPI.getStudyList(1)
+    console.log(response)
+  }
+
+  test()
   return (
     <>
       <Header />

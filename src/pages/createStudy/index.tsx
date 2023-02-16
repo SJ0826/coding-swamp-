@@ -7,8 +7,8 @@ import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { allClearForm, changeStudyForm } from 'src/lib/store/studyFormSlice'
 import StudyTypeSelector from 'src/components/createStudy/StudyTypeSelector'
-import { createStudyAPI } from 'src/lib/api/study/createStudyAPI'
 import { useNavigate } from 'react-router-dom'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import * as S from './styles'
 
 const CreateStudy = () => {
@@ -25,7 +25,7 @@ const CreateStudy = () => {
   }
 
   const onClickSubmitButton = () => {
-    createStudyAPI.postNewStudy(studyFormData)
+    studyAPI.postNewStudy(studyFormData)
     dispatch(allClearForm)
     navigate('/')
   }
