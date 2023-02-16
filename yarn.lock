@@ -1800,7 +1800,7 @@
 
 "@toast-ui/editor@^3.2.1":
   version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@toast-ui/editor/-/editor-3.2.1.tgz#dcd0b7471299842b2962aab5d757723a61959f2a"
+  resolved "https://registry.npmjs.org/@toast-ui/editor/-/editor-3.2.1.tgz"
   integrity sha512-05nKfqK2n/6Mq8WpO1E7OnOjlhiFfxr1G2i/DpG/pFjKlY3E7uOtSAyuz7rybKWHgUzXRzRGv7MqDL6lXfqnWg==
   dependencies:
     dompurify "^2.3.3"
@@ -1814,7 +1814,7 @@
 
 "@toast-ui/react-editor@^3.2.2":
   version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@toast-ui/react-editor/-/react-editor-3.2.2.tgz#3c9cf86ca8b2115bd0d6aac95d6611eca6cffa15"
+  resolved "https://registry.npmjs.org/@toast-ui/react-editor/-/react-editor-3.2.2.tgz"
   integrity sha512-lbqRUcSJ9f3HO/MG7cjXmDmoBJpBQGErwKIWsNj1byC76G4yhHJ5gVKFn3zZ47hEQj7aQRFTEtbWCEMTF2bixQ==
   dependencies:
     "@toast-ui/editor" "^3.2.1"
@@ -1954,6 +1954,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/history@^4.7.11":
+  version "4.7.11"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"
+  integrity sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==
+
 "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz"
@@ -2063,6 +2068,23 @@
   resolved "https://registry.npmjs.org/@types/react-onclickoutside/-/react-onclickoutside-6.7.4.tgz"
   integrity sha512-N7EnMhxqb+TaUOGJQUV8YJeL3n5qP5+cXwtWRS/FYW+DSEAb8T3xwNsgZ6wEJMHP4/QpfVHcBaFopFjJ9XBuOg==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-router-dom@^5.3.3":
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.3.3.tgz#e9d6b4a66fcdbd651a5f106c2656a30088cc1e83"
+  integrity sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==
+  dependencies:
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
+"@types/react-router@*":
+  version "5.1.20"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.20.tgz#88eccaa122a82405ef3efbcaaa5dcdd9f021387c"
+  integrity sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==
+  dependencies:
+    "@types/history" "^4.7.11"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^18.0.27":
@@ -3842,7 +3864,7 @@ domhandler@^4.0.0, domhandler@^4.2.0, domhandler@^4.3.1:
 
 dompurify@^2.3.3:
   version "2.4.3"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.3.tgz#f4133af0e6a50297fc8874e2eaedc13a3c308c03"
+  resolved "https://registry.npmjs.org/dompurify/-/dompurify-2.4.3.tgz"
   integrity sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==
 
 domutils@^1.7.0:
@@ -6642,7 +6664,7 @@ optionator@^0.9.1:
 
 orderedmap@^2.0.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/orderedmap/-/orderedmap-2.1.0.tgz#819457082fa3a06abd316d83a281a1ca467437cd"
+  resolved "https://registry.npmjs.org/orderedmap/-/orderedmap-2.1.0.tgz"
   integrity sha512-/pIFexOm6S70EPdznemIz3BQZoJ4VTFrhqzu0ACBqBgeLsLxq8e6Jim63ImIfwW/zAD1AlXpRMlOv3aghmo4dA==
 
 p-limit@^2.0.0, p-limit@^2.2.0:
@@ -7445,7 +7467,7 @@ prop-types@^15.8.1:
 
 prosemirror-commands@^1.1.9:
   version "1.5.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.5.0.tgz#d10efece1647c1d984fef6f65d52fdc77785560b"
+  resolved "https://registry.npmjs.org/prosemirror-commands/-/prosemirror-commands-1.5.0.tgz"
   integrity sha512-zL0Fxbj3fh71GPNHn5YdYgYGX2aU2XLecZYk2ekEF0oOD259HcXtM+96VjPVi5o3h4sGUdDfEEhGiREXW6U+4A==
   dependencies:
     prosemirror-model "^1.0.0"
@@ -7454,7 +7476,7 @@ prosemirror-commands@^1.1.9:
 
 prosemirror-history@^1.1.3:
   version "1.3.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-history/-/prosemirror-history-1.3.0.tgz#bf5a1ff7759aca759ddf0c722c2fa5b14fb0ddc1"
+  resolved "https://registry.npmjs.org/prosemirror-history/-/prosemirror-history-1.3.0.tgz"
   integrity sha512-qo/9Wn4B/Bq89/YD+eNWFbAytu6dmIM85EhID+fz9Jcl9+DfGEo8TTSrRhP15+fFEoaPqpHSxlvSzSEbmlxlUA==
   dependencies:
     prosemirror-state "^1.2.2"
@@ -7463,7 +7485,7 @@ prosemirror-history@^1.1.3:
 
 prosemirror-inputrules@^1.1.3:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-inputrules/-/prosemirror-inputrules-1.2.0.tgz#476dde2dc244050b3aca00cf58a82adfad6749e7"
+  resolved "https://registry.npmjs.org/prosemirror-inputrules/-/prosemirror-inputrules-1.2.0.tgz"
   integrity sha512-eAW/M/NTSSzpCOxfR8Abw6OagdG0MiDAiWHQMQveIsZtoKVYzm0AflSPq/ymqJd56/Su1YPbwy9lM13wgHOFmQ==
   dependencies:
     prosemirror-state "^1.0.0"
@@ -7471,7 +7493,7 @@ prosemirror-inputrules@^1.1.3:
 
 prosemirror-keymap@^1.1.4:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-keymap/-/prosemirror-keymap-1.2.0.tgz#d5cc9da9b712020690a994b50b92a0e448a60bf5"
+  resolved "https://registry.npmjs.org/prosemirror-keymap/-/prosemirror-keymap-1.2.0.tgz"
   integrity sha512-TdSfu+YyLDd54ufN/ZeD1VtBRYpgZnTPnnbY+4R08DDgs84KrIPEPbJL8t1Lm2dkljFx6xeBE26YWH3aIzkPKg==
   dependencies:
     prosemirror-state "^1.0.0"
@@ -7479,14 +7501,14 @@ prosemirror-keymap@^1.1.4:
 
 prosemirror-model@^1.0.0, prosemirror-model@^1.14.1, prosemirror-model@^1.16.0:
   version "1.19.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.19.0.tgz#d7ad9a65ada0bb12196f64fe0dd4fc392c841c29"
+  resolved "https://registry.npmjs.org/prosemirror-model/-/prosemirror-model-1.19.0.tgz"
   integrity sha512-/CvFGJnwc41EJSfDkQLly1cAJJJmBpZwwUJtwZPTjY2RqZJfM8HVbCreOY/jti8wTRbVyjagcylyGoeJH/g/3w==
   dependencies:
     orderedmap "^2.0.0"
 
 prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.4:
   version "1.4.2"
-  resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.4.2.tgz#f93bd8a33a4454efab917ba9b738259d828db7e5"
+  resolved "https://registry.npmjs.org/prosemirror-state/-/prosemirror-state-1.4.2.tgz"
   integrity sha512-puuzLD2mz/oTdfgd8msFbe0A42j5eNudKAAPDB0+QJRw8cO1ygjLmhLrg9RvDpf87Dkd6D4t93qdef00KKNacQ==
   dependencies:
     prosemirror-model "^1.0.0"
@@ -7495,14 +7517,14 @@ prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.4:
 
 prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0:
   version "1.7.1"
-  resolved "https://registry.yarnpkg.com/prosemirror-transform/-/prosemirror-transform-1.7.1.tgz#b516e818c3add0bdf960f4ca8ccb9d057a3ba21b"
+  resolved "https://registry.npmjs.org/prosemirror-transform/-/prosemirror-transform-1.7.1.tgz"
   integrity sha512-VteoifAfpt46z0yEt6Fc73A5OID9t/y2QIeR5MgxEwTuitadEunD/V0c9jQW8ziT8pbFM54uTzRLJ/nLuQjMxg==
   dependencies:
     prosemirror-model "^1.0.0"
 
 prosemirror-view@^1.18.7, prosemirror-view@^1.27.0:
   version "1.30.1"
-  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.30.1.tgz#7cf0ae8dc8553a02c32961e82eca25079c4d8fc9"
+  resolved "https://registry.npmjs.org/prosemirror-view/-/prosemirror-view-1.30.1.tgz"
   integrity sha512-pZUfr7lICJkEY7XwzldAKrkflZDeIvnbfuu2RIS01N5NwJmR/dfZzDzJRzhb3SM2QtT/bM8b4Nnib8X3MGpAhA==
   dependencies:
     prosemirror-model "^1.16.0"
@@ -8017,7 +8039,7 @@ rollup@^2.43.1:
 
 rope-sequence@^1.3.0:
   version "1.3.3"
-  resolved "https://registry.yarnpkg.com/rope-sequence/-/rope-sequence-1.3.3.tgz#3f67fc106288b84b71532b4a5fd9d4881e4457f0"
+  resolved "https://registry.npmjs.org/rope-sequence/-/rope-sequence-1.3.3.tgz"
   integrity sha512-85aZYCxweiD5J8yTEbw+E6A27zSnLPNDL0WfPdw3YYodq7WjnTKo0q4dtyQ2gz23iPT8Q9CUyJtAaUNcTxRf5Q==
 
 run-parallel@^1.1.9:
@@ -9016,7 +9038,7 @@ w3c-hr-time@^1.0.2:
 
 w3c-keyname@^2.2.0:
   version "2.2.6"
-  resolved "https://registry.yarnpkg.com/w3c-keyname/-/w3c-keyname-2.2.6.tgz#8412046116bc16c5d73d4e612053ea10a189c85f"
+  resolved "https://registry.npmjs.org/w3c-keyname/-/w3c-keyname-2.2.6.tgz"
   integrity sha512-f+fciywl1SJEniZHD6H+kUO8gOnwIr7f4ijKA6+ZvJFjeGi1r4PDLl53Ayud9O/rk64RqgoQine0feoeOU0kXg==
 
 w3c-xmlserializer@^2.0.0:

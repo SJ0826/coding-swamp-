@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { signUpAPI } from 'src/lib/api/sign/signUpAPI'
+import { signUpAPI } from 'src/lib/api/Sign/SignUpAPI'
+
 import { UserParam } from 'src/lib/types/UserInterface'
 
 const initialValidation = {

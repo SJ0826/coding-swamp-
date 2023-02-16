@@ -1,8 +1,8 @@
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { removeToken } from 'src/lib/store/localStorage'
 import { useState } from 'react'
+import { removeToken } from 'src/lib/util/localStorage'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
