@@ -33,6 +33,11 @@ const InputWrapper = styled.div`
 
   border-radius: 20px;
   background: ${(props) => props.theme.bgGroundColor2};
+
+  @media ${(props) => props.theme.small} {
+    padding-top: 1.5rem;
+    height: 5rem;
+  }
 `
 const SearchStudyInput = styled.input`
   width: 30rem;
@@ -44,5 +49,6 @@ const SearchStudyInput = styled.input`
 
   @media ${(props) => props.theme.small} {
     width: 20rem;
+    height: 2rem;
   }
 `
