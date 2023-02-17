@@ -1,6 +1,6 @@
-import StudyFormParams from 'src/lib/types/StudyInterface'
 import { STUDIES_PER_PAGE } from 'src/lib/constants/constants'
 import { STUDY_URL } from 'src/lib/constants/Url'
+import { StudyFormParams } from 'src/lib/types/StudyInterface'
 import HttpClient from '../httpClient'
 
 class StudyAPI extends HttpClient {

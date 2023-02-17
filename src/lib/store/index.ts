@@ -6,6 +6,7 @@ import { memberInfoSlice } from './member/memberSlice'
 import editModeSlice from './member/editModeSlice'
 import userMenuSlice from './userMenuSlice'
 import studyFormSlice from './studyFormSlice'
+import studyListSlice from './studyListSlice'
 
 const rootReducer = combineReducers({
   userForm: userFormSlice,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   editMode: editModeSlice,
   userMenu: userMenuSlice,
   studyForm: studyFormSlice,
+  studyList: studyListSlice,
 })
 
 const store = configureStore({
