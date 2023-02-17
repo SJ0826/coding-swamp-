@@ -21,7 +21,7 @@ const Description = styled.h2`
   line-height: 2.25rem;
 
   @media ${(props) => props.theme.small} {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 `
 const InputWrapper = styled.div`
@@ -35,8 +35,9 @@ const InputWrapper = styled.div`
   background: ${(props) => props.theme.bgGroundColor2};
 
   @media ${(props) => props.theme.small} {
-    padding-top: 1.5rem;
-    height: 5rem;
+    padding-top: 1rem;
+    height: 4rem;
+    margin-top: 1rem;
   }
 `
 const SearchStudyInput = styled.input`
@@ -44,11 +45,12 @@ const SearchStudyInput = styled.input`
   height: 4rem;
   padding-left: 1rem;
 
-  font-size: 2rem;
+  font-size: 1.8rem;
   border-radius: 20px;
 
   @media ${(props) => props.theme.small} {
-    width: 20rem;
+    width: 18rem;
     height: 2rem;
+    font-size: 1rem;
   }
 `

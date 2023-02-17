@@ -11,7 +11,6 @@ const StudyList = () => {
 
   useEffect(() => {
     dispatch(getStudies(1))
-    console.log(studyResponses)
   }, [])
 
   return (
@@ -35,5 +34,21 @@ const StudyList = () => {
 export default StudyList
 
 const Container = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 2rem;
+  justify-content: center;
+  align-content: center;
+
+  @media ${(props) => props.theme.medium} {
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 430px) {
+    margin-top: 1rem;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
 `
