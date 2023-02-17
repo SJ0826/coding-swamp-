@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { getStudies } from 'src/lib/store/studyListSlice'
+import styled from 'styled-components'
 import StudyItem from './StudyItem'
 
 const StudyList = () => {
@@ -14,7 +15,7 @@ const StudyList = () => {
   }, [])
 
   return (
-    <>
+    <Container>
       {studyResponses.map((study) => (
         <StudyItem
           key={study.studyId}
@@ -27,8 +28,12 @@ const StudyList = () => {
           studyId={study.studyId}
         />
       ))}
-    </>
+    </Container>
   )
 }
 
 export default StudyList
+
+const Container = styled.div`
+  margin-top: 2rem;
+`
