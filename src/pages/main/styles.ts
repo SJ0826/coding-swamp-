@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+export const Container = styled.div``
+
 export const Content = styled.div`
   margin: 4rem auto 0rem auto;
   @media ${(props) => props.theme.large} {

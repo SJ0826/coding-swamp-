@@ -5,7 +5,7 @@ const initialStudyList = {
   value: {
     studyResponses: [{ studyId: 0, title: '', studyType: '', thumbnail: '', startDate: '', endDate: '', tags: [] }],
     totalPage: 0,
-    currentPage: 0,
+    currentPage: 1,
   },
 }
 
@@ -17,10 +17,16 @@ export const getStudies = createAsyncThunk('study', async (pageNum: number) => {
 export const studyListSlice = createSlice({
   name: 'studyList',
   initialState: initialStudyList,
-  reducers: {},
+  reducers: {
+    updateActivePage: (state, { payload }) => {
+      state.value.currentPage = payload
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getStudies.fulfilled, (state, { payload }) => {
       state.value.studyResponses = payload.data.studyResponses
+
+      state.value.totalPage = payload.data.totalPage
 
       state.value.totalPage = payload.data.totalPage
       return state
@@ -29,3 +35,4 @@ export const studyListSlice = createSlice({
 })
 
 export default studyListSlice.reducer
+export const { updateActivePage } = studyListSlice.actions

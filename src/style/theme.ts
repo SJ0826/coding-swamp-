@@ -1,7 +1,7 @@
 const size = {
   small: '768px',
   medium: '1080px',
-  large: '1950px',
+  large: '2500px',
 }
 
 const theme = {

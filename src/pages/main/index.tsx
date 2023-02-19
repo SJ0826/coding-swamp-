@@ -5,6 +5,7 @@ import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
 import { Banner, StudyList } from 'src/components'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
+import PageList from 'src/components/mainPage/PageList'
 import * as S from './styles'
 import { DivisionLine } from '../createStudy/styles'
 
@@ -26,6 +27,7 @@ const main = () => {
         </section>
         <section>
           <StudyList />
+          <PageList />
         </section>
       </S.Content>
     </>

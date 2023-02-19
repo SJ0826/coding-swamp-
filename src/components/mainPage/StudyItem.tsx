@@ -17,9 +17,9 @@ const StudyItem = ({ studyId, title, studyType, thumbnail, startDate, endDate, t
       <ColorWrapper thumbnail={thumbnail}>
         <Title>{title}</Title>
         <StudyType>{studyType}</StudyType>
-        <h5>
+        <StudyPeriod>
           {startDate} ~ {endDate}
-        </h5>
+        </StudyPeriod>
       </ColorWrapper>
       <TagContainer>
         {tags.map((tag) => (
@@ -33,14 +33,16 @@ const StudyItem = ({ studyId, title, studyType, thumbnail, startDate, endDate, t
 export default StudyItem
 
 const Container = styled.div`
-  width: 16rem;
-  height: 14rem;
+  width: 20rem;
+  height: 18rem;
   margin: 1rem;
 
   border-radius: 3rem;
   background: ${(props) => props.theme.bgGroundColor2};
 
-  box-shadow: 0.5px 0.5px 0.5px 0.5px lightgray;
+  box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
+  transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
+  overflow: hidden;
 
   &:hover {
     cursor: pointer;
@@ -64,6 +66,7 @@ const ColorWrapper = styled.div<{ thumbnail: string }>`
   }
 `
 const Title = styled.h3`
+  font-size: 1.6rem;
   text-align: center;
   margin: 1rem;
 
@@ -101,6 +104,15 @@ const StudyType = styled.h5`
     margin-bottom: 0.2rem;
   }
 `
+
+const StudyPeriod = styled.h3`
+  font-size: 1rem;
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+  }
+`
+
 const TagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
