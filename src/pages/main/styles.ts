@@ -9,10 +9,7 @@ export const Content = styled.div`
   }
 
   @media ${(props) => props.theme.medium} {
-    width: calc(100% - 2rem);
-  }
-
-  @media ${(props) => props.theme.small} {
+    margin-left: 1.6rem;
     width: calc(100% - 1rem);
   }
 `

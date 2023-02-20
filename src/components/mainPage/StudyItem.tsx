@@ -65,9 +65,6 @@ const Container = styled.div`
   &:hover {
     cursor: pointer;
   }
-  @media ${(props) => props.theme.medium} {
-    width: calc(50% - 2rem);
-  }
 
   @media ${(props) => props.theme.small} {
     width: 100%;
