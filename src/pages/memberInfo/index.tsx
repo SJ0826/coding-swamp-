@@ -1,12 +1,13 @@
 import Header from 'src/components/Header/Header'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+
 import DefaultButton from 'src/components/DefaultButton'
 import theme from 'src/style/theme'
 import { ChangeEvent, FormEvent, useCallback, useEffect, useRef } from 'react'
 import { changeMemberInfo, getMemberInfo } from 'src/lib/store/member/memberSlice'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
+
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { changeEditForm, postEditedMember, toggleEditMode } from 'src/lib/store/member/editModeSlice'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import * as S from './styles'
 
 export interface type {

@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { getStudies } from 'src/lib/store/studyListSlice'
 import styled from 'styled-components'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import StudyItem from './StudyItem'
 
 const StudyList = () => {
   const dispatch = useAppDispatch()
-  const { studyResponses } = useAppSelector(({ studyList }) => studyList.value)
-  const currentStudyType = useAppSelector(({ studyList }) => studyList.value.currentStudyType)
+  const { studyResponses, currentStudyType } = useAppSelector(({ studyList }) => studyList.value)
   const clickedStudyStatus = useAppSelector(({ studyList }) => studyList.value.isClickStatusFilter)
   const [filterdStudies, setFilterdStudies] = useState(studyResponses)
 
@@ -20,6 +18,7 @@ const StudyList = () => {
     switch (currentStudyType) {
       case 'study': {
         const filteredStudyResponse = studyResponses.filter((study) => study.studyType === 'STUDY')
+
         setFilterdStudies(filteredStudyResponse)
         break
       }
@@ -33,13 +32,13 @@ const StudyList = () => {
     }
   }, [studyResponses, currentStudyType])
 
-  useEffect(() => {
-    const filteredStudyByStatus = clickedStudyStatus
-      ? filterdStudies.filter((study) => study.studyStatus === 'ONGOING')
-      : filterdStudies
+  // useEffect(() => {
+  //   const filteredStudyByStatus = clickedStudyStatus
+  //     ? filterdStudies.filter((study) => study.studyStatus === 'ONGOING')
+  //     : filterdStudies
 
-    setFilterdStudies(filteredStudyByStatus)
-  }, [studyResponses, clickedStudyStatus])
+  //   setFilterdStudies(filteredStudyByStatus)
+  // }, [studyResponses, clickedStudyStatus])
 
   return (
     <Container>
@@ -71,7 +70,7 @@ const Container = styled.div`
   justify-content: left;
   align-content: center;
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.small} {
     margin-top: 1rem;
   }
 `

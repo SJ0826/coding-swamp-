@@ -1,14 +1,13 @@
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { getStudies, updateActivePage } from 'src/lib/store/studyListSlice'
 import styled from 'styled-components'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 
 const PageList = () => {
   const dispatch = useAppDispatch()
-  const totalPageState = useAppSelector(({ studyList }) => studyList.value.totalPage)
-  const currentPage = useAppSelector(({ studyList }) => studyList.value.currentPage)
-  const pages = Array(totalPageState).fill(0)
+  const { totalPage, currentPage } = useAppSelector(({ studyList }) => studyList.value)
+
+  const pages = Array(totalPage).fill(0)
   const onClickPageNumber = (e: React.MouseEvent<HTMLButtonElement>) => {
     const clickedPageNum = e.currentTarget
     dispatch(updateActivePage(Number(clickedPageNum.value)))

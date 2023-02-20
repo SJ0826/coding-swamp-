@@ -1,8 +1,7 @@
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import styled from 'styled-components'
 import { RxDividerVertical } from 'react-icons/rx'
 import { changeCurrentStudyType } from 'src/lib/store/studyListSlice'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 
 const StudyTypeFilter = () => {
   const dispatch = useAppDispatch()

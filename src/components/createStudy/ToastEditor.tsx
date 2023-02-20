@@ -2,8 +2,8 @@ import '@toast-ui/editor/dist/toastui-editor.css'
 import styled from 'styled-components'
 import { Editor } from '@toast-ui/react-editor'
 import { useRef } from 'react'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { changeStudyForm } from 'src/lib/store/studyFormSlice'
+import { useAppDispatch } from 'src/lib/hooks'
 
 const ToastEditor = () => {
   const editorRef = useRef<Editor>(null)

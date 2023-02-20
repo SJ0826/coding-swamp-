@@ -66,7 +66,14 @@ const Container = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.medium} {
+    width: 100%;
+    height: 12rem;
+    margin-left: 0rem;
+    margin: 1rem;
+  }
+
+  @media ${(props) => props.theme.small} {
     width: 100%;
     height: 12rem;
     margin-left: 0rem;
@@ -80,7 +87,7 @@ const ColorWrapper = styled.div<{ thumbnail: string }>`
   border-top-right-radius: 3rem;
   background: ${(props) => props.thumbnail};
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.small} {
     padding: 0.3rem 1rem;
   }
 `
@@ -89,7 +96,7 @@ const Title = styled.h3`
   text-align: center;
   margin: 1rem;
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.small} {
     font-size: 1rem;
     margin: 0.4rem;
   }
@@ -114,7 +121,7 @@ const StudyType = styled.span`
     margin-bottom: 0.2rem;
   }
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.small} {
     width: 4rem;
     height: 1rem;
     font-size: 0.3rem;
@@ -149,7 +156,7 @@ const Tag = styled.div`
   margin: 0.2rem;
   color: ${(props) => props.theme.text2};
 
-  @media (max-width: 430px) {
+  @media ${(props) => props.theme.small} {
     font-size: 0.8rem;
   }
 `

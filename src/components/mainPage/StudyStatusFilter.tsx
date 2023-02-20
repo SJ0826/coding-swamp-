@@ -1,8 +1,7 @@
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import styled from 'styled-components'
 import { BsCheckLg } from 'react-icons/bs'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { changeStatusFilter } from 'src/lib/store/studyListSlice'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 
 const StudyStatusFilter = () => {
   const dispatch = useAppDispatch()

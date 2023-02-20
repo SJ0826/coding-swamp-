@@ -3,12 +3,12 @@ import { Header } from 'src/components/Header'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { CreateStudyTag, SelectMaxMemberCount, SelectStudyColor, ToastEditor } from 'src/components/createStudy'
 import SelectDate from 'src/components/createStudy/SelectDate'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+
 import { allClearForm, changeStudyForm } from 'src/lib/store/studyFormSlice'
 import StudyTypeSelector from 'src/components/createStudy/StudyTypeSelector'
 import { useNavigate } from 'react-router-dom'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import * as S from './styles'
 
 const CreateStudy = () => {
