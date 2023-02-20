@@ -43,6 +43,9 @@ export default StudyTypeFilter
 const Container = styled.div`
   height: 5rem;
   padding: 1rem;
+  @media ${(props) => props.theme.small} {
+    height: 3rem;
+  }
 `
 
 const StudyTypeWrapper = styled.div`
@@ -50,19 +53,32 @@ const StudyTypeWrapper = styled.div`
   justify-content: end;
   font-size: 1.5rem;
   color: ${(props) => props.theme.text4};
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+  }
 `
 
 const StudyType = styled.button<{ active: boolean }>`
-  margin-left: 1.3rem;
-  margin-right: 1.3rem;
+  margin: 0rem 1.3rem;
   font-size: 1.5rem;
   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   background: none;
   color: ${(props) => (props.active ? props.theme.text1 : props.theme.text4)};
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    margin: 0rem 0.4rem;
+  }
 `
 const DivisionLine = styled.span`
   margin-left: 1.3rem;
   margin-right: 1.3rem;
   font-size: 1.5rem;
   background: none;
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    margin: 0rem 0.4rem;
+  }
 `
