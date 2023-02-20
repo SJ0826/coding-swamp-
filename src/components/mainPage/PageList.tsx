@@ -12,8 +12,8 @@ const PageList = () => {
 
   const onClickPageNumber = (e: React.MouseEvent<HTMLButtonElement>) => {
     const clickedPageNum = e.currentTarget
-    dispatch(getStudies(Number(clickedPageNum.value)))
     dispatch(updateActivePage(Number(clickedPageNum.value)))
+    dispatch(getStudies(Number(clickedPageNum.value)))
   }
 
   return (

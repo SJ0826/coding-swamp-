@@ -35,7 +35,7 @@ export default StudyItem
 const Container = styled.div`
   width: 20rem;
   height: 18rem;
-  margin: 1rem;
+  margin: 2.5rem;
 
   border-radius: 3rem;
   background: ${(props) => props.theme.bgGroundColor2};

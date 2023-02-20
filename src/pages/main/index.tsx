@@ -6,6 +6,7 @@ import { getMemberInfo } from 'src/lib/store/member/memberSlice'
 import { Banner, StudyList } from 'src/components'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
 import PageList from 'src/components/mainPage/PageList'
+import StudyTypeFilter from 'src/components/mainPage/StudyTypeFilter'
 import * as S from './styles'
 import { DivisionLine } from '../createStudy/styles'
 
@@ -26,6 +27,7 @@ const main = () => {
           <SearchStudy />
         </section>
         <section>
+          <StudyTypeFilter />
           <StudyList />
           <PageList />
         </section>
