@@ -51,9 +51,9 @@ const StudyItem = ({
 export default StudyItem
 
 const Container = styled.div`
-  width: 20rem;
+  width: 19rem;
   height: 19rem;
-  margin: 2.5rem;
+  margin: 2rem;
 
   border-radius: 3rem;
   background: ${(props) => props.theme.bgGroundColor2};
@@ -67,10 +67,7 @@ const Container = styled.div`
   }
 
   @media ${(props) => props.theme.medium} {
-    width: 100%;
-    height: 12rem;
-    margin-left: 0rem;
-    margin: 1rem;
+    width: calc(50% - 2rem);
   }
 
   @media ${(props) => props.theme.small} {

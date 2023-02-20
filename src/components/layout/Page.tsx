@@ -15,6 +15,11 @@ const Container = styled.div`
   margin-left: 10%;
   background-color: ${(props) => props.theme.bgGroundColor1};
 
+  @media ${(props) => props.theme.medium} {
+    width: 100%;
+    margin-left: 0%;
+  }
+
   @media ${(props) => props.theme.small} {
     width: 100%;
     margin-left: 0%;

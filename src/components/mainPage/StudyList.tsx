@@ -32,13 +32,13 @@ const StudyList = () => {
     }
   }, [studyResponses, currentStudyType])
 
-  // useEffect(() => {
-  //   const filteredStudyByStatus = clickedStudyStatus
-  //     ? filterdStudies.filter((study) => study.studyStatus === 'ONGOING')
-  //     : filterdStudies
+  useEffect(() => {
+    const filteredStudyByStatus = clickedStudyStatus
+      ? filterdStudies.filter((study) => study.studyStatus === 'ONGOING')
+      : filterdStudies
 
-  //   setFilterdStudies(filteredStudyByStatus)
-  // }, [studyResponses, clickedStudyStatus])
+    setFilterdStudies(filteredStudyByStatus)
+  }, [clickedStudyStatus])
 
   return (
     <Container>
@@ -66,8 +66,8 @@ export default StudyList
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 2rem;
-  justify-content: left;
+
+  justify-content: center;
   align-content: center;
 
   @media ${(props) => props.theme.small} {
