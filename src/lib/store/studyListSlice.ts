@@ -3,7 +3,20 @@ import { studyAPI } from '../api/study/StudyAPI'
 
 const initialStudyList = {
   value: {
-    studyResponses: [{ studyId: 0, title: '', studyType: '', thumbnail: '', startDate: '', endDate: '', tags: [] }],
+    studyResponses: [
+      {
+        studyId: 0,
+        title: '',
+        studyType: '',
+        thumbnail: '',
+        startDate: '',
+        endDate: '',
+        tags: [],
+        currentMemberCount: 0,
+        maxMemberCount: 0,
+        createdAt: 0,
+      },
+    ],
     totalPage: 0,
     currentPage: 1,
     currentStudyType: 'All',
@@ -29,10 +42,6 @@ export const studyListSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getStudies.fulfilled, (state, { payload }) => {
       state.value.studyResponses = payload.data.studyResponses
-
-      state.value.totalPage = payload.data.totalPage
-
-      state.value.totalPage = payload.data.totalPage
       return state
     })
   },

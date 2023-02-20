@@ -7,16 +7,31 @@ type Props = {
   thumbnail: string
   startDate: string
   endDate: string
+  currentMemberCount: number
+  maxMemberCount: number
   tags: string[]
 }
 
-const StudyItem = ({ studyId, title, studyType, thumbnail, startDate, endDate, tags }: Props) => {
+const StudyItem = ({
+  studyId,
+  title,
+  studyType,
+  thumbnail,
+  startDate,
+  endDate,
+  tags,
+  currentMemberCount,
+  maxMemberCount,
+}: Props) => {
   const test = 'test'
   return (
     <Container key={studyId}>
       <ColorWrapper thumbnail={thumbnail}>
         <Title>{title}</Title>
         <StudyType>{studyType}</StudyType>
+        <CurrentCount>
+          현재 인원: ({currentMemberCount}/{maxMemberCount})
+        </CurrentCount>
         <StudyPeriod>
           {startDate} ~ {endDate}
         </StudyPeriod>
@@ -104,7 +119,13 @@ const StudyType = styled.h5`
     margin-bottom: 0.2rem;
   }
 `
+const CurrentCount = styled.h3`
+  font-size: 1rem;
 
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+  }
+`
 const StudyPeriod = styled.h3`
   font-size: 1rem;
 

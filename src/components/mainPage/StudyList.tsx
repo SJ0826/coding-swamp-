@@ -43,6 +43,8 @@ const StudyList = () => {
           endDate={study.endDate}
           tags={study.tags}
           studyId={study.studyId}
+          currentMemberCount={study.currentMemberCount}
+          maxMemberCount={study.maxMemberCount}
         />
       ))}
     </Container>
