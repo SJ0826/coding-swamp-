@@ -26,8 +26,8 @@ const Container = styled.div`
     cursor: pointer;
   }
 
-  @media ${(props) => props.theme.small} {
-    margin-top: 0.4rem;
+  @media (max-width: 1526px) {
+    margin: 1rem 0rem;
     justify-content: right;
   }
 `
@@ -44,6 +44,8 @@ const CheckBox = styled.div`
 
   border: 1px solid ${(props) => props.theme.border1};
   border-radius: 0.5rem;
+
+
 
   @media ${(props) => props.theme.small} {
     width: 0.9rem;

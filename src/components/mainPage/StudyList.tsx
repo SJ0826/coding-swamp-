@@ -70,7 +70,11 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
 
+  @media ${(props) => props.theme.medium} {
+    margin-top: 3rem;
+  }
+
   @media ${(props) => props.theme.small} {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 `

@@ -5,15 +5,15 @@ export const Container = styled.div``
 export const Content = styled.div`
   margin: 4rem auto 0rem auto;
   @media ${(props) => props.theme.large} {
-    width: calc(100% - 20rem);
+    width: calc(100% - 10rem);
   }
 
   @media ${(props) => props.theme.medium} {
-    width: calc(100% - 8rem);
+    width: calc(100% - 2rem);
   }
 
   @media ${(props) => props.theme.small} {
-    width: calc(100% - 3rem);
+    width: calc(100% - 1rem);
   }
 `
 
@@ -23,8 +23,12 @@ export const FilterWrapper = styled.div`
 
   height: 5rem;
   padding: 1rem;
-  @media ${(props) => props.theme.small} {
+
+  @media (max-width: 1526px) {
     flex-direction: column;
+  }
+
+  @media ${(props) => props.theme.small} {
     height: 3rem;
   }
 `

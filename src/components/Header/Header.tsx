@@ -47,6 +47,7 @@ const Container = styled.div`
   top: 20px;
 `
 const HeaderWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
