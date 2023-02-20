@@ -9,7 +9,9 @@ const StudyList = () => {
   const dispatch = useAppDispatch()
   const { studyResponses } = useAppSelector(({ studyList }) => studyList.value)
   const currentStudyType = useAppSelector(({ studyList }) => studyList.value.currentStudyType)
+  const clickedStudyStatus = useAppSelector(({ studyList }) => studyList.value.isClickStatusFilter)
   const [filterdStudies, setFilterdStudies] = useState(studyResponses)
+
   useEffect(() => {
     dispatch(getStudies(1))
   }, [])
@@ -31,6 +33,14 @@ const StudyList = () => {
     }
   }, [studyResponses, currentStudyType])
 
+  useEffect(() => {
+    const filteredStudyByStatus = clickedStudyStatus
+      ? filterdStudies.filter((study) => study.studyStatus === 'ONGOING')
+      : filterdStudies
+
+    setFilterdStudies(filteredStudyByStatus)
+  }, [studyResponses, clickedStudyStatus])
+
   return (
     <Container>
       {filterdStudies.map((study) => (
@@ -45,6 +55,7 @@ const StudyList = () => {
           studyId={study.studyId}
           currentMemberCount={study.currentMemberCount}
           maxMemberCount={study.maxMemberCount}
+          studyStatus={study.studyStatus}
         />
       ))}
     </Container>

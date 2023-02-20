@@ -16,3 +16,15 @@ export const Content = styled.div`
     width: calc(100% - 3rem);
   }
 `
+
+export const FilterWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  height: 5rem;
+  padding: 1rem;
+  @media ${(props) => props.theme.small} {
+    flex-direction: column;
+    height: 3rem;
+  }
+`

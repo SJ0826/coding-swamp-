@@ -9,7 +9,6 @@ const PageList = () => {
   const totalPageState = useAppSelector(({ studyList }) => studyList.value.totalPage)
   const currentPage = useAppSelector(({ studyList }) => studyList.value.currentPage)
   const pages = Array(totalPageState).fill(0)
-
   const onClickPageNumber = (e: React.MouseEvent<HTMLButtonElement>) => {
     const clickedPageNum = e.currentTarget
     dispatch(updateActivePage(Number(clickedPageNum.value)))

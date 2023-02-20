@@ -3,10 +3,11 @@ import Header from 'src/components/Header/Header'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
-import { Banner, StudyList } from 'src/components'
+import { Banner, StudyDetailInfoModal, StudyList, StudyStatusFilter } from 'src/components'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
 import PageList from 'src/components/mainPage/PageList'
 import StudyTypeFilter from 'src/components/mainPage/StudyTypeFilter'
+
 import * as S from './styles'
 import { DivisionLine } from '../createStudy/styles'
 
@@ -27,11 +28,16 @@ const main = () => {
           <SearchStudy />
         </section>
         <section>
-          <StudyTypeFilter />
+          <S.FilterWrapper>
+            <StudyTypeFilter />
+            <StudyStatusFilter />
+          </S.FilterWrapper>
+
           <StudyList />
           <PageList />
         </section>
       </S.Content>
+      <StudyDetailInfoModal />
     </>
   )
 }

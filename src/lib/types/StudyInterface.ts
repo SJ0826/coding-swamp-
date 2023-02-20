@@ -20,5 +20,4 @@ export interface StudySearchInfoParams {
   startDate: string
   endDate: string
   tags: string[]
-  createdAt: string
 }

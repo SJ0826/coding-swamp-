@@ -9,6 +9,7 @@ type Props = {
   endDate: string
   currentMemberCount: number
   maxMemberCount: number
+  studyStatus: string
   tags: string[]
 }
 
@@ -22,6 +23,7 @@ const StudyItem = ({
   tags,
   currentMemberCount,
   maxMemberCount,
+  studyStatus,
 }: Props) => {
   const test = 'test'
   return (
@@ -29,6 +31,7 @@ const StudyItem = ({
       <ColorWrapper thumbnail={thumbnail}>
         <Title>{title}</Title>
         <StudyType>{studyType}</StudyType>
+        <StudyType>{studyStatus ? '모집중' : '모집 마감'}</StudyType>
         <CurrentCount>
           현재 인원: ({currentMemberCount}/{maxMemberCount})
         </CurrentCount>
@@ -49,7 +52,7 @@ export default StudyItem
 
 const Container = styled.div`
   width: 20rem;
-  height: 18rem;
+  height: 19rem;
   margin: 2.5rem;
 
   border-radius: 3rem;
@@ -65,8 +68,9 @@ const Container = styled.div`
 
   @media (max-width: 430px) {
     width: 100%;
-    height: 9rem;
+    height: 12rem;
     margin-left: 0rem;
+    margin: 1rem;
   }
 `
 const ColorWrapper = styled.div<{ thumbnail: string }>`
@@ -90,10 +94,10 @@ const Title = styled.h3`
     margin: 0.4rem;
   }
 `
-const StudyType = styled.h5`
+const StudyType = styled.span`
   width: 5rem;
-  height: 1.5rem;
-  margin-bottom: 0.5rem;
+  height: 2rem;
+  margin-right: 0.4rem;
   padding: 0.5rem;
 
   border-radius: 0.25rem;
@@ -121,6 +125,7 @@ const StudyType = styled.h5`
 `
 const CurrentCount = styled.h3`
   font-size: 1rem;
+  margin-top: 1rem;
 
   @media ${(props) => props.theme.small} {
     font-size: 0.8rem;

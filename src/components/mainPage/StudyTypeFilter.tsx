@@ -28,8 +28,8 @@ const StudyTypeFilter = () => {
             >
               {studyType}
             </StudyType>
-            <DivisionLine>
-              <RxDividerVertical />
+            <DivisionLine key={`divider`}>
+              <RxDividerVertical key={`divider${studyType}`} />
             </DivisionLine>
           </>
         ))}
@@ -41,11 +41,7 @@ const StudyTypeFilter = () => {
 export default StudyTypeFilter
 
 const Container = styled.div`
-  height: 5rem;
-  padding: 1rem;
-  @media ${(props) => props.theme.small} {
-    height: 3rem;
-  }
+  margin-top: 0.6rem;
 `
 
 const StudyTypeWrapper = styled.div`

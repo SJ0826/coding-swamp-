@@ -1,16 +1,13 @@
 import styled from 'styled-components'
 
-const SearchStudy = () => {
-  const test = 'test'
-  return (
-    <Container>
-      <Description>🔎 스터디를 검색해보세요! </Description>
-      <InputWrapper>
-        <SearchStudyInput />
-      </InputWrapper>
-    </Container>
-  )
-}
+const SearchStudy = () => (
+  <Container>
+    <Description>🔎 스터디를 검색해보세요! </Description>
+    <InputWrapper>
+      <SearchStudyInput />
+    </InputWrapper>
+  </Container>
+)
 
 export default SearchStudy
 

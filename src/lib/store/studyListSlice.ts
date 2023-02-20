@@ -15,11 +15,13 @@ const initialStudyList = {
         currentMemberCount: 0,
         maxMemberCount: 0,
         createdAt: 0,
+        studyStatus: 'PREPARING',
       },
     ],
     totalPage: 0,
     currentPage: 1,
     currentStudyType: 'All',
+    isClickStatusFilter: false,
   },
 }
 
@@ -38,14 +40,18 @@ export const studyListSlice = createSlice({
     changeCurrentStudyType: (state, { payload }) => {
       state.value.currentStudyType = payload
     },
+    changeStatusFilter: (state) => {
+      state.value.isClickStatusFilter = !state.value.isClickStatusFilter
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getStudies.fulfilled, (state, { payload }) => {
       state.value.studyResponses = payload.data.studyResponses
+      state.value.totalPage = payload.data.totalPage
       return state
     })
   },
 })
 
 export default studyListSlice.reducer
-export const { updateActivePage, changeCurrentStudyType } = studyListSlice.actions
+export const { updateActivePage, changeCurrentStudyType, changeStatusFilter } = studyListSlice.actions
