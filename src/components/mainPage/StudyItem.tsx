@@ -39,7 +39,7 @@ const StudyItem = ({
       <ColorWrapper thumbnail={thumbnail}>
         <Title>{title}</Title>
         <StudyType>{studyType}</StudyType>
-        <StudyType>{studyStatus ? '모집중' : '모집 마감'}</StudyType>
+        <StudyType>{studyStatus === 'ONGOING' ? '모집중' : '모집 마감'}</StudyType>
         <CurrentCount>
           현재 인원: ({currentMemberCount}/{maxMemberCount})
         </CurrentCount>

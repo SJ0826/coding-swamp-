@@ -3,7 +3,7 @@ import { SlPaperPlane } from 'react-icons/sl'
 import { DivisionLine } from 'src/pages/createStudy/styles'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { toggleStudyModal } from 'src/lib/store/studyItemSlice'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
@@ -18,9 +18,8 @@ const StudyApplyModal = () => {
 
   const isParticiPateUser = studyInfo.participants.filter((participant) => participant.username === username)
   const isApplicatedUser = studyInfo.applicants.filter((participant) => participant.username === username)
-  const conditionByStudy = studyInfo.studyStatus !== 'ONGOING'
-
-  const isValidate = () => conditionByStudy || isParticiPateUser.length === 0 || isApplicatedUser.length === 0
+  const conditionByStudy = studyInfo.studyStatus === 'ONGOING'
+  const isValidate = () => conditionByStudy && isParticiPateUser.length === 0 && isApplicatedUser.length === 0
 
   const ValidationMessage = () => {
     let message = ''

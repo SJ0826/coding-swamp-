@@ -13,6 +13,11 @@ export const Container = styled.div<{ isOpen: boolean }>`
   background-color : rgb(255,255,255,0.5);
   font-size: 1.2rem;
   display: ${(props) => (props.isOpen ? '' : 'none')};
+
+  @media${(props) => props.theme.small} {
+    font-size: 1rem;
+  }
+  
 }
 `
 
@@ -25,10 +30,10 @@ export const StudyModalWrapper = styled.div`
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   background: ${(props) => props.theme.bgGroundColor1};
 
-  // @media ${(props) => props.theme.medium} {
-  //   width: auto;
-  //   height: 100%;
-  // }
+  @media ${(props) => props.theme.medium} {
+    width: auto;
+    height: 100%;
+  }
 `
 
 export const Header = styled.div`
@@ -50,12 +55,19 @@ export const CloseButton = styled.button`
 `
 export const Content = styled.div`
   padding: 4rem 5rem;
+
+  @media${(props) => props.theme.small} {
+    padding: 1rem;
+  }
 `
 
 export const Title = styled.h1<{ bgColor: string }>`
   padding-left: 1rem;
   font-size: 3rem;
   background: ${(props) => props.bgColor};
+  @media${(props) => props.theme.small} {
+    font-size: 2rem;
+  }
 `
 export const Info = styled.div`
   display: flex;
@@ -119,6 +131,10 @@ export const ApplyForm = styled.textarea`
   border: 1px solid ${(props) => props.theme.border2};
   border-radius: 10px;
   outline: none;
+
+  @media${(props) => props.theme.small} {
+    font-size: 1rem;
+  }
 `
 
 export const SubmitButton = styled.button`
