@@ -32,14 +32,10 @@ class StudyAPI extends HttpClient {
     return response
   }
 
-  public patchStudyApplyForm = (data: { studyId: number; reasonForApplication: string }) => {
-    const params = new URLSearchParams()
-    params.append('studyId', data.studyId.toString())
-    const response = this.instance.patch(
-      `${STUDY_URL}/apply`,
-      { reasonForApplication: data.reasonForApplication },
-      { params },
-    )
+  public patchStudyApplicationFormAPI = (data: { studyId: number; reasonForApplication: string }) => {
+    const response = this.instance.patch(`${STUDY_URL}/${data.studyId}/apply`, {
+      reasonForApplication: data.reasonForApplication,
+    })
     return response
   }
 }

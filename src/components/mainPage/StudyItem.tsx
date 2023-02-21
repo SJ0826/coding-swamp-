@@ -1,4 +1,3 @@
-import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { useAppDispatch } from 'src/lib/hooks'
 import { getStudyDetailInfo, toggleStudyModal } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'

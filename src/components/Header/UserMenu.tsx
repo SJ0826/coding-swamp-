@@ -16,12 +16,15 @@ export default memo(UserMenu)
 
 const Positioner = styled.div<{ isVisible: boolean }>`
   position: absolute;
-  right: 10rem;
+  right: 2rem;
   top: 6rem;
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
+  @media ${(props) => props.theme.large} {
+    right: 12rem;
+  }
 
   @media ${(props) => props.theme.medium} {
-    right: 5rem;
+    right: 6rem;
   }
 
   @media ${(props) => props.theme.small} {

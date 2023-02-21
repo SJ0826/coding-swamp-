@@ -100,6 +100,7 @@ export const Label = styled.label`
 
 export const WarningMessage = styled.span`
   margin-left: 1rem;
+  color: ${(props) => props.theme.text2};
 `
 
 export const FormWrapper = styled.div<{ isOpen: boolean }>`

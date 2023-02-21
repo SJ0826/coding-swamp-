@@ -26,7 +26,6 @@ const initialStudyItem = {
 
 export const getStudyDetailInfo = createAsyncThunk('studyItem/getStudyInfo', async (studyId: number) => {
   const response = await studyAPI.getStudyDetailInfoAPI(studyId)
-
   return response
 })
 
