@@ -1,5 +1,6 @@
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { useAppDispatch } from 'src/lib/hooks'
-import { toggleStudyModal } from 'src/lib/store/studyItemSlice'
+import { getStudyDetailInfo, toggleStudyModal } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'
 
 type Props = {
@@ -29,7 +30,8 @@ const StudyItem = ({
 }: Props) => {
   const dispatch = useAppDispatch()
 
-  const onClickStudyItem = () => {
+  const onClickStudyItem = async () => {
+    await dispatch(getStudyDetailInfo(studyId))
     dispatch(toggleStudyModal())
   }
 
