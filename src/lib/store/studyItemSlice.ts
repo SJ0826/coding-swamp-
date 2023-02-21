@@ -21,4 +21,4 @@ export const studyItemSlice = createSlice({
 })
 
 export default studyItemSlice.reducer
-export const { changeTargetStudyId } = studyItemSlice.actions
+export const { changeTargetStudyId, toggleStudyModal } = studyItemSlice.actions

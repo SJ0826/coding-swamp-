@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -12,6 +12,7 @@ export const Container = styled.div`
   z-index: 20;
   background-color : rgb(255,255,255,0.5);
   font-size: 1.2rem;
+  display: ${(props) => (props.isOpen ? '' : 'none')};
 }
 `
 
@@ -87,7 +88,6 @@ export const ButtonWrapper = styled.div<{ bgColor: string }>`
 
 export const ShowApplyButton = styled.button`
   font-size: 2rem;
-
   background: none;
 `
 
@@ -102,13 +102,13 @@ export const WarningMessage = styled.span`
   margin-left: 1rem;
 `
 
-export const FormWrapper = styled.div`
-  display: none;
+export const FormWrapper = styled.div<{ isOpen: boolean }>`
+  display: ${(props) => (props.isOpen ? '' : 'none')};
   transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
 `
 
 export const ApplyForm = styled.textarea`
-  width: 30rem;
+  width: 100%;
   height: 7rem;
   margin-top: 1rem;
   padding: 1rem;

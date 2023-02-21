@@ -1,10 +1,16 @@
-import { MdClose, MdArrowDropDown } from 'react-icons/md'
+import { MdClose, MdArrowDropDown, MdArrowRight } from 'react-icons/md'
 import { SlPaperPlane } from 'react-icons/sl'
 import { StudyDetailInfo } from 'src/lib/types/StudyInterface'
 import { DivisionLine } from 'src/pages/createStudy/styles'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { toggleStudyModal } from 'src/lib/store/studyItemSlice'
+import { useState } from 'react'
 import * as S from './style'
 
 const StudyApplyModal = () => {
+  const { isOpenStudyModal } = useAppSelector(({ studyItem }) => studyItem)
+  const dispatch = useAppDispatch()
+  const [isOpenApplyForm, setIsOpenApplyForm] = useState(false)
   const dummy: StudyDetailInfo = {
     studyId: 1,
     title: '모여봐요 코딩의 늪',
@@ -50,10 +56,10 @@ const StudyApplyModal = () => {
   }
 
   return (
-    <S.Container>
+    <S.Container isOpen={isOpenStudyModal}>
       <S.StudyModalWrapper>
         <S.Header>
-          <S.CloseButton>
+          <S.CloseButton onClick={() => dispatch(toggleStudyModal())}>
             <MdClose />
           </S.CloseButton>
         </S.Header>
@@ -85,17 +91,23 @@ const StudyApplyModal = () => {
           <DivisionLine />
           <S.ApplyInfo>
             <S.ButtonWrapper bgColor={dummy.thumbnail}>
-              <S.ShowApplyButton id="showApplyForm" disabled={dummy.studyStatus !== 'ONGOING'}>
-                <MdArrowDropDown />
+              <S.ShowApplyButton
+                id="showApplyForm"
+                onClick={() => setIsOpenApplyForm(!isOpenApplyForm)}
+                disabled={dummy.studyStatus !== 'ONGOING'}
+              >
+                {isOpenApplyForm ? <MdArrowDropDown /> : <MdArrowRight />}
               </S.ShowApplyButton>
               <S.Label htmlFor="showApplyForm">스터디 신청하기 </S.Label>
               <S.WarningMessage>
                 {dummy.studyStatus === 'ONGOING' ? '' : '이미 모집이 마감되었습니다.'}
               </S.WarningMessage>
             </S.ButtonWrapper>
-            <S.FormWrapper>
-              <S.ApplyForm placeholder="소개말을 간단히 적어보세요." />
-
+            <S.FormWrapper isOpen={isOpenApplyForm}>
+              <S.ApplyForm
+                placeholder="
+              하고 있는 공부, 일주일에 함께할 수 있는 요일 등 자유롭게 작성해주세요"
+              />
               <S.ApplyButtonWrapper>
                 <S.SubmitButton id="submitButton">
                   <SlPaperPlane />

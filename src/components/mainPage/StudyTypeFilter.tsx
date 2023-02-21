@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 const StudyTypeFilter = () => {
   const dispatch = useAppDispatch()
   const currentStudytype = useAppSelector(({ studyList }) => studyList.value.currentStudyType)
-  const studyTypeArr = ['All', 'study', 'mogakko']
+  const studyTypeArr = ['All', 'Study', 'Mogakko']
   const onClickStudyType = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(changeCurrentStudyType(e.currentTarget.value))
   }

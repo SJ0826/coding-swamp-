@@ -1,3 +1,5 @@
+import { useAppDispatch } from 'src/lib/hooks'
+import { toggleStudyModal } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'
 
 type Props = {
@@ -25,9 +27,14 @@ const StudyItem = ({
   maxMemberCount,
   studyStatus,
 }: Props) => {
-  const test = 'test'
+  const dispatch = useAppDispatch()
+
+  const onClickStudyItem = () => {
+    dispatch(toggleStudyModal())
+  }
+
   return (
-    <Container key={studyId}>
+    <Container key={studyId} onClick={onClickStudyItem}>
       <ColorWrapper thumbnail={thumbnail}>
         <Title>{title}</Title>
         <StudyType>{studyType}</StudyType>
