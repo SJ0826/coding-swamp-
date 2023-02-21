@@ -18,7 +18,7 @@ const StudyTypeFilter = () => {
           <RxDividerVertical />
         </DivisionLine>
         {studyTypeArr.map((studyType) => (
-          <>
+          <span key={studyType} style={{ display: 'flex' }}>
             <StudyType
               key={studyType}
               value={studyType}
@@ -30,7 +30,7 @@ const StudyTypeFilter = () => {
             <DivisionLine key={`divider`}>
               <RxDividerVertical key={`divider${studyType}`} />
             </DivisionLine>
-          </>
+          </span>
         ))}
       </StudyTypeWrapper>
     </Container>

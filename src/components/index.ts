@@ -1,5 +1,5 @@
 export { default as Banner } from './mainPage/Banner'
 export { default as SearchStudy } from './mainPage/SearchStudy'
 export { default as StudyList } from './mainPage/StudyList'
-export { default as StudyDetailInfoModal } from './mainPage/StudyDetailInfoModal'
+export { default as StudyApplyModal } from './mainPage/StudyApplyModal'
 export { default as StudyStatusFilter } from './mainPage/StudyStatusFilter'

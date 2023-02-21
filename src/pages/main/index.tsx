@@ -3,7 +3,7 @@ import Header from 'src/components/Header/Header'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
-import { Banner, StudyDetailInfoModal, StudyList, StudyStatusFilter } from 'src/components'
+import { Banner, StudyApplyModal, StudyList, StudyStatusFilter } from 'src/components'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
 import PageList from 'src/components/mainPage/PageList'
 import StudyTypeFilter from 'src/components/mainPage/StudyTypeFilter'
@@ -38,7 +38,7 @@ const main = () => {
           <PageList />
         </section>
       </S.Content>
-      <StudyDetailInfoModal />
+      <StudyApplyModal />
     </>
   )
 }
