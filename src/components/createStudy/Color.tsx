@@ -1,4 +1,4 @@
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { useAppDispatch } from 'src/lib/hooks'
 import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 

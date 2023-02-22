@@ -1,6 +1,6 @@
 import { RefObject } from 'react'
 import { setUserMenuVisibility } from '../store/userMenuSlice'
-import { useAppDispatch } from './useAppDispatch'
+import useAppDispatch from './useAppDispatch'
 
 interface Props {
   userRef: RefObject<HTMLDivElement>

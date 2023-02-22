@@ -1,5 +1,4 @@
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import styled from 'styled-components'
 

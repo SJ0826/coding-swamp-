@@ -1,9 +1,8 @@
 import { ChangeEvent, useState } from 'react'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { changeStudyForm } from 'src/lib/store/studyFormSlice'
 import { AiOutlineDelete } from 'react-icons/ai'
 import styled from 'styled-components'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 
 const CreateStudyTag = () => {
   const tagData = useAppSelector<string[]>(({ studyForm }) => studyForm.value.tags)

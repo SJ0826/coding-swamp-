@@ -10,7 +10,13 @@ export default function Page({ children }: Props) {
 
 const Container = styled.div`
   position: relative;
-  width: 100vw;
+  width: 70vw;
   height: 100vh;
+  margin-left: 15%;
   background-color: ${(props) => props.theme.bgGroundColor1};
+
+  @media ${(props) => props.theme.medium} {
+    width: calc(100% - 2rem);
+    margin-left: 0%;
+  }
 `
