@@ -1,16 +1,12 @@
-import Header from 'src/components/Header'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
 import DefaultButton from 'src/components/DefaultButton'
 import theme from 'src/style/theme'
 import { ChangeEvent, FormEvent, useCallback, useEffect, useRef } from 'react'
 import { changeMemberInfo, getMemberInfo } from 'src/lib/store/member/memberSlice'
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { changeEditForm, postEditedMember, toggleEditMode } from 'src/lib/store/member/editModeSlice'
-import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { Header } from 'src/components/Header'
 import * as S from './styles'
-import BGImage from '../../lib/assets/image/BG.png'
-import SignInput from '../../components/sign/signInput/SignInput'
 
 export interface type {
   imageFile: null | File

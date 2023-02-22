@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import Header from 'src/components/Header'
+import { Header } from 'src/components/Header'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
-import { useAppDispatch } from 'src/lib/hooks/useAppDispatch'
+import { useAppDispatch } from 'src/lib/hooks'
+
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
 
 const main = () => {

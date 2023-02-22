@@ -1,11 +1,11 @@
-import { useAppSelector } from 'src/lib/hooks/useAppSelector'
 import { useDispatch } from 'react-redux'
 import { changeUserValue, userValidation } from 'src/lib/store/signForm/userFormSlice'
 import { ChangeEvent, useState } from 'react'
 import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import getValidation from 'src/lib/util/getValidation'
 import { UserParam } from 'src/lib/types/UserInterface'
-import { emailAuthAPI } from 'src/lib/api/sign/emailAuthAPI'
+import { emailAuthAPI } from 'src/lib/api/Sign/emailAuthAPI'
+import { useAppSelector } from 'src/lib/hooks'
 import SignInput from '../signInput/SignInput'
 import * as S from './styles'
 
