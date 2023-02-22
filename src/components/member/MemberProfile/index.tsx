@@ -9,7 +9,7 @@ import * as S from './styles'
 
 const MemberProfile = () => {
   const dispatch = useAppDispatch()
-  const memberData = useAppSelector(({ memberInfo }) => memberInfo)
+  const { memberInfo } = useAppSelector(({ member }) => member.value)
   const { editForm, isEditMode } = useAppSelector(({ editMode }) => editMode.value)
   const imgInputRef = useRef<HTMLInputElement>(null)
   const onClickUploadButton = () => {
@@ -29,7 +29,7 @@ const MemberProfile = () => {
   )
 
   const onClickRemoveButton = useCallback(() => {
-    dispatch(changeEditForm({ key: 'profileUrl', value: memberData.imageUrl }))
+    dispatch(changeEditForm({ key: 'profileUrl', value: memberInfo.imageUrl }))
   }, [imgInputRef])
 
   const onClickCancelButton = () => {
@@ -58,7 +58,7 @@ const MemberProfile = () => {
         <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
           <S.Profile>
             <S.Thumbnail>
-              <S.MemberImage image={editForm.profileUrl || memberData.imageUrl} />
+              <S.MemberImage image={editForm.profileUrl || memberInfo.imageUrl} />
               <S.ImgUploadInput
                 id="ImgUpload"
                 type="file"
@@ -87,7 +87,7 @@ const MemberProfile = () => {
             </S.Thumbnail>
             <S.MemberInfo>
               <S.NameInput value={editForm.username} onChange={onChangeInputValue} />
-              <S.Email>{memberData.email === 'null' ? '' : memberData.email}</S.Email>
+              <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
               <S.ButtonWrapper>
                 <S.SaveButton onClick={onClickEditButton}>저장</S.SaveButton>
                 <S.CancelButton type="button" onClick={onClickCancelButton}>
@@ -104,7 +104,7 @@ const MemberProfile = () => {
       <S.MainWrapper>
         <S.Profile>
           <S.Thumbnail>
-            <S.MemberImage image={memberData.imageUrl} />
+            <S.MemberImage image={memberInfo.imageUrl} />
             <S.ImgUploadInput
               id="ImgUpload"
               type="file"
@@ -114,8 +114,8 @@ const MemberProfile = () => {
             />
           </S.Thumbnail>
           <S.MemberInfo>
-            <S.Name>{memberData.username}</S.Name>
-            <S.Email>{memberData.email === 'null' ? '' : memberData.email}</S.Email>
+            <S.Name>{memberInfo.username}</S.Name>
+            <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
             <S.EditButton type="button" onClick={onClickEditButton}>
               회원정보 수정
             </S.EditButton>

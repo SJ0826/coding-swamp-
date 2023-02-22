@@ -9,8 +9,8 @@ import UserMenuItem from './UserMenuItem'
 const Header = () => {
   const navigator = useNavigate()
   const [toggleMenu, setToggleMenu] = useState<boolean>(false)
-  const memberData = useAppSelector(({ memberInfo }) => memberInfo)
-  const memberImage = memberData.imageUrl
+  const { memberInfo } = useAppSelector(({ member }) => member.value)
+  const memberImage = memberInfo.imageUrl
 
   const onClickUserIcon = () => {
     setToggleMenu(!toggleMenu)
