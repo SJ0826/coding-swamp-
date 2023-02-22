@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { type } from 'src/pages/memberInfo'
-import { UserInfoInterface } from '../../types/UserInterface'
+import { EditMemberParam, UserInfoInterface } from '../../types/UserInterface'
 import { memberAPI } from '../../api/Member/MemberAPI'
 
 const initialMemberInfo: UserInfoInterface = {
@@ -19,7 +18,7 @@ export const getMemberInfo = createAsyncThunk('memberInfo/getMember', async () =
   return response
 })
 
-export const postMemberInfo = createAsyncThunk('memberInfo/postMember', async (data: type) => {
+export const postMemberInfo = createAsyncThunk('memberInfo/postMember', async (data: EditMemberParam) => {
   const resposne = await memberAPI.postMemberInfo(data)
   return resposne
 })

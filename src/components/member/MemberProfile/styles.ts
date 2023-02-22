@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
-
 export const MainWrapper = styled.main`
   width: 768px;
   padding-bottom: 5rem;

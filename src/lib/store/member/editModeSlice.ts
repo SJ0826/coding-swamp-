@@ -3,13 +3,10 @@ import { memberAPI } from 'src/lib/api/Member/MemberAPI'
 import { EditMemberParam } from 'src/lib/types/UserInterface'
 
 const initialEditMember = {
-  value: [
-    { key: 'username', value: '', isValidation: false },
-    { key: 'profileUrl', value: null },
-    { key: 'imageFile', value: null },
-    { key: 'imageUrl', value: '' },
-    { key: 'isEditMode', value: false },
-  ],
+  value: {
+    editForm: { username: '', profileUrl: '', imageFile: null },
+    isEditMode: false,
+  },
 }
 
 export const postEditedMember = createAsyncThunk('editMember/postMember', async (memberForm: EditMemberParam) => {
@@ -22,15 +19,13 @@ export const editModeSlice = createSlice({
   initialState: initialEditMember,
   reducers: {
     toggleEditMode: (state, { payload }) => {
-      state.value[4].value = payload
+      state.value.isEditMode = payload
     },
     changeEditForm: (state, { payload }) => {
-      state.value = state.value.map((userValue) => {
-        if (userValue.key === payload.key) {
-          return { ...userValue, value: payload.value }
-        }
-        return userValue
-      })
+      state.value.editForm = { ...state.value.editForm, [payload.key]: payload.value }
+    },
+    allClearEditForm: (state) => {
+      state.value = initialEditMember.value
     },
   },
 })
