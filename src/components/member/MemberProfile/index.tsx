@@ -1,17 +1,24 @@
 import DefaultButton from 'src/components/DefaultButton'
 import theme from 'src/style/theme'
-import { ChangeEvent, FormEvent, useCallback, useRef } from 'react'
-import { changeMemberInfo } from 'src/lib/store/member/memberSlice'
-import { changeEditForm, postEditedMember, toggleEditMode } from 'src/lib/store/member/editModeSlice'
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
+import { changeMemberInfo, postEditedMember } from 'src/lib/store/member/memberSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
-
+import { EditMemberParam } from 'src/lib/types/UserInterface'
 import * as S from './styles'
 
+const initialEditForm = {
+  profileUrl: '',
+  imageFile: null,
+  username: '',
+  imageUrl: '',
+}
 const MemberProfile = () => {
   const dispatch = useAppDispatch()
   const { memberInfo } = useAppSelector(({ member }) => member.value)
-  const { editForm, isEditMode } = useAppSelector(({ editMode }) => editMode.value)
   const imgInputRef = useRef<HTMLInputElement>(null)
+  const [userForm, setUserForm] = useState<EditMemberParam>(initialEditForm)
+  const [isOpenEdit, setIsOpenEdit] = useState(false)
+
   const onClickUploadButton = () => {
     imgInputRef.current?.click()
   }
@@ -21,44 +28,37 @@ const MemberProfile = () => {
       const ImageFiles = (e.target as HTMLInputElement).files
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
-        dispatch(changeEditForm({ key: 'imageFile', value: ImageFiles[0] }))
-        dispatch(changeEditForm({ key: 'profileUrl', value: url }))
+        setUserForm({ ...userForm, imageFile: ImageFiles[0] })
+        setUserForm({ ...userForm, imageUrl: url })
       }
     },
     [imgInputRef],
   )
 
   const onClickRemoveButton = useCallback(() => {
-    dispatch(changeEditForm({ key: 'profileUrl', value: memberInfo.imageUrl }))
+    setUserForm({ ...userForm, imageUrl: memberInfo.imageUrl })
   }, [imgInputRef])
 
-  const onClickCancelButton = () => {
-    dispatch(toggleEditMode(false))
-  }
-
   const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeEditForm({ key: 'username', value: e.target.value }))
+    setUserForm({ ...userForm, username: e.target.value })
   }
 
-  const onSubmitUserForm = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitUserForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(postEditedMember(editForm))
-    dispatch(toggleEditMode(false))
-    dispatch(changeMemberInfo({ key: 'username', value: editForm.username }))
-    dispatch(changeMemberInfo({ key: 'profileUrl', value: editForm.profileUrl }))
+    await dispatch(postEditedMember(userForm))
+    setIsOpenEdit(false)
+    dispatch(changeMemberInfo({ key: 'username', value: userForm.username }))
+    dispatch(changeMemberInfo({ key: 'imageUrl', value: userForm.imageUrl }))
+    setUserForm(initialEditForm)
   }
 
-  const onClickEditButton = () => {
-    dispatch(toggleEditMode(true))
-  }
-
-  return isEditMode ? (
+  return isOpenEdit ? (
     <>
       <S.MainWrapper>
         <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
           <S.Profile>
             <S.Thumbnail>
-              <S.MemberImage image={editForm.profileUrl || memberInfo.imageUrl} />
+              <S.MemberImage image={userForm.imageUrl || memberInfo.imageUrl} />
               <S.ImgUploadInput
                 id="ImgUpload"
                 type="file"
@@ -86,11 +86,11 @@ const MemberProfile = () => {
               />
             </S.Thumbnail>
             <S.MemberInfo>
-              <S.NameInput value={editForm.username} onChange={onChangeInputValue} />
+              <S.NameInput value={userForm.username} onChange={onChangeInputValue} />
               <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
               <S.ButtonWrapper>
-                <S.SaveButton onClick={onClickEditButton}>저장</S.SaveButton>
-                <S.CancelButton type="button" onClick={onClickCancelButton}>
+                <S.SaveButton>저장</S.SaveButton>
+                <S.CancelButton type="button" onClick={() => setIsOpenEdit(false)}>
                   취소
                 </S.CancelButton>
               </S.ButtonWrapper>
@@ -116,7 +116,7 @@ const MemberProfile = () => {
           <S.MemberInfo>
             <S.Name>{memberInfo.username}</S.Name>
             <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
-            <S.EditButton type="button" onClick={onClickEditButton}>
+            <S.EditButton type="button" onClick={() => setIsOpenEdit(true)}>
               회원정보 수정
             </S.EditButton>
           </S.MemberInfo>

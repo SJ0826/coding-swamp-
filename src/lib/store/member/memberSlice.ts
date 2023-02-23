@@ -27,6 +27,11 @@ export const postMemberInfo = createAsyncThunk('member/postMember', async (data:
   return resposne
 })
 
+export const postEditedMember = createAsyncThunk('editMember/postMember', async (memberForm: EditMemberParam) => {
+  const response = await memberAPI.postMemberInfo(memberForm)
+  return response
+})
+
 export const memberSlice = createSlice({
   name: 'member',
   initialState: initialMemberInfo,

@@ -20,17 +20,17 @@ class MemberAPI extends HttpClient {
   }
 
   public postMemberInfo = async (data: EditMemberParam) => {
-    const profileUrl = data.profileUrl ? data.profileUrl : ''
-    const payload = { imageFile: data.imageFile }
-    const response = await this.instance.post(
-      `${EDIT_MEMBER_URL}?username=${decodeURI(data.username)}&profileUrl=${profileUrl}`,
-      payload,
-      {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      },
-    )
+    const formData = new FormData()
+    if (data.imageFile) formData.append('imageFile', data.imageFile)
+    const params = new URLSearchParams()
+    params.append('username', data.username)
 
-    return response.data
+    const response = this.instance.post(
+      EDIT_MEMBER_URL,
+      { imageFile: data.imageFile },
+      { headers: { 'Content-Type': 'multipart/form-data' }, params },
+    )
+    return response
   }
 }
 

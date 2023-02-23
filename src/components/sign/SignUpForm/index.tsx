@@ -61,6 +61,7 @@ const SignUpForm = () => {
       email: userData[2].value!,
       password: userData[3].value!,
     }
+
     await dispatch(postUserForm(result))
     navigate('/signIn')
     dispatch(allClearSignUpForm())
