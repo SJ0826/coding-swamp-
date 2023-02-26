@@ -1,12 +1,11 @@
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import styled from 'styled-components'
 
-import StudyTable from './StudyTable'
-
 interface Props {
   studiesAppliedFor: StudyWithCondition[]
+  status: 'application' | 'participation'
 }
-const StudiesWithConditions = ({ studiesAppliedFor }: Props) => (
+const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => (
   <Container>
     <TableHeader>
       <TableElement>이름</TableElement>
@@ -17,7 +16,7 @@ const StudiesWithConditions = ({ studiesAppliedFor }: Props) => (
       <TableElement>현재 인원</TableElement>
     </TableHeader>
     {studiesAppliedFor.map((study, index) => (
-      <TableContent key={index}>
+      <TableContent key={index} status={status}>
         <TableElement>{study.title}</TableElement>
         <TableElement>{study.studyType}</TableElement>
         <TableElement>{study.studyStatus}</TableElement>
@@ -53,11 +52,15 @@ const TableElement = styled.div`
   font-weight: 400;
   line-height: 44px;
 `
-const TableContent = styled.ul`
+const TableContent = styled.ul<{ status: 'application' | 'participation' }>`
   list-style: none;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 0px 1rem;
   border-bottom: 1px solid rgba(209, 209, 209, 0.4);
+  :hover {
+    background: #fffbf5;
+    cursor: ${(props) => (props.status === 'participation' ? 'pointer' : 'none')};
+  }
 `

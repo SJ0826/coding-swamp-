@@ -6,19 +6,24 @@ import { Header } from 'src/components/Header'
 import { MemberProfile, StudiesWithConditions } from 'src/components/member'
 import { DividingLine } from 'src/components'
 import styled from 'styled-components'
-import { TbHeartPlus } from 'react-icons/tb'
+import { TbHeartPlus, TbHeart } from 'react-icons/tb'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 
 const MemberInfo = () => {
   const dispatch = useAppDispatch()
+  const [studiesParticipated, setStudiesParticipated] = useState<StudyWithCondition[]>([])
 
   const studiesAppliedFor = useAppSelector((member) => member.member.value.studiesAppliedFor)
-
+  const getstudiesParticipated = async () => {
+    const response = await studyAPI.getStuduesParticipated()
+    setStudiesParticipated(response.data.studyResponses)
+  }
   useEffect(() => {
     dispatch(getMemberInfo())
     dispatch(getStudiesAppliedFor())
     refreshTokenAPI.getRefreshToken()
-    console.log(studiesAppliedFor)
+    getstudiesParticipated()
   }, [])
 
   return (
@@ -27,11 +32,21 @@ const MemberInfo = () => {
       <MainWrapper>
         <MemberProfile />
         <DividingLine />
-        <Title>
-          <TbHeartPlus />
-          나의 신청 스터디
-        </Title>
-        <StudiesWithConditions studiesAppliedFor={studiesAppliedFor.studyResponses} />
+        <StudyList>
+          <Title>
+            <TbHeartPlus />
+            나의 신청 스터디
+          </Title>
+          <StudiesWithConditions status="application" studiesAppliedFor={studiesAppliedFor.studyResponses} />
+        </StudyList>
+
+        <StudyList>
+          <Title>
+            <TbHeart />
+            나의 참가 스터디
+          </Title>
+          <StudiesWithConditions status="participation" studiesAppliedFor={studiesParticipated} />
+        </StudyList>
       </MainWrapper>
     </>
   )
@@ -62,4 +77,8 @@ const Title = styled.h3`
   align-items: center;
   margin: 1rem 0rem;
   color: ${(props) => props.theme.text1};
+`
+
+const StudyList = styled.div`
+  margin-bottom: 4rem;
 `

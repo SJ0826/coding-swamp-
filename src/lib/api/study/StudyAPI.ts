@@ -43,6 +43,11 @@ class StudyAPI extends HttpClient {
     const response = this.instance.get(`${STUDY_URL}/my/applies`)
     return response
   }
+
+  public getStuduesParticipated = () => {
+    const response = this.instance.get(`${STUDY_URL}/my/participates `)
+    return response
+  }
 }
 
 const studyAPI = new StudyAPI()
