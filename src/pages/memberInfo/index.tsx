@@ -11,21 +11,27 @@ import { AiOutlineUserDelete } from 'react-icons/ai'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import theme from 'src/style/theme'
+import { memberAPI } from 'src/lib/api/Member/MemberAPI'
+import { removeToken } from 'src/lib/util/localStorage'
+import { useNavigate } from 'react-router-dom'
 
 const MemberInfo = () => {
   const dispatch = useAppDispatch()
-  const [studiesParticipated, setStudiesParticipated] = useState<StudyWithCondition[]>([])
   const studiesAppliedFor = useAppSelector((member) => member.member.value.studiesAppliedFor)
+  const [studiesParticipated, setStudiesParticipated] = useState<StudyWithCondition[]>([])
   const [isOpenUserDelete, setIsOpenUserDelete] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const getstudiesParticipated = async () => {
     const response = await studyAPI.getStuduesParticipated()
     setStudiesParticipated(response.data.studyResponses)
   }
 
-  const onClickUserDeleteButton = () => {
-    console.log('회원탈퇴')
+  const onClickUserDeleteButton = async () => {
     setIsOpenUserDelete(false)
+    await memberAPI.deleteMember()
+    removeToken()
+    navigate('/signIn')
   }
 
   useEffect(() => {

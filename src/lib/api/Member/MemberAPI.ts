@@ -32,6 +32,11 @@ class MemberAPI extends HttpClient {
     )
     return response
   }
+
+  public deleteMember = () => {
+    const response = this.instance.delete(USER_URL)
+    return response
+  }
 }
 
 const memberAPI = new MemberAPI()
