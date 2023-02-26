@@ -54,57 +54,10 @@ const MemberProfile = () => {
 
   return isOpenEdit ? (
     <>
-      <S.MainWrapper>
-        <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
-          <S.Profile>
-            <S.Thumbnail>
-              <S.MemberImage image={userForm.imageUrl || memberInfo.imageUrl} />
-              <S.ImgUploadInput
-                id="ImgUpload"
-                type="file"
-                accept="image/*"
-                onChange={onChangeProfileImg}
-                ref={imgInputRef}
-              />
-              <DefaultButton
-                height="2rem"
-                color={theme.buttonText}
-                bgColor={theme.button}
-                text="이미지 업로드"
-                hoverBGColor={theme.buttonLightColor}
-                hoverColor={theme.buttonText}
-                onClick={onClickUploadButton}
-              />
-              <DefaultButton
-                height="2rem"
-                color={theme.button}
-                bgColor="transparent"
-                text="이미지 제거"
-                hoverColor={theme.buttonText}
-                hoverBGColor={theme.buttonLightColor}
-                onClick={onClickRemoveButton}
-              />
-            </S.Thumbnail>
-            <S.MemberInfo>
-              <S.NameInput value={userForm.username} onChange={onChangeInputValue} />
-              <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
-              <S.ButtonWrapper>
-                <S.SaveButton>저장</S.SaveButton>
-                <S.CancelButton type="button" onClick={() => setIsOpenEdit(false)}>
-                  취소
-                </S.CancelButton>
-              </S.ButtonWrapper>
-            </S.MemberInfo>
-          </S.Profile>
-        </form>
-      </S.MainWrapper>
-    </>
-  ) : (
-    <>
-      <S.MainWrapper>
+      <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
         <S.Profile>
           <S.Thumbnail>
-            <S.MemberImage image={memberInfo.imageUrl} />
+            <S.MemberImage image={userForm.imageUrl || memberInfo.imageUrl} />
             <S.ImgUploadInput
               id="ImgUpload"
               type="file"
@@ -112,16 +65,59 @@ const MemberProfile = () => {
               onChange={onChangeProfileImg}
               ref={imgInputRef}
             />
+            <DefaultButton
+              height="2rem"
+              color={theme.buttonText}
+              bgColor={theme.button}
+              text="이미지 업로드"
+              hoverBGColor={theme.buttonLightColor}
+              hoverColor={theme.buttonText}
+              onClick={onClickUploadButton}
+            />
+            <DefaultButton
+              height="2rem"
+              color={theme.button}
+              bgColor="transparent"
+              text="이미지 제거"
+              hoverColor={theme.buttonText}
+              hoverBGColor={theme.buttonLightColor}
+              onClick={onClickRemoveButton}
+            />
           </S.Thumbnail>
           <S.MemberInfo>
-            <S.Name>{memberInfo.username}</S.Name>
+            <S.NameInput value={userForm.username} onChange={onChangeInputValue} />
             <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
-            <S.EditButton type="button" onClick={() => setIsOpenEdit(true)}>
-              회원정보 수정
-            </S.EditButton>
+            <S.ButtonWrapper>
+              <S.SaveButton>저장</S.SaveButton>
+              <S.CancelButton type="button" onClick={() => setIsOpenEdit(false)}>
+                취소
+              </S.CancelButton>
+            </S.ButtonWrapper>
           </S.MemberInfo>
         </S.Profile>
-      </S.MainWrapper>
+      </form>
+    </>
+  ) : (
+    <>
+      <S.Profile>
+        <S.Thumbnail>
+          <S.MemberImage image={memberInfo.imageUrl} />
+          <S.ImgUploadInput
+            id="ImgUpload"
+            type="file"
+            accept="image/*"
+            onChange={onChangeProfileImg}
+            ref={imgInputRef}
+          />
+        </S.Thumbnail>
+        <S.MemberInfo>
+          <S.Name>{memberInfo.username}</S.Name>
+          <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
+          <S.EditButton type="button" onClick={() => setIsOpenEdit(true)}>
+            회원정보 수정
+          </S.EditButton>
+        </S.MemberInfo>
+      </S.Profile>
     </>
   )
 }

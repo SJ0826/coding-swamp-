@@ -1,22 +1,5 @@
 import styled from 'styled-components'
 
-export const MainWrapper = styled.main`
-  width: 768px;
-  padding-bottom: 5rem;
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media ${(props) => props.theme.medium} {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  @media ${(props) => props.theme.small} {
-    width: 100%;
-    margin-top: 1.5rem;
-  }
-`
 export const Profile = styled.section`
   display: flex;
   height: 14rem;

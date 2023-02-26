@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
+import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import { EditMemberParam, UserInfoInterface } from '../../types/UserInterface'
 import { memberAPI } from '../../api/Member/MemberAPI'
 
@@ -14,6 +16,10 @@ const initialMemberInfo = {
       role: '',
       joinedAt: '',
     } as UserInfoInterface,
+    studiesAppliedFor: {
+      totalPage: 0,
+      studyResponses: [{} as StudyWithCondition],
+    },
   },
 }
 
@@ -32,6 +38,11 @@ export const postEditedMember = createAsyncThunk('editMember/postMember', async 
   return response
 })
 
+export const getStudiesAppliedFor = createAsyncThunk('member/getstudiesAppliedFor', async () => {
+  const response = await studyAPI.getStudiesAppliedFor()
+  return response.data
+})
+
 export const memberSlice = createSlice({
   name: 'member',
   initialState: initialMemberInfo,
@@ -44,6 +55,9 @@ export const memberSlice = createSlice({
     builder.addCase(getMemberInfo.fulfilled, (state, { payload }) => {
       state.value.memberInfo = { ...payload }
       return state
+    })
+    builder.addCase(getStudiesAppliedFor.fulfilled, (state, { payload }) => {
+      state.value.studiesAppliedFor = { ...payload }
     })
   },
 })
