@@ -70,6 +70,7 @@ const MemberInfo = () => {
           </DeleteUser>
           <Message>탈퇴시 활동 내역이 모두 삭제되며 복구되지 않습니다.</Message>
         </UserDeleteWrapper>
+        <DividingLine />
         <UserDeleteModalWrapper isOpenUserDelete={isOpenUserDelete}>
           <UserDeleteModal>
             <Title>정말로 탈퇴하시겠습니까?</Title>

@@ -41,9 +41,7 @@ const TableHeader = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 0px 1rem;
-
   line-height: 44px;
-  
   background: #EEEEEE
 }
 `
