@@ -32,7 +32,9 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => (
 
 export default StudiesWithConditions
 
-const Container = styled.div``
+const Container = styled.div`
+  margin-bottom: 4rem;
+`
 
 const TableHeader = styled.div`
   display: flex;
@@ -61,6 +63,6 @@ const TableContent = styled.ul<{ status: 'application' | 'participation' }>`
   border-bottom: 1px solid rgba(209, 209, 209, 0.4);
   :hover {
     background: #fffbf5;
-    cursor: ${(props) => (props.status === 'participation' ? 'pointer' : 'none')};
+    cursor: ${(props) => (props.status === 'participation' ? 'pointer' : 'default')};
   }
 `

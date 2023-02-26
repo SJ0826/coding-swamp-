@@ -4,21 +4,30 @@ import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { Header } from 'src/components/Header'
 import { MemberProfile, StudiesWithConditions } from 'src/components/member'
-import { DividingLine } from 'src/components'
+import { DefaultButton, DividingLine } from 'src/components'
 import styled from 'styled-components'
 import { TbHeartPlus, TbHeart } from 'react-icons/tb'
+import { AiOutlineUserDelete } from 'react-icons/ai'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
+import theme from 'src/style/theme'
 
 const MemberInfo = () => {
   const dispatch = useAppDispatch()
   const [studiesParticipated, setStudiesParticipated] = useState<StudyWithCondition[]>([])
-
   const studiesAppliedFor = useAppSelector((member) => member.member.value.studiesAppliedFor)
+  const [isOpenUserDelete, setIsOpenUserDelete] = useState<boolean>(false)
+
   const getstudiesParticipated = async () => {
     const response = await studyAPI.getStuduesParticipated()
     setStudiesParticipated(response.data.studyResponses)
   }
+
+  const onClickUserDeleteButton = () => {
+    console.log('회원탈퇴')
+    setIsOpenUserDelete(false)
+  }
+
   useEffect(() => {
     dispatch(getMemberInfo())
     dispatch(getStudiesAppliedFor())
@@ -32,21 +41,54 @@ const MemberInfo = () => {
       <MainWrapper>
         <MemberProfile />
         <DividingLine />
-        <StudyList>
-          <Title>
-            <TbHeartPlus />
-            나의 신청 스터디
-          </Title>
-          <StudiesWithConditions status="application" studiesAppliedFor={studiesAppliedFor.studyResponses} />
-        </StudyList>
 
-        <StudyList>
-          <Title>
-            <TbHeart />
-            나의 참가 스터디
-          </Title>
-          <StudiesWithConditions status="participation" studiesAppliedFor={studiesParticipated} />
-        </StudyList>
+        <Title>
+          <TbHeartPlus />
+          나의 신청 스터디
+        </Title>
+        <StudiesWithConditions status="application" studiesAppliedFor={studiesAppliedFor.studyResponses} />
+
+        <Title>
+          <TbHeart />
+          나의 참가 스터디
+        </Title>
+        <StudiesWithConditions status="participation" studiesAppliedFor={studiesParticipated} />
+        <DividingLine />
+        <Title>
+          <AiOutlineUserDelete />
+          회원 탈퇴
+        </Title>
+        <UserDeleteWrapper>
+          <DeleteUser type="button" onClick={() => setIsOpenUserDelete(true)}>
+            회원 탈퇴
+          </DeleteUser>
+          <Message>탈퇴시 활동 내역이 모두 삭제되며 복구되지 않습니다.</Message>
+        </UserDeleteWrapper>
+        <UserDeleteModalWrapper isOpenUserDelete={isOpenUserDelete}>
+          <UserDeleteModal>
+            <Title>정말로 탈퇴하시겠습니까?</Title>
+            <ButtonWrapper>
+              <DefaultButton
+                height={'2rem'}
+                color={'white'}
+                bgColor={theme.mainColor}
+                hoverColor={''}
+                hoverBGColor={theme.buttonLightColor}
+                text={'확인'}
+                onClick={onClickUserDeleteButton}
+              />
+              <DefaultButton
+                height={'2rem'}
+                color={theme.buttonLightColor}
+                bgColor={theme.bgGroundColor}
+                hoverColor={'white'}
+                hoverBGColor={theme.mainColor}
+                text={'취소'}
+                onClick={() => setIsOpenUserDelete(false)}
+              />
+            </ButtonWrapper>
+          </UserDeleteModal>
+        </UserDeleteModalWrapper>
       </MainWrapper>
     </>
   )
@@ -78,7 +120,56 @@ const Title = styled.h3`
   margin: 1rem 0rem;
   color: ${(props) => props.theme.text1};
 `
+const DeleteUser = styled.button`
+  width: 6rem;
+  margin-right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  color: white;
+  background-color: ${(props) => props.theme.warning};
+  :hover {
+    background-color: #ea5e53;
+  }
+`
+const Message = styled.h4`
+  color: ${(props) => props.theme.text2};
+`
 
-const StudyList = styled.div`
-  margin-bottom: 4rem;
+const UserDeleteWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const UserDeleteModalWrapper = styled.div<{ isOpenUserDelete: boolean }>`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255, 0.5);
+
+  display: ${(props) => (props.isOpenUserDelete ? '' : 'none')};
+`
+const UserDeleteModal = styled.div`
+  width: 25rem;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2rem 1.5rem;
+  box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
+  animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
+  background: ${(props) => props.theme.bgGroundColor};
+`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
