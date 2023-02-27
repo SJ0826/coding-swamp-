@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { removeToken } from 'src/lib/util/localStorage'
 import { useAppSelector } from 'src/lib/hooks'
 import UserMenu from './UserMenu'
@@ -9,8 +9,8 @@ import UserMenuItem from './UserMenuItem'
 const Header = () => {
   const navigator = useNavigate()
   const [toggleMenu, setToggleMenu] = useState<boolean>(false)
-  const { memberInfo } = useAppSelector(({ member }) => member.value)
-  const memberImage = memberInfo.imageUrl
+  const memberData = useAppSelector(({ memberInfo }) => memberInfo)
+  const memberImage = memberData.imageUrl
 
   const onClickUserIcon = () => {
     setToggleMenu(!toggleMenu)
@@ -43,7 +43,6 @@ const Container = styled.div`
   height: 6rem;
   display: flex;
   justify-content: center;
-
   top: 20px;
 `
 const HeaderWrapper = styled.div`
@@ -53,15 +52,12 @@ const HeaderWrapper = styled.div`
   align-items: center;
   box-sizing: inherit;
   height: 100%;
-
   @media ${(props) => props.theme.large} {
     width: calc(100% - 20rem);
   }
-
   @media ${(props) => props.theme.medium} {
     width: calc(100% - 8rem);
   }
-
   @media ${(props) => props.theme.small} {
     width: calc(100% - 3rem);
   }
@@ -75,7 +71,6 @@ const User = styled.div<{ BGImage: string }>`
   width: 4rem;
   height: 4rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
-
   padding-left: 4px;
   border-radius: 50%;
   background-size: cover;

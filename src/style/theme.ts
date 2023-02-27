@@ -1,7 +1,7 @@
 const size = {
-  small: '930px',
-  medium: '1290px',
-  large: '1600px',
+  small: '768px',
+  medium: '1080px',
+  large: '1950px',
 }
 
 const theme = {
@@ -21,19 +21,6 @@ const theme = {
 
   blue: '#ABC9FF',
   warning: '#EB4747',
-  warning2: '#FF6464',
-
-  green1: '#3C6255',
-  green2: '#61876E',
-  green3: '#A6BB8D',
-  green4: '#EAE7B1',
-  green5: '#CCD6A6',
-  green6: '#DAE2B6',
-
-  orange1: '#FFD495',
-  orange2: '#FAAB78',
-
-  yellow: '#FFFBAC',
 
   text1: '#212529',
   text2: '#495057',

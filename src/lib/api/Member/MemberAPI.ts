@@ -1,7 +1,6 @@
 import decodeJWT from 'src/lib/util/decodeJWT'
 import { EDIT_MEMBER_URL, USER_URL } from 'src/lib/constants/Url'
-import { type } from 'src/pages/memberInfo'
-import { AxiosRequestConfig } from 'axios'
+import { EditMemberParam } from 'src/lib/types/UserInterface'
 import HttpClient from '../httpClient'
 
 class MemberAPI extends HttpClient {
@@ -12,14 +11,7 @@ class MemberAPI extends HttpClient {
   }
 
   private _initializeResponseInterceptor = () => {
-    this.instance.interceptors.response.use(this._handleRequest)
-  }
-
-  protected _handleRequest = (config: AxiosRequestConfig | any) => {
-    if (config.headers) {
-      config.headers['Content-Type'] = 'multipart/form-data'
-    }
-    return config
+    this.instance.interceptors.response.use()
   }
 
   public getMemberInfo = async () => {
@@ -27,18 +19,23 @@ class MemberAPI extends HttpClient {
     return response.data
   }
 
-  public postMemberInfo = async (data: type) => {
-    const profileUrl = data.profileUrl ? data.profileUrl : ''
-    const payload = { imageFile: data.imageFile }
-    const response = await this.instance.post(
-      `${EDIT_MEMBER_URL}?username=${decodeURI(data.username)}&profileUrl=${profileUrl}`,
-      payload,
-      {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      },
-    )
+  public postMemberInfo = async (data: EditMemberParam) => {
+    const formData = new FormData()
+    if (data.imageFile) formData.append('imageFile', data.imageFile)
+    const params = new URLSearchParams()
+    params.append('username', data.username)
 
-    return response.data
+    const response = this.instance.post(
+      EDIT_MEMBER_URL,
+      { imageFile: data.imageFile },
+      { headers: { 'Content-Type': 'multipart/form-data' }, params },
+    )
+    return response
+  }
+
+  public deleteMember = () => {
+    const response = this.instance.delete(USER_URL)
+    return response
   }
 }
 

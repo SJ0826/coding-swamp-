@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import userFormSlice from './signForm/userFormSlice'
 import signInFormSlice from './signForm/signInFormSlice'
-import { memberInfoSlice } from './member/memberSlice'
+import memberSlice from './member/memberSlice'
 import editModeSlice from './member/editModeSlice'
 import userMenuSlice from './userMenuSlice'
 import studyFormSlice from './studyFormSlice'
@@ -12,7 +12,7 @@ import studyItemSlice from './studyItemSlice'
 const rootReducer = combineReducers({
   userForm: userFormSlice,
   signInForm: signInFormSlice,
-  memberInfo: memberInfoSlice.reducer,
+  member: memberSlice,
   editMode: editModeSlice,
   userMenu: userMenuSlice,
   studyForm: studyFormSlice,

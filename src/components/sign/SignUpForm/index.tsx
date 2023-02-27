@@ -4,6 +4,7 @@ import SignButton from 'src/components/sign/SignButton'
 import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from 'react'
 import { UserParam } from 'src/lib/types/UserInterface'
+
 import { useNavigate } from 'react-router-dom'
 import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
@@ -28,6 +29,7 @@ const SignUpForm = () => {
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
         setImageForBackGround(url)
+        dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
         dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
       }
     },
@@ -60,6 +62,7 @@ const SignUpForm = () => {
       email: userData[2].value!,
       password: userData[3].value!,
     }
+
     await dispatch(postUserForm(result))
     navigate('/signIn')
     dispatch(allClearSignUpForm())

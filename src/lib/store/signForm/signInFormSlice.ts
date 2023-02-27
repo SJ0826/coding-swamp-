@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { signInAPI } from 'src/lib/api/Sign/SignInAPI'
-import { SignInParam } from 'src/lib/types/UserInterface'
+import { SignInParam } from '../../types/UserInterface'
 
 const initialSignInForm = {
   value: [

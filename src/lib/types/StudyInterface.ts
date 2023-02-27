@@ -48,3 +48,17 @@ export interface StudyDetailInfo {
   tags: string[]
   createdAt: string
 }
+
+export interface StudyWithCondition {
+  studyId: number
+  title: string
+  studyType: 'STUDY' | 'MOGAKKO'
+  thumbnail: string
+  studyStatus: 'COMPLETION' | 'PREPARING' | 'ONGOING'
+  currentMemberCount: number
+  maxMemberCount: number
+  startDate: string
+  endDate: string
+  tags: string[]
+  createdAt: string
+}

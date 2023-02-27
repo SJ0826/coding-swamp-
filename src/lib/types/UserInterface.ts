@@ -20,6 +20,7 @@ export interface EditMemberParam {
   profileUrl: string | null
   imageFile: File | null
   username: string
+  imageUrl: string
 }
 export interface UserInfoInterface {
   [key: string]: string | number | null
