@@ -87,7 +87,7 @@ const MemberInfo = () => {
               <DefaultButton
                 height={'2rem'}
                 color={theme.buttonLightColor}
-                bgColor={theme.bgGroundColor}
+                bgColor={theme.bgGroundColor1}
                 hoverColor={'white'}
                 hoverBGColor={theme.mainColor}
                 text={'취소'}
@@ -174,7 +174,7 @@ const UserDeleteModal = styled.div`
   padding: 2rem 1.5rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
-  background: ${(props) => props.theme.bgGroundColor};
+  background: ${(props) => props.theme.bgGroundColor1};
 `
 const ButtonWrapper = styled.div`
   display: flex;

@@ -10,7 +10,7 @@ import * as S from './style'
 
 const StudyApplyModal = () => {
   const navigate = useNavigate()
-  const { username } = useAppSelector(({ memberInfo }) => memberInfo)
+  const { username } = useAppSelector(({ member }) => member.value.memberInfo)
   const { isOpenStudyModal, studyInfo } = useAppSelector(({ studyItem }) => studyItem)
   const dispatch = useAppDispatch()
   const [isOpenApplyForm, setIsOpenApplyForm] = useState(false)
