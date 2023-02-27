@@ -8,6 +8,8 @@ import { UserParam } from 'src/lib/types/UserInterface'
 import { useNavigate } from 'react-router-dom'
 import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
@@ -29,6 +31,7 @@ const SignUpForm = () => {
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
         setImageForBackGround(url)
+        dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
         dispatch(changeUserValue({ key: 'imageFile', value: ImageFiles[0] }))
       }
     },

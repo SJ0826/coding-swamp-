@@ -33,7 +33,8 @@
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
     "no-alert": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-restricted-exports": "off"
 
 
   }

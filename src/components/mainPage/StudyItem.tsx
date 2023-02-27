@@ -1,3 +1,5 @@
+import { useAppDispatch } from 'src/lib/hooks'
+import { getStudyDetailInfo, toggleStudyModal } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'
 
 type Props = {
@@ -24,26 +26,35 @@ const StudyItem = ({
   currentMemberCount,
   maxMemberCount,
   studyStatus,
-}: Props) => (
-  <Container key={studyId}>
-    <ColorWrapper thumbnail={thumbnail}>
-      <Title>{title}</Title>
-      <StudyType>{studyType}</StudyType>
-      <StudyType>{studyStatus === 'ONGOING' ? '모집중' : '모집 마감'}</StudyType>
-      <CurrentCount>
-        현재 인원: ({currentMemberCount}/{maxMemberCount})
-      </CurrentCount>
-      <StudyPeriod>
-        {startDate} ~ {endDate}
-      </StudyPeriod>
-    </ColorWrapper>
-    <TagContainer>
-      {tags.map((tag) => (
-        <Tag key={tag}>#{tag}</Tag>
-      ))}
-    </TagContainer>
-  </Container>
-)
+}: Props) => {
+  const dispatch = useAppDispatch()
+
+  const onClickStudyItem = async () => {
+    await dispatch(getStudyDetailInfo(studyId))
+    dispatch(toggleStudyModal())
+  }
+
+  return (
+    <Container key={studyId} onClick={onClickStudyItem}>
+      <ColorWrapper thumbnail={thumbnail}>
+        <Title>{title}</Title>
+        <StudyType>{studyType}</StudyType>
+        <StudyType>{studyStatus === 'ONGOING' ? '모집중' : '모집 마감'}</StudyType>
+        <CurrentCount>
+          현재 인원: ({currentMemberCount}/{maxMemberCount})
+        </CurrentCount>
+        <StudyPeriod>
+          {startDate} ~ {endDate}
+        </StudyPeriod>
+      </ColorWrapper>
+      <TagContainer>
+        {tags.map((tag) => (
+          <Tag key={tag}>#{tag}</Tag>
+        ))}
+      </TagContainer>
+    </Container>
+  )
+}
 
 export default StudyItem
 
