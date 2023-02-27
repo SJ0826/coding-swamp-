@@ -1,12 +1,16 @@
 import { Header } from 'src/components/Header'
+import { StudyHeader } from 'src/components/study'
 import styled from 'styled-components'
 
 const Profile = () => {
   const test = 'test'
   return (
-    <Container>
+    <>
       <Header />
-    </Container>
+      <main>
+        <StudyHeader />
+      </main>
+    </>
   )
 }
 

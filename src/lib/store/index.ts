@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
+import storage from 'redux-persist/lib/storage'
 import userFormSlice from './signForm/userFormSlice'
 import signInFormSlice from './signForm/signInFormSlice'
 import memberSlice from './member/memberSlice'
@@ -8,6 +9,11 @@ import userMenuSlice from './userMenuSlice'
 import studyFormSlice from './studyFormSlice'
 import studyListSlice from './studyListSlice'
 import studyItemSlice from './studyItemSlice'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 
 const rootReducer = combineReducers({
   userForm: userFormSlice,
