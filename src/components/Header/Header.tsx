@@ -55,7 +55,7 @@ const HeaderWrapper = styled.div`
   height: 100%;
 
   @media ${(props) => props.theme.large} {
-    width: calc(100% - 20rem);
+    width: 100%;
   }
 
   @media ${(props) => props.theme.medium} {
