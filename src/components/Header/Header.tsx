@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { removeToken } from 'src/lib/util/localStorage'
 import { useAppSelector } from 'src/lib/hooks'
+import { persistor } from 'src/lib/store'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
@@ -16,9 +17,10 @@ const Header = () => {
     setToggleMenu(!toggleMenu)
   }
 
-  const onClickLogout = () => {
+  const onClickLogout = async () => {
+    navigator('/signin')
+    await persistor.purge()
     removeToken()
-    navigator('/')
   }
 
   return (
