@@ -58,11 +58,14 @@ const Member = styled.div`
 const MemberImage = styled.img`
   width: 5rem;
   margin-left: 1rem;
+  margin-bottom: 1rem;
   border-radius: 50%;
 `
 
 const MemberName = styled.div`
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 1.7rem;
   border-radius: 20px;
