@@ -22,10 +22,7 @@ const Container = styled.div`
   font-size: 2rem;
   line-height: 4rem;
   border-bottom: 1px solid ${(props) => props.theme.border4};
-
-  background: ${(props) => props.theme.bgGroundColor2};
 `
 const Title = styled.h3`
-  padding-left: 6rem;
-  padding-right: 1rem;
+  padding-left: 2rem;
 `
