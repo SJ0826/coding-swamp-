@@ -10,7 +10,8 @@ const ToastEditor = () => {
   const dispatch = useAppDispatch()
 
   const onChangeEditor = () => {
-    const data = editorRef.current?.getInstance().getMarkdown()
+    const data = editorRef.current?.getInstance().getHTML()
+    console.log(data)
     dispatch(changeStudyForm({ key: 'description', value: data }))
   }
   return (

@@ -11,7 +11,7 @@ const DefautStudyLayout = ({ children }: Props) => (
   <MainContainer>
     <StudyHeader />
     <StudyNavigationBar />
-    {children}
+    <Content>{children}</Content>
   </MainContainer>
 )
 
@@ -25,4 +25,9 @@ const MainContainer = styled.main`
     padding-left: 1rem;
     padding-right: 1rem;
   }
+`
+
+const Content = styled.div`
+  background: ${(props) => props.theme.bgGroundColor2};
+  border-radius: 20px;
 `

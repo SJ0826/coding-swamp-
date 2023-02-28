@@ -22,7 +22,7 @@ const initialStudyItem = {
   } as StudyDetailInfo,
   targetstudyId: 0,
   isOpenStudyModal: false,
-  clickedStudyNav: 'Home',
+  clickedStudyNav: 'home',
 }
 
 export const getStudyDetailInfo = createAsyncThunk('studyItem/getStudyInfo', async (studyId: number) => {

@@ -1,12 +1,14 @@
 import { Header } from 'src/components/Header'
-import { DefautStudyLayout } from 'src/components/study'
+import { DefautStudyLayout, StudyDescription } from 'src/components/study'
 
 const Profile = () => {
   const test = 'test'
   return (
     <>
       <Header />
-      <DefautStudyLayout>hi</DefautStudyLayout>
+      <DefautStudyLayout>
+        <StudyDescription />
+      </DefautStudyLayout>
     </>
   )
 }
