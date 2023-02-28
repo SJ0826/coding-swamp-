@@ -45,7 +45,6 @@ const Container = styled.div`
   height: 6rem;
   display: flex;
   justify-content: center;
-
   top: 20px;
 `
 const HeaderWrapper = styled.div`

@@ -5,15 +5,27 @@ import styled from 'styled-components'
 
 const StudyHeader = () => {
   const { title } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
-  console.log(title)
   useEffect(() => {
     refreshTokenAPI.getRefreshToken()
-  })
-  return <Container>{title}</Container>
+  }, [])
+  return (
+    <Container>
+      <Title>{title}</Title>
+    </Container>
+  )
 }
 
 export default StudyHeader
 
 const Container = styled.div`
-  padding: 1rem 4rem;
+  margin-top: 5.625rem;
+  font-size: 2rem;
+  line-height: 4rem;
+  border-bottom: 1px solid ${(props) => props.theme.border4};
+
+  background: ${(props) => props.theme.bgGroundColor2};
+`
+const Title = styled.h3`
+  padding-left: 6rem;
+  padding-right: 1rem;
 `
