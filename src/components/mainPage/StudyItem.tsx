@@ -93,8 +93,12 @@ const ColorWrapper = styled.div<{ thumbnail: string }>`
   }
 `
 const Title = styled.h3`
+  height: 33px;
   font-size: 1.6rem;
   text-align: center;
+  overflow: hidden; 
+   white-space: nowrap 
+  text-overflow: ellipsis;
   margin: 1rem;
 
   @media ${(props) => props.theme.small} {

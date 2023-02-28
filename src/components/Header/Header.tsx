@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { removeToken } from 'src/lib/util/localStorage'
 import { useAppSelector } from 'src/lib/hooks'
+import { persistor } from 'src/lib/store'
 import UserMenu from './UserMenu'
 import UserMenuItem from './UserMenuItem'
 
@@ -16,9 +17,10 @@ const Header = () => {
     setToggleMenu(!toggleMenu)
   }
 
-  const onClickLogout = () => {
+  const onClickLogout = async () => {
+    navigator('/signin')
+    await persistor.purge()
     removeToken()
-    navigator('/')
   }
 
   return (
@@ -43,7 +45,6 @@ const Container = styled.div`
   height: 6rem;
   display: flex;
   justify-content: center;
-
   top: 20px;
 `
 const HeaderWrapper = styled.div`
@@ -55,7 +56,7 @@ const HeaderWrapper = styled.div`
   height: 100%;
 
   @media ${(props) => props.theme.large} {
-    width: calc(100% - 20rem);
+    width: 100%;
   }
 
   @media ${(props) => props.theme.medium} {
@@ -71,7 +72,7 @@ const Logo = styled.div`
   margin: 0 14px 0 0;
 `
 
-const User = styled.div<{ BGImage: string }>`
+export const User = styled.div<{ BGImage: string }>`
   width: 4rem;
   height: 4rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;

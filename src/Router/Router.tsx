@@ -10,6 +10,7 @@ const Router = () => {
   const MainPage = lazy(() => import('../pages/main'))
   const MemberInfoPage = lazy(() => import('../pages/memberInfo'))
   const CreateStudy = lazy(() => import('../pages/createStudy/index'))
+  const StudyProfile = lazy(() => import('../pages/study/Profile'))
   const loading = () => <>...loading</>
 
   return (
@@ -68,6 +69,16 @@ const Router = () => {
           <Suspense fallback={loading()}>
             <PrivateRouter>
               <CreateStudy />
+            </PrivateRouter>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/study/profile"
+        element={
+          <Suspense fallback={loading()}>
+            <PrivateRouter>
+              <StudyProfile />
             </PrivateRouter>
           </Suspense>
         }

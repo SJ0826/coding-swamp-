@@ -22,6 +22,7 @@ const initialStudyItem = {
   } as StudyDetailInfo,
   targetstudyId: 0,
   isOpenStudyModal: false,
+  clickedStudyNav: 'home',
 }
 
 export const getStudyDetailInfo = createAsyncThunk('studyItem/getStudyInfo', async (studyId: number) => {
@@ -39,6 +40,9 @@ export const studyItemSlice = createSlice({
     toggleStudyModal: (state) => {
       state.isOpenStudyModal = !state.isOpenStudyModal
     },
+    changeTargetedStudyNav: (state, { payload }) => {
+      state.clickedStudyNav = payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getStudyDetailInfo.fulfilled, (state, { payload }) => {
@@ -48,4 +52,4 @@ export const studyItemSlice = createSlice({
 })
 
 export default studyItemSlice.reducer
-export const { changeTargetStudyId, toggleStudyModal } = studyItemSlice.actions
+export const { changeTargetStudyId, toggleStudyModal, changeTargetedStudyNav } = studyItemSlice.actions

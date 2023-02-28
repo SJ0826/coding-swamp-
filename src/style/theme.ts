@@ -1,6 +1,6 @@
 const size = {
   small: '768px',
-  medium: '1080px',
+  medium: '1280px',
   large: '1950px',
 }
 
@@ -21,7 +21,6 @@ const theme = {
 
   blue: '#ABC9FF',
   warning: '#EB4747',
-
   warning2: '#FF6464',
 
   green1: '#3C6255',
