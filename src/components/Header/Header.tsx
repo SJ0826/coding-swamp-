@@ -72,7 +72,7 @@ const Logo = styled.div`
   margin: 0 14px 0 0;
 `
 
-const User = styled.div<{ BGImage: string }>`
+export const User = styled.div<{ BGImage: string }>`
   width: 4rem;
   height: 4rem;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;

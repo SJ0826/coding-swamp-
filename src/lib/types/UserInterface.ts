@@ -33,3 +33,11 @@ export interface UserInfoInterface {
   memberId: number
   role: string
 }
+
+export interface ParticipateParam {
+  memberId: number
+  username: string
+  imageUrl: string
+  profileUrl: string | null
+  participationDate: string
+}

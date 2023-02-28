@@ -4,7 +4,6 @@ import { BsChatSquareText } from 'react-icons/bs'
 
 const StudyDescription = () => {
   const { description } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
-  console.log(typeof description)
   return (
     <Container>
       <Title>
@@ -20,21 +19,21 @@ const StudyDescription = () => {
 
 export default StudyDescription
 
-const Container = styled.section`
+export const Container = styled.section`
   padding: 3rem 3rem;
 `
 
-const Title = styled.h3`
+export const Title = styled.h3`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 `
 
-const Icon = styled.div`
+export const Icon = styled.div`
   margin-right: 0.8rem;
 `
 
-const Description = styled.div`
+export const Description = styled.div`
   padding: 1rem;
   background: ${(props) => props.theme.bgGroundColor1};
   border-radius: 20px;
