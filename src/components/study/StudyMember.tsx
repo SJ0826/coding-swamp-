@@ -1,10 +1,11 @@
+import { AiFillCrown } from 'react-icons/ai'
 import { BsPerson } from 'react-icons/bs'
 import { useAppSelector } from 'src/lib/hooks'
 import styled from 'styled-components'
 import { Container, Description, Icon, Title } from './StudyDescription'
 
 const StudyMember = () => {
-  const { participants } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
+  const { studyInfo } = useAppSelector(({ studyItem }) => studyItem)
   return (
     <Container>
       <Title>
@@ -15,7 +16,14 @@ const StudyMember = () => {
       </Title>
       <Description>
         <MemberWrapper>
-          {participants.map((member) => (
+          <OwnerIcon>
+            <AiFillCrown />
+          </OwnerIcon>
+          <Member>
+            <MemberImage src={studyInfo.owner.imageUrl} />
+            <MemberName>{studyInfo.owner.username}</MemberName>
+          </Member>
+          {studyInfo.participants.map((member) => (
             <Member key={member.memberId}>
               <MemberImage src={member.imageUrl} />
               <MemberName>{member.username}</MemberName>
@@ -31,23 +39,32 @@ export default StudyMember
 
 const MemberWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  margin: 1.2rem;
+`
+const OwnerIcon = styled.div`
+  position: absolute;
+  padding-left: 1.2rem;
+
+  font-size: 1.6rem;
+  color: gold;
+  z-index: 20;
 `
 
 const Member = styled.div`
-  width: 5rem;
+  width: 7rem;
+  margin: 1.2rem;
 `
 
 const MemberImage = styled.img`
   width: 5rem;
-  margin-bottom: 0.7rem;
+  margin-left: 1rem;
   border-radius: 50%;
 `
 
 const MemberName = styled.div`
   text-align: center;
+  text-overflow: ellipsis;
+  line-height: 1.7rem;
   border-radius: 20px;
   background: ${(props) => props.theme.bgGroundColor4};
 `
