@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/lib/hooks'
 import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'
@@ -6,8 +7,22 @@ import styled from 'styled-components'
 const StudyNavigationBar = () => {
   const dispatch = useDispatch()
   const { clickedStudyNav, studyInfo } = useAppSelector(({ studyItem }) => studyItem)
+  const navigate = useNavigate()
   const onClickNavMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(changeTargetedStudyNav(e.currentTarget.id))
+    switch (e.currentTarget.id) {
+      case 'home':
+        navigate('/study/home')
+        break
+      case 'board':
+        navigate('/study/board')
+        break
+      case 'settings':
+        navigate('/study/settings')
+        break
+      default:
+        break
+    }
   }
   return (
     <Container>
