@@ -22,6 +22,12 @@ const Container = styled.div`
   font-size: 2rem;
   line-height: 4rem;
   border-bottom: 1px solid ${(props) => props.theme.border4};
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 2rem;
+    font-size: 1rem;
+    line-height: 4rem;
+  }
 `
 const Title = styled.h3`
   padding-left: 2rem;

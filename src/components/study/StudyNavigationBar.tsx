@@ -63,6 +63,12 @@ const Container = styled.div`
   margin-bottom: 0.8rem;
   padding-left: 2rem;
   font-size: 1.2rem;
+
+  @media ${(props) => props.theme.small} {
+    font-size: 1rem;
+    padding-left: 3.3rem;
+    margin-top: 2.5rem;
+  }
 `
 const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
   margin-right: 3rem;
@@ -76,5 +82,11 @@ const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
   transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
   :hover {
     cursor: pointer;
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 1rem;
+    margin-right: 1rem;
+    line-height: 2rem;
   }
 `

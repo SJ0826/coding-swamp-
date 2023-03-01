@@ -21,12 +21,18 @@ export default StudyDescription
 
 export const Container = styled.section`
   padding: 3rem 3rem;
+  @media ${(props) => props.theme.small} {
+    padding: 1rem 1rem;
+  }
 `
 
 export const Title = styled.h3`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  @media ${(props) => props.theme.small} {
+    font-size: 1rem;
+  }
 `
 
 export const Icon = styled.div`

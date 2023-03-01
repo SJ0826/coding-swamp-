@@ -10,7 +10,6 @@ import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
 import { Container, Icon, Title } from './StudyDescription'
 import { StudyFormParams } from '../../lib/types/StudyInterface'
 import { EndDate, StartDate } from '../createStudy/SelectDate'
-import DefaultButton from '../DefaultButton'
 
 const EditStudy = () => {
   const navigate = useNavigate()
@@ -116,14 +115,16 @@ const EditStudy = () => {
           <MaxCount id={'maxMemberCount'} onChange={onChangeContent} value={studyForm.maxMemberCount} />명
         </EditContentWrapper>
         <EditContentWrapper>
+          <SubTitle>스터디 태그</SubTitle>
           <TagForm onSubmit={onSubmitTag}>
-            <SubTitle>스터디 태그</SubTitle>
             <TagInput value={tagInput} onChange={(e: ChangeEvent<HTMLInputElement>) => setTagInput(e.target.value)} />
-            {studyForm.tags.map((tag: string) => (
-              <Tag key={tag} id={tag} onClick={onClickTag}>
-                {tag}
-              </Tag>
-            ))}
+            <TagWrapper>
+              {studyForm.tags.map((tag: string) => (
+                <Tag key={tag} id={tag} onClick={onClickTag}>
+                  {tag}
+                </Tag>
+              ))}
+            </TagWrapper>
           </TagForm>
         </EditContentWrapper>
         <ButtonWrapper>
@@ -154,6 +155,10 @@ const EditContentWrapper = styled.div`
 
 const SubTitle = styled.div`
   width: 9rem;
+  @media ${(props) => props.theme.small} {
+    width: 7rem;
+    font-size: 0.8rem;
+  }
 `
 const NameInput = styled.input`
   height: 2rem;
@@ -161,6 +166,10 @@ const NameInput = styled.input`
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   font-size: 1rem;
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    height: 1.8rem;
+  }
 `
 
 const EditorWrapper = styled.div`
@@ -171,6 +180,9 @@ const StudyType = styled.select`
   font-size: 1rem;
   :hover {
     cursor: pointer;
+  }
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
   }
 `
 
@@ -186,6 +198,10 @@ const Color = styled.div<{ colorCode: string; isClicked: boolean }>`
   :hover {
     cursor: pointer;
   }
+
+  @media ${(props) => props.theme.small} {
+    margin-right: 0rem;
+  }
 `
 const MaxCount = styled.input`
   width: 4rem;
@@ -196,6 +212,12 @@ const MaxCount = styled.input`
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   font-size: 1rem;
   text-align: center;
+  @media ${(props) => props.theme.small} {
+    width: 3rem;
+    height: 1.6rem;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+  }
 `
 const TagInput = styled.input`
   width: 10rem;
@@ -206,11 +228,25 @@ const TagInput = styled.input`
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   font-size: 1rem;
   text-align: center;
+  @media ${(props) => props.theme.small} {
+    width: 7rem;
+    height: 1.6rem;
+    font-size: 0.8rem;
+  }
+`
+const TagWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 0.5rem;
+  }
 `
 
 const Tag = styled.div`
   padding: 0.3rem 0.8rem;
-  margin-right: 1rem;
+  margin: 0.5rem;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   text-align: center;
@@ -219,9 +255,18 @@ const Tag = styled.div`
   :hover {
     cursor: pointer;
   }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    margin: 0.2rem;
+  }
 `
 const TagForm = styled.form`
   display: flex;
+  flex-direction: column;
+  @media ${(props) => props.theme.small} {
+    width: 66%;
+  }
 `
 
 const ButtonWrapper = styled.div`
@@ -238,6 +283,12 @@ const Button = styled.button<{ bgColor: string }>`
   font-size: 1rem;
 
   :hover {
+    background: ${(props) => props.bgColor};
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    height: 1.6rem;
     background: ${(props) => props.bgColor};
   }
 `
