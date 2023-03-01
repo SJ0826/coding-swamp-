@@ -60,8 +60,8 @@ const Container = styled.div`
   display: flex;
   justify-content: start;
   margin-top: 4.5rem;
+  margin-bottom: 0.8rem;
   padding-left: 2rem;
-
   font-size: 1.2rem;
 `
 const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
@@ -70,11 +70,10 @@ const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
   line-height: 3rem;
   font-weight: bold;
   color: ${(props) => (props.clickedStudyNav ? props.theme.text1 : props.theme.text4)};
-  border-top-left-radius: 20%;
-  border-top-right-radius: 20%;
-  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
-  background: ${(props) => (props.clickedStudyNav ? props.bottomColor : props.theme.bgGroundColor2)};
+  border-radius: 10px;
 
+  background: ${(props) => (props.clickedStudyNav ? props.bottomColor : props.theme.bgGroundColor2)};
+  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
   :hover {
     cursor: pointer;
   }

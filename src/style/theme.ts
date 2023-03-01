@@ -46,4 +46,14 @@ const theme = {
   large: `(max-width: ${size.large})`,
 }
 
+export const studyColor = [
+  theme.bgGroundColor3,
+  theme.blue,
+  theme.green6,
+  theme.green3,
+  theme.yellow,
+  theme.orange1,
+  theme.orange2,
+]
+
 export default theme

@@ -1,7 +1,7 @@
 import { Header } from 'src/components/Header'
 import { DefautStudyLayout, StudyDescription, StudyMember } from 'src/components/study'
 
-const Profile = () => (
+const Home = () => (
   <>
     <Header />
     <DefautStudyLayout>
@@ -11,4 +11,4 @@ const Profile = () => (
   </>
 )
 
-export default Profile
+export default Home

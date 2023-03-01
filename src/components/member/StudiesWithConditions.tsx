@@ -16,7 +16,7 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
     const target = e.currentTarget
     if (status === 'participation') {
       await dispatch(getStudyDetailInfo(target.value))
-      navigate('/study/profile')
+      navigate('/study/home')
     }
   }
   return (

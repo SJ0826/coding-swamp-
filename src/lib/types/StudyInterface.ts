@@ -5,7 +5,7 @@ export interface StudyFormParams {
   thumbnail: string
   startDate: string
   endDate: string
-  maxMemberCount: string
+  maxMemberCount: number
   tags: string[]
 }
 
