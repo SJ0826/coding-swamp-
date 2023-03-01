@@ -9,7 +9,7 @@ const initialstudyForm = {
     thumbnail: theme.mainColor,
     startDate: '',
     endDate: '',
-    maxMemberCount: '',
+    maxMemberCount: 0,
     tags: [],
   },
 }
@@ -29,7 +29,7 @@ export const studyFormSlice = createSlice({
         thumbnail: theme.mainColor,
         startDate: '',
         endDate: '',
-        maxMemberCount: '',
+        maxMemberCount: 0,
         tags: [],
       }
     },

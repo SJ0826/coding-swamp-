@@ -19,4 +19,9 @@ const Container = styled.div`
     width: calc(100% - 4rem);
     margin-left: 3%;
   }
+
+  @media ${(props) => props.theme.small} {
+    width: 100%;
+    margin-left: 0%;
+  }
 `

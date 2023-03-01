@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/lib/hooks'
 import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
 import styled from 'styled-components'
@@ -6,8 +7,22 @@ import styled from 'styled-components'
 const StudyNavigationBar = () => {
   const dispatch = useDispatch()
   const { clickedStudyNav, studyInfo } = useAppSelector(({ studyItem }) => studyItem)
+  const navigate = useNavigate()
   const onClickNavMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(changeTargetedStudyNav(e.currentTarget.id))
+    switch (e.currentTarget.id) {
+      case 'home':
+        navigate('/study/home')
+        break
+      case 'board':
+        navigate('/study/board')
+        break
+      case 'settings':
+        navigate('/study/settings')
+        break
+      default:
+        break
+    }
   }
   return (
     <Container>
@@ -45,9 +60,15 @@ const Container = styled.div`
   display: flex;
   justify-content: start;
   margin-top: 4.5rem;
+  margin-bottom: 0.8rem;
   padding-left: 2rem;
-
   font-size: 1.2rem;
+
+  @media ${(props) => props.theme.small} {
+    font-size: 1rem;
+    padding-left: 3.3rem;
+    margin-top: 2.5rem;
+  }
 `
 const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
   margin-right: 3rem;
@@ -55,12 +76,17 @@ const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
   line-height: 3rem;
   font-weight: bold;
   color: ${(props) => (props.clickedStudyNav ? props.theme.text1 : props.theme.text4)};
-  border-top-left-radius: 20%;
-  border-top-right-radius: 20%;
-  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
-  background: ${(props) => (props.clickedStudyNav ? props.bottomColor : props.theme.bgGroundColor2)};
+  border-radius: 10px;
 
+  background: ${(props) => (props.clickedStudyNav ? props.bottomColor : props.theme.bgGroundColor2)};
+  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
   :hover {
     cursor: pointer;
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 1rem;
+    margin-right: 1rem;
+    line-height: 2rem;
   }
 `

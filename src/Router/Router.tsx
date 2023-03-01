@@ -10,7 +10,8 @@ const Router = () => {
   const MainPage = lazy(() => import('../pages/main'))
   const MemberInfoPage = lazy(() => import('../pages/memberInfo'))
   const CreateStudy = lazy(() => import('../pages/createStudy/index'))
-  const StudyProfile = lazy(() => import('../pages/study/Profile'))
+  const StudyHome = lazy(() => import('../pages/study/Home'))
+  const StudySettings = lazy(() => import('../pages/study/Settings'))
   const loading = () => <>...loading</>
 
   return (
@@ -74,11 +75,21 @@ const Router = () => {
         }
       />
       <Route
-        path="/study/profile"
+        path="/study/home"
         element={
           <Suspense fallback={loading()}>
             <PrivateRouter>
-              <StudyProfile />
+              <StudyHome />
+            </PrivateRouter>
+          </Suspense>
+        }
+      />
+      <Route
+        path="/study/settings"
+        element={
+          <Suspense fallback={loading()}>
+            <PrivateRouter>
+              <StudySettings />
             </PrivateRouter>
           </Suspense>
         }

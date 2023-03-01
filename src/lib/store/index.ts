@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whiteList: ['studyItem', 'member'],
+  whiteList: ['member'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

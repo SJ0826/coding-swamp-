@@ -70,7 +70,7 @@ const DateText = styled.div`
     width: 5rem;
   }
 `
-const StartDate = styled.input`
+export const StartDate = styled.input`
   padding-left: 1rem;
   margin-right: 1rem;
 
@@ -82,7 +82,7 @@ const StartDate = styled.input`
   }
 `
 
-const EndDate = styled.input`
+export const EndDate = styled.input`
   padding-left: 1rem;
   margin-right: 1rem;
 
