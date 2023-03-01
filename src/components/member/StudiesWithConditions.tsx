@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'src/lib/hooks'
-import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
+import { changeTargetStudyId, getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import styled from 'styled-components'
 
@@ -13,9 +13,9 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
   const dispatch = useAppDispatch()
 
   const onClickStudy = async (e: React.MouseEvent<HTMLLIElement>) => {
-    const target = e.currentTarget
     if (status === 'participation') {
-      await dispatch(getStudyDetailInfo(target.value))
+      dispatch(changeTargetStudyId(e.currentTarget.value))
+      await dispatch(getStudyDetailInfo(e.currentTarget.value))
       navigate('/study/home')
     }
   }

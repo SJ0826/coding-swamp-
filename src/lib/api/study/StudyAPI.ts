@@ -48,6 +48,10 @@ class StudyAPI extends HttpClient {
     const response = this.instance.get(`${STUDY_URL}/my/participates `)
     return response
   }
+
+  public postEditedStudyForm = (data: { studyId: number; studyForm: StudyFormParams }) => {
+    this.instance.put(`${STUDY_URL}/${data.studyId}`, data.studyForm)
+  }
 }
 
 const studyAPI = new StudyAPI()
