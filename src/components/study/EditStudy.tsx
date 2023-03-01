@@ -67,6 +67,10 @@ const EditStudy = () => {
     navigate('/study/home')
   }
 
+  const onClickResetButton = () => {
+    setStudyForm(initialStudyForm)
+  }
+
   return (
     <Container>
       <Title>
@@ -122,15 +126,14 @@ const EditStudy = () => {
             ))}
           </TagForm>
         </EditContentWrapper>
-        <DefaultButton
-          onClick={onClickSaveButton}
-          height={'2rem'}
-          color={''}
-          bgColor={''}
-          hoverColor={''}
-          hoverBGColor={studyInfo.thumbnail}
-          text={'저장'}
-        />
+        <ButtonWrapper>
+          <Button bgColor={studyInfo.thumbnail} onClick={onClickSaveButton}>
+            저장
+          </Button>
+          <Button bgColor={studyInfo.thumbnail} onClick={onClickResetButton}>
+            초기화
+          </Button>
+        </ButtonWrapper>
       </EditWrapper>
     </Container>
   )
@@ -219,4 +222,22 @@ const Tag = styled.div`
 `
 const TagForm = styled.form`
   display: flex;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: right;
+  align-items: right;
+`
+const Button = styled.button<{ bgColor: string }>`
+  width: 18%;
+  height: 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  font-size: 1rem;
+
+  :hover {
+    background: ${(props) => props.bgColor};
+  }
 `
