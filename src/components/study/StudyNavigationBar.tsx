@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/lib/hooks'
 import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
+import isStudyOwner from 'src/lib/util/isStudyOwner'
 import styled from 'styled-components'
 
 const StudyNavigationBar = () => {
@@ -31,6 +32,7 @@ const StudyNavigationBar = () => {
         onClick={onClickNavMenu}
         clickedStudyNav={clickedStudyNav === 'home'}
         bottomColor={studyInfo.thumbnail}
+        isVisible={true}
       >
         Home
       </NavMenu>
@@ -39,6 +41,7 @@ const StudyNavigationBar = () => {
         onClick={onClickNavMenu}
         clickedStudyNav={clickedStudyNav === 'board'}
         bottomColor={studyInfo.thumbnail}
+        isVisible={true}
       >
         게시판
       </NavMenu>
@@ -47,6 +50,7 @@ const StudyNavigationBar = () => {
         onClick={onClickNavMenu}
         clickedStudyNav={clickedStudyNav === 'settings'}
         bottomColor={studyInfo.thumbnail}
+        isVisible={isStudyOwner()}
       >
         설정
       </NavMenu>
@@ -70,11 +74,12 @@ const Container = styled.div`
     margin-top: 2.5rem;
   }
 `
-const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string }>`
+const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string; isVisible: boolean }>`
   margin-right: 3rem;
   padding: 0rem 1rem;
   line-height: 3rem;
   font-weight: bold;
+  isvisible: ${(props) => (props.isVisible ? 'none' : 'hidden')}
   color: ${(props) => (props.clickedStudyNav ? props.theme.text1 : props.theme.text4)};
   border-radius: 10px;
 
