@@ -53,7 +53,7 @@ const Container = styled.div`
   margin-bottom: 4rem;
 `
 
-const TableHeader = styled.div`
+export const TableHeader = styled.div`
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -62,13 +62,13 @@ const TableHeader = styled.div`
   background: #EEEEEE
 }
 `
-const TableContent = styled.ul`
+export const TableContent = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid rgba(209, 209, 209, 0.4);
 `
-const TableElement = styled.li<{ status: 'application' | 'participation' }>`
+export const TableElement = styled.li<{ status: 'application' | 'participation' }>`
   list-style: none;
   display: flex;
   flex-wrap: nowrap;
@@ -82,7 +82,10 @@ const TableElement = styled.li<{ status: 'application' | 'participation' }>`
   }
 `
 
-const TableElementDetail = styled.div`
+export const TableElementDetail = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 14%;
-  line-height: 44px;
+  padding: 0.5rem 0rem;
 `

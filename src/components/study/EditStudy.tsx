@@ -24,7 +24,7 @@ const EditStudy = () => {
     endDate: studyInfo.endDate,
     maxMemberCount: studyInfo.maxMemberCount,
     tags: studyInfo.tags,
-  }
+  } as StudyFormParams
   const [studyForm, setStudyForm] = useState<StudyFormParams>(initialStudyForm)
   const [clickedColor, setClickedColor] = useState(studyForm.thumbnail)
   const editorRef = useRef<Editor>(null)

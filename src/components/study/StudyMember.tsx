@@ -55,7 +55,7 @@ const Member = styled.div`
   margin: 1.2rem;
 `
 
-const MemberImage = styled.img`
+export const MemberImage = styled.img`
   width: 5rem;
   margin-left: 1rem;
   margin-bottom: 1rem;

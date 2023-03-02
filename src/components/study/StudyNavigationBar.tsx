@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'src/lib/hooks'
 import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
-import isStudyOwner from 'src/lib/util/isStudyOwner'
+import isStudyOwner from 'src/lib/hooks/isStudyOwner'
 import styled from 'styled-components'
 
 const StudyNavigationBar = () => {
@@ -79,7 +79,7 @@ const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string; isVi
   padding: 0rem 1rem;
   line-height: 3rem;
   font-weight: bold;
-  isvisible: ${(props) => (props.isVisible ? 'none' : 'hidden')}
+  visibility: ${(props) => (props.isVisible ? 'none' : 'hidden')}
   color: ${(props) => (props.clickedStudyNav ? props.theme.text1 : props.theme.text4)};
   border-radius: 10px;
 
