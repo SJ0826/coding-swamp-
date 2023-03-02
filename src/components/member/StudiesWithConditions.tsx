@@ -19,26 +19,36 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
       navigate('/study/home')
     }
   }
+
+  const onClickStudyConditionButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    console.log('dd')
+  }
   return (
     <Container>
       <TableHeader>
         <TableElementDetail>이름</TableElementDetail>
         <TableElementDetail>스터디 타입</TableElementDetail>
-        <TableElementDetail>스터디 상태</TableElementDetail>
+
         <TableElementDetail>시작일</TableElementDetail>
         <TableElementDetail>종료일</TableElementDetail>
         <TableElementDetail>현재 인원</TableElementDetail>
+        <TableElementDetail></TableElementDetail>
       </TableHeader>
       <TableContent>
         {studiesAppliedFor.map((study, index) => (
           <TableElement key={index} value={study.studyId} status={status} onClick={onClickStudy}>
             <TableElementDetail>{study.title}</TableElementDetail>
             <TableElementDetail>{study.studyType}</TableElementDetail>
-            <TableElementDetail>{study.studyStatus}</TableElementDetail>
             <TableElementDetail>{study.startDate}</TableElementDetail>
             <TableElementDetail>{study.endDate}</TableElementDetail>
             <TableElementDetail>
               {study.currentMemberCount} / {study.maxMemberCount}
+            </TableElementDetail>
+            <TableElementDetail>
+              <StudyConditionButton onClick={onClickStudyConditionButton}>
+                {status === 'application' ? '신청 취소' : '탈퇴'}
+              </StudyConditionButton>
             </TableElementDetail>
           </TableElement>
         ))}
@@ -95,4 +105,15 @@ export const TableElementDetail = styled.div`
   align-items: center;
   width: 14%;
   padding: 0.5rem 0rem;
+`
+
+const StudyConditionButton = styled.button`
+  width: 4rem;
+  line-height: 1.5rem;
+  border-radius: 3px;
+
+  :hover {
+    background: ${(props) => props.theme.warning};
+    color: ${(props) => props.theme.buttonText};
+  }
 `
