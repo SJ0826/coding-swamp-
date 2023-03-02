@@ -4,6 +4,7 @@ import { AiOutlineClose, AiOutlineWarning } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
+import isStudyOwner from 'src/lib/hooks/isStudyOwner'
 import { Container } from '../mainPage/StudyApplyModal/style'
 import { Icon } from '../study/StudyDescription'
 
@@ -38,7 +39,7 @@ const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
             <MemberInfo>
               <h2>{currentMember.username}</h2>
               <div>참가일: {currentMember.participationDate}</div>
-              <KickOutButton id="kickout" onClick={() => setIsClickedKickOutButton(true)}>
+              <KickOutButton id="kickout" isVisibility={isStudyOwner()} onClick={() => setIsClickedKickOutButton(true)}>
                 회원 강제 탈퇴
               </KickOutButton>
             </MemberInfo>
@@ -97,11 +98,11 @@ const MemberInfo = styled.div`
   justify-content: space-between;
   padding: 0.7rem 1rem 0.1rem 1rem;
 `
-const KickOutButton = styled.button`
+const KickOutButton = styled.button<{ isVisibility: boolean }>`
   width: 6.6rem;
   font-size: 1rem;
   background: none;
-
+  visibility: ${(props) => (props.isVisibility ? 'visible' : 'hidden')};
   :hover {
     color: ${(props) => props.theme.warning};
   }
