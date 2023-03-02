@@ -58,22 +58,30 @@ const StudyApplicantManagement = () => {
 export default StudyApplicantManagement
 
 const MemberImage = styled.img`
-  width: 90%;
+  width: 70%;
+
+  border-radius: 50%;
+
+  @media ${(props) => props.theme.small} {
+    width: 100%;
+  }
 `
-const ReasonForApplication = styled.div`
-  width: 40%;
-  height: 4.9rem;
+const ReasonForApplication = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 14%;
   padding: 0.5rem 0rem;
-  overflow: auto;
 `
 const PermissionToApplyButton = styled.button<{ bgColor: string }>`
-  width: 80%;
+  width: 100%;
   height: 40%;
   border-radius: 10px;
   :hover {
     background: ${(props) => props.bgColor};
+  }
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    height: 60%;
   }
 `

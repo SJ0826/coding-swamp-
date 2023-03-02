@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getMemberInfo, getStudiesAppliedFor } from 'src/lib/store/member/memberSlice'
+import { getMemberInfo, getStudiesAppliedFor, getStudiesParticipated } from 'src/lib/store/member/memberSlice'
 import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { Header } from 'src/components/Header'
@@ -8,7 +8,6 @@ import { DefaultButton, DividingLine } from 'src/components'
 import styled from 'styled-components'
 import { TbHeartPlus, TbHeart } from 'react-icons/tb'
 import { AiOutlineUserDelete } from 'react-icons/ai'
-import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import theme from 'src/style/theme'
 import { memberAPI } from 'src/lib/api/Member/MemberAPI'
@@ -17,15 +16,10 @@ import { useNavigate } from 'react-router-dom'
 
 const MemberInfo = () => {
   const dispatch = useAppDispatch()
-  const studiesAppliedFor = useAppSelector((member) => member.member.value.studiesAppliedFor)
-  const [studiesParticipated, setStudiesParticipated] = useState<StudyWithCondition[]>([])
+  const { studiesAppliedFor, studyParticipated } = useAppSelector((member) => member.member.value)
+  const [studiesParticipated] = useState<StudyWithCondition[]>([])
   const [isOpenUserDelete, setIsOpenUserDelete] = useState<boolean>(false)
   const navigate = useNavigate()
-
-  const getstudiesParticipated = async () => {
-    const response = await studyAPI.getStuduesParticipated()
-    setStudiesParticipated(response.data.studyResponses)
-  }
 
   const onClickUserDeleteButton = async () => {
     setIsOpenUserDelete(false)
@@ -38,7 +32,7 @@ const MemberInfo = () => {
     dispatch(getMemberInfo())
     dispatch(getStudiesAppliedFor())
     refreshTokenAPI.getRefreshToken()
-    getstudiesParticipated()
+    dispatch(getStudiesParticipated())
   }, [])
 
   return (
@@ -58,7 +52,7 @@ const MemberInfo = () => {
           <TbHeart />
           나의 참가 스터디
         </Title>
-        <StudiesWithConditions status="participation" studiesAppliedFor={studiesParticipated} />
+        <StudiesWithConditions status="participation" studiesAppliedFor={studyParticipated.studyResponses} />
         <DividingLine />
         <Title>
           <AiOutlineUserDelete />

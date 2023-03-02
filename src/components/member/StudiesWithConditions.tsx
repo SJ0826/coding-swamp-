@@ -59,8 +59,10 @@ export const TableHeader = styled.div`
   justify-content: space-between;
   padding: 0px 1rem;
   text-align: center;
-  background: #EEEEEE
-}
+  background: #eeeeee;
+  @media ${(props) => props.theme.small} {
+    display: none;
+  }
 `
 export const TableContent = styled.ul`
   list-style: none;
@@ -79,6 +81,11 @@ export const TableElement = styled.li<{ status: 'application' | 'participation' 
   :hover {
     background: #fffbf5;
     cursor: ${(props) => (props.status === 'participation' ? 'pointer' : 'default')};
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    padding: 0px 0.5rem;
   }
 `
 

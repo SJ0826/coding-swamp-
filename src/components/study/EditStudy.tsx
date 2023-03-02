@@ -28,6 +28,7 @@ const EditStudy = () => {
   } as StudyFormParams
   const [studyForm, setStudyForm] = useState<StudyFormParams>(initialStudyForm)
   const [clickedColor, setClickedColor] = useState(studyForm.thumbnail)
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false)
   const editorRef = useRef<Editor>(null)
   const [tagInput, setTagInput] = useState('')
 
@@ -68,7 +69,7 @@ const EditStudy = () => {
   }
 
   const onClickDeleteStudyButton = () => {
-    console.log('delete')
+    setIsOpenDeleteModal(true)
   }
 
   const onClickResetButton = () => {
@@ -141,7 +142,7 @@ const EditStudy = () => {
           </Button>
           <DeleteStudyButton onClick={onClickDeleteStudyButton}>스터디 삭제</DeleteStudyButton>
         </ButtonWrapper>
-        <DeleteStudyModal />
+        <DeleteStudyModal isOpenDeleteModal={isOpenDeleteModal} setIsOpenDeleteModal={setIsOpenDeleteModal} />
       </EditWrapper>
     </Container>
   )
@@ -301,9 +302,10 @@ const Button = styled.button<{ bgColor: string }>`
 `
 
 const DeleteStudyButton = styled.button`
-  width: 18%;
+  width: 23%;
   height: 2rem;
   margin-left: 1rem;
+  padding: 0rem 0.3rem;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   font-size: 1rem;
@@ -316,5 +318,7 @@ const DeleteStudyButton = styled.button`
   @media ${(props) => props.theme.small} {
     font-size: 0.8rem;
     height: 1.6rem;
+    background: ${(props) => props.theme.warning};
+    color: ${(props) => props.theme.buttonText};
   }
 `
