@@ -79,7 +79,7 @@ const NavMenu = styled.nav<{ clickedStudyNav: boolean; bottomColor: string; isVi
   padding: 0rem 1rem;
   line-height: 3rem;
   font-weight: bold;
-  visibility: ${(props) => (props.isVisible ? 'none' : 'hidden')}
+  visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
   color: ${(props) => (props.clickedStudyNav ? props.theme.text1 : props.theme.text4)};
   border-radius: 10px;
 
