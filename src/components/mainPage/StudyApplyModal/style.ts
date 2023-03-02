@@ -26,7 +26,6 @@ export const StudyModalWrapper = styled.div`
   height: 730px;
   display: flex;
   flex-direction: column;
-  animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 12px 0px;
   background: ${(props) => props.theme.bgGroundColor1};
 

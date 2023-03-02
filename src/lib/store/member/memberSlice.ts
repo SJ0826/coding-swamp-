@@ -20,6 +20,7 @@ const initialMemberInfo = {
       totalPage: 0,
       studyResponses: [{} as StudyWithCondition],
     },
+    targetMember: '',
   },
 }
 
@@ -50,6 +51,9 @@ export const memberSlice = createSlice({
     changeMemberInfo: (state, { payload }) => {
       state.value.memberInfo = { ...state.value.memberInfo, [payload.key]: payload.value }
     },
+    changeTargetedMember: (state, { payload }) => {
+      state.value.targetMember = payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMemberInfo.fulfilled, (state, { payload }) => {
@@ -64,4 +68,4 @@ export const memberSlice = createSlice({
 
 export default memberSlice.reducer
 
-export const { changeMemberInfo } = memberSlice.actions
+export const { changeMemberInfo, changeTargetedMember } = memberSlice.actions
