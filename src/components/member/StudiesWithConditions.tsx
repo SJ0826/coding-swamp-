@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'src/lib/hooks'
-import { changeTargetStudyId, getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
+import { cancelStudyApplication, changeTargetStudy } from 'src/lib/store/member/memberSlice'
+import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import styled from 'styled-components'
 
@@ -14,15 +15,32 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
 
   const onClickStudy = async (e: React.MouseEvent<HTMLLIElement>) => {
     if (status === 'participation') {
-      dispatch(changeTargetStudyId(e.currentTarget.value))
+      dispatch(changeTargetStudy(e.currentTarget.value))
       await dispatch(getStudyDetailInfo(e.currentTarget.value))
       navigate('/study/home')
     }
   }
 
-  const onClickStudyConditionButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickStudyConditionButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    console.log('dd')
+    const targetId = Number(e.currentTarget.id)
+    try {
+      switch (status) {
+        case 'application':
+          dispatch(changeTargetStudy(targetId))
+          dispatch(cancelStudyApplication(targetId))
+          break
+        case 'participation':
+          console.log('participation')
+          break
+        default:
+          break
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error)
+      alert('요청하신 작업을 수행할 수 없습니다. 관리자에게 문의해주세요.')
+    }
   }
   return (
     <Container>
@@ -46,7 +64,7 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
               {study.currentMemberCount} / {study.maxMemberCount}
             </TableElementDetail>
             <TableElementDetail>
-              <StudyConditionButton onClick={onClickStudyConditionButton}>
+              <StudyConditionButton id={study.studyId.toString()} onClick={onClickStudyConditionButton}>
                 {status === 'application' ? '신청 취소' : '탈퇴'}
               </StudyConditionButton>
             </TableElementDetail>

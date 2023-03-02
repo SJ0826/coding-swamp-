@@ -20,7 +20,12 @@ const initialMemberInfo = {
       totalPage: 0,
       studyResponses: [{} as StudyWithCondition],
     },
-    targetMember: '',
+    studyParticipated: {
+      totalPage: 0,
+      studyResponses: [{} as StudyWithCondition],
+    },
+    targetMemberId: 0,
+    targetStudyId: 0,
   },
 }
 
@@ -44,6 +49,15 @@ export const getStudiesAppliedFor = createAsyncThunk('member/getstudiesAppliedFo
   return response.data
 })
 
+export const getStudiesParticipated = createAsyncThunk('member/getStudiesParticipated', async () => {
+  const response = await studyAPI.getStuduesParticipated()
+  return response.data
+})
+
+export const cancelStudyApplication = createAsyncThunk('studyItem/cancelStudyApplication', (studyId: number) => {
+  studyAPI.patchCancelStudyApplication(studyId)
+})
+
 export const memberSlice = createSlice({
   name: 'member',
   initialState: initialMemberInfo,
@@ -52,7 +66,11 @@ export const memberSlice = createSlice({
       state.value.memberInfo = { ...state.value.memberInfo, [payload.key]: payload.value }
     },
     changeTargetedMember: (state, { payload }) => {
-      state.value.targetMember = payload
+      state.value.targetMemberId = payload
+    },
+
+    changeTargetStudy: (state, { payload }) => {
+      state.value.targetStudyId = payload
     },
   },
   extraReducers: (builder) => {
@@ -63,9 +81,18 @@ export const memberSlice = createSlice({
     builder.addCase(getStudiesAppliedFor.fulfilled, (state, { payload }) => {
       state.value.studiesAppliedFor = { ...payload }
     })
+    builder.addCase(getStudiesParticipated.fulfilled, (state, { payload }) => {
+      state.value.studyParticipated = { ...payload }
+    })
+    builder.addCase(cancelStudyApplication.fulfilled, (state) => {
+      const newStudyiesParticipanted = state.value.studiesAppliedFor.studyResponses.filter(
+        (participant) => participant.studyId !== state.value.targetStudyId,
+      )
+      state.value.studiesAppliedFor.studyResponses = newStudyiesParticipanted
+    })
   },
 })
 
 export default memberSlice.reducer
 
-export const { changeMemberInfo, changeTargetedMember } = memberSlice.actions
+export const { changeMemberInfo, changeTargetedMember, changeTargetStudy } = memberSlice.actions

@@ -62,6 +62,14 @@ class StudyAPI extends HttpClient {
     const resposne = this.instance.patch(`${STUDY_URL}/${data.studyId}/kick/${data.memberId}`)
     return resposne
   }
+
+  public deleteStudy = (studyId: number) => {
+    this.instance.delete(`${STUDY_URL}/${studyId}`)
+  }
+
+  public patchCancelStudyApplication = (studyId: number) => {
+    this.instance.patch(`${STUDY_URL}/${studyId}/apply-cancel`)
+  }
 }
 
 const studyAPI = new StudyAPI()
