@@ -18,8 +18,13 @@ const DefautStudyLayout = ({ children }: Props) => (
 export default DefautStudyLayout
 
 const MainContainer = styled.main`
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 14rem;
+  padding-right: 14rem;
+
+  @media ${(props) => props.theme.medium} {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
 
   @media ${(props) => props.theme.small} {
     padding-left: 0.1rem;
