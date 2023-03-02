@@ -1,8 +1,9 @@
 import { BsPeople } from 'react-icons/bs'
 import styled from 'styled-components'
-import { useAppSelector } from 'src/lib/hooks'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { useNavigate } from 'react-router-dom'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
+import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 import { Container, Description, Icon, Title } from './StudyDescription'
 import { TableContent, TableElement, TableHeader, TableElementDetail } from '../member/StudiesWithConditions'
 
@@ -10,10 +11,9 @@ const StudyApplicantManagement = () => {
   const { applicants, thumbnail, studyId } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
   const navigate = useNavigate()
 
-  const onClickApproveButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickApproveButton = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const data = { studyId, applicantId: Number(e.currentTarget.value) }
-    studyAPI.patchStudyApprove(data)
-
+    await studyAPI.patchStudyApprove(data)
     navigate('/study/home')
   }
   return (

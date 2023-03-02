@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import styled from 'styled-components'
 import { AiOutlineClose, AiOutlineWarning } from 'react-icons/ai'
-import { useAppSelector } from 'src/lib/hooks'
+import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { Container } from '../mainPage/StudyApplyModal/style'
 import { Icon } from '../study/StudyDescription'
 
@@ -10,38 +12,48 @@ interface Props {
   setIsOpenMemberModal: Dispatch<SetStateAction<boolean>>
 }
 const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
-  const { participants } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
+  const dispatch = useAppDispatch()
+  const { participants, studyId } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
   const { targetMember } = useAppSelector(({ member }) => member.value)
   const [isClickedKickOutButton, setIsClickedKickOutButton] = useState<boolean>(false)
 
   const currentMember = participants.filter((participant) => participant.memberId === Number(targetMember))[0]
 
+  const onClickKickoutButton = async () => {
+    setIsClickedKickOutButton(false)
+    setIsOpenMemberModal(false)
+    await studyAPI.patchKickoutMember({ studyId, memberId: Number(targetMember) })
+    await dispatch(getStudyDetailInfo(studyId))
+  }
+
   return (
-    <Container isOpen={isOpenMemberModal}>
-      <MemberModalWrapper>
-        <CloseButton onClick={() => setIsOpenMemberModal(false)}>
-          <AiOutlineClose />
-        </CloseButton>
-        <Content>
-          <MemberImage src={currentMember.imageUrl} />
-          <MemberInfo>
-            <h2>{currentMember.username}</h2>
-            <div>참가일: {currentMember.participationDate}</div>
-            <KickOutButton id="kickout" onClick={() => setIsClickedKickOutButton(true)}>
-              회원 강제 탈퇴
-            </KickOutButton>
-          </MemberInfo>
-        </Content>
-        <WarningMessage isVisibility={isClickedKickOutButton}>
-          <Icon>
-            <AiOutlineWarning />
-          </Icon>
-          정말 탈퇴 처리하시겠습니까?
-          <Decision>네</Decision>
-          <Decision onClick={() => setIsClickedKickOutButton(false)}>아니오</Decision>
-        </WarningMessage>
-      </MemberModalWrapper>
-    </Container>
+    currentMember && (
+      <Container isOpen={isOpenMemberModal}>
+        <MemberModalWrapper>
+          <CloseButton onClick={() => setIsOpenMemberModal(false)}>
+            <AiOutlineClose />
+          </CloseButton>
+          <Content>
+            <MemberImage src={currentMember.imageUrl} />
+            <MemberInfo>
+              <h2>{currentMember.username}</h2>
+              <div>참가일: {currentMember.participationDate}</div>
+              <KickOutButton id="kickout" onClick={() => setIsClickedKickOutButton(true)}>
+                회원 강제 탈퇴
+              </KickOutButton>
+            </MemberInfo>
+          </Content>
+          <WarningMessage isVisibility={isClickedKickOutButton}>
+            <Icon>
+              <AiOutlineWarning />
+            </Icon>
+            정말 탈퇴 처리하시겠습니까?
+            <Decision onClick={onClickKickoutButton}>네</Decision>
+            <Decision onClick={() => setIsClickedKickOutButton(false)}>아니오</Decision>
+          </WarningMessage>
+        </MemberModalWrapper>
+      </Container>
+    )
   )
 }
 

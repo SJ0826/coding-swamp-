@@ -30,6 +30,10 @@ export const getStudyDetailInfo = createAsyncThunk('studyItem/getStudyInfo', asy
   return response
 })
 
+export const kickoutMember = createAsyncThunk('studyItem/kickout', (data: { studyId: number; memberId: number }) => {
+  studyAPI.patchKickoutMember(data)
+})
+
 export const studyItemSlice = createSlice({
   name: 'studyItem',
   initialState: initialStudyItem,
@@ -47,6 +51,12 @@ export const studyItemSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getStudyDetailInfo.fulfilled, (state, { payload }) => {
       state.studyInfo = payload.data
+    })
+    builder.addCase(kickoutMember.fulfilled, (state) => {
+      const newParticipants = state.studyInfo.participants.filter(
+        (participant) => participant.memberId !== state.targetstudyId,
+      )
+      state.studyInfo.participants = newParticipants
     })
   },
 })

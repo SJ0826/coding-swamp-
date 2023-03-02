@@ -54,7 +54,13 @@ class StudyAPI extends HttpClient {
   }
 
   public patchStudyApprove = (data: { studyId: number; applicantId: number }) => {
-    this.instance.patch(`${STUDY_URL}/${data.studyId}/approve/${data.applicantId}`)
+    const response = this.instance.patch(`${STUDY_URL}/${data.studyId}/approve/${data.applicantId}`)
+    return response
+  }
+
+  public patchKickoutMember = (data: { studyId: number; memberId: number }) => {
+    const resposne = this.instance.patch(`${STUDY_URL}/${data.studyId}/kick/${data.memberId}`)
+    return resposne
   }
 }
 
