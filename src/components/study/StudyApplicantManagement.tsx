@@ -1,9 +1,8 @@
 import { BsPeople } from 'react-icons/bs'
 import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { useAppSelector } from 'src/lib/hooks'
 import { useNavigate } from 'react-router-dom'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
-import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 import { Container, Description, Icon, Title } from './StudyDescription'
 import { TableContent, TableElement, TableHeader, TableElementDetail } from '../member/StudiesWithConditions'
 

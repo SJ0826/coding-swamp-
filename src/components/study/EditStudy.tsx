@@ -10,6 +10,7 @@ import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
 import { Container, Icon, Title } from './StudyDescription'
 import { StudyFormParams } from '../../lib/types/StudyInterface'
 import { EndDate, StartDate } from '../createStudy/SelectDate'
+import DeleteStudyModal from './DeleteStudyModal'
 
 const EditStudy = () => {
   const navigate = useNavigate()
@@ -64,6 +65,10 @@ const EditStudy = () => {
     setStudyForm(initialStudyForm)
     dispatch(changeTargetedStudyNav('home'))
     navigate('/study/home')
+  }
+
+  const onClickDeleteStudyButton = () => {
+    console.log('delete')
   }
 
   const onClickResetButton = () => {
@@ -134,7 +139,9 @@ const EditStudy = () => {
           <Button bgColor={studyInfo.thumbnail} onClick={onClickResetButton}>
             초기화
           </Button>
+          <DeleteStudyButton onClick={onClickDeleteStudyButton}>스터디 삭제</DeleteStudyButton>
         </ButtonWrapper>
+        <DeleteStudyModal />
       </EditWrapper>
     </Container>
   )
@@ -290,5 +297,24 @@ const Button = styled.button<{ bgColor: string }>`
     font-size: 0.8rem;
     height: 1.6rem;
     background: ${(props) => props.bgColor};
+  }
+`
+
+const DeleteStudyButton = styled.button`
+  width: 18%;
+  height: 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
+  font-size: 1rem;
+
+  :hover {
+    background: ${(props) => props.theme.warning};
+    color: ${(props) => props.theme.buttonText};
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+    height: 1.6rem;
   }
 `

@@ -30,7 +30,7 @@ const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
   return (
     currentMember && (
       <Container isOpen={isOpenMemberModal}>
-        <MemberModalWrapper>
+        <ModalWrapper>
           <CloseButton onClick={() => setIsOpenMemberModal(false)}>
             <AiOutlineClose />
           </CloseButton>
@@ -52,7 +52,7 @@ const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
             <Decision onClick={onClickKickoutButton}>네</Decision>
             <Decision onClick={() => setIsClickedKickOutButton(false)}>아니오</Decision>
           </WarningMessage>
-        </MemberModalWrapper>
+        </ModalWrapper>
       </Container>
     )
   )
@@ -60,7 +60,7 @@ const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
 
 export default MemberModal
 
-const MemberModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   width: 600px;
   height: 300px;
   display: flex;
@@ -75,7 +75,7 @@ const MemberModalWrapper = styled.div`
   }
 `
 
-const CloseButton = styled.div`
+export const CloseButton = styled.div`
   text-align: right;
   color: ${(props) => props.theme.text4};
   :hover {
@@ -107,7 +107,7 @@ const KickOutButton = styled.button<{ isVisibility: boolean }>`
     color: ${(props) => props.theme.warning};
   }
 `
-const WarningMessage = styled.div<{ isVisibility: boolean }>`
+export const WarningMessage = styled.div<{ isVisibility: boolean }>`
   display: flex;
   margin-top: 2rem;
   font-size: 1rem;
