@@ -52,6 +52,10 @@ class StudyAPI extends HttpClient {
   public postEditedStudyForm = (data: { studyId: number; studyForm: StudyFormParams }) => {
     this.instance.put(`${STUDY_URL}/${data.studyId}`, data.studyForm)
   }
+
+  public patchStudyApprove = (data: { studyId: number; applicantId: number }) => {
+    this.instance.patch(`${STUDY_URL}/${data.studyId}/approve/${data.applicantId}`)
+  }
 }
 
 const studyAPI = new StudyAPI()

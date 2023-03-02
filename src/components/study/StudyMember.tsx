@@ -57,6 +57,7 @@ const Member = styled.div`
 
 export const MemberImage = styled.img`
   width: 5rem;
+  height: 5rem;
   margin-left: 1rem;
   margin-bottom: 1rem;
   border-radius: 50%;
