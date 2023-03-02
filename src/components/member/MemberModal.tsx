@@ -15,15 +15,15 @@ interface Props {
 const MemberModal = ({ isOpenMemberModal, setIsOpenMemberModal }: Props) => {
   const dispatch = useAppDispatch()
   const { participants, studyId } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
-  const { targetMember } = useAppSelector(({ member }) => member.value)
+  const { targetMemberId } = useAppSelector(({ member }) => member.value)
   const [isClickedKickOutButton, setIsClickedKickOutButton] = useState<boolean>(false)
 
-  const currentMember = participants.filter((participant) => participant.memberId === Number(targetMember))[0]
+  const currentMember = participants.filter((participant) => participant.memberId === Number(targetMemberId))[0]
 
   const onClickKickoutButton = async () => {
     setIsClickedKickOutButton(false)
     setIsOpenMemberModal(false)
-    await studyAPI.patchKickoutMember({ studyId, memberId: Number(targetMember) })
+    await studyAPI.patchKickoutMember({ studyId, memberId: Number(targetMemberId) })
     await dispatch(getStudyDetailInfo(studyId))
   }
 

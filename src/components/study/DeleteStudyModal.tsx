@@ -1,18 +1,30 @@
 import styled from 'styled-components'
-import { AiOutlineClose, AiOutlineWarning } from 'react-icons/ai'
+import { AiOutlineWarning } from 'react-icons/ai'
 import { ButtonWrapper } from 'src/pages/memberInfo/styles'
+import { Dispatch, SetStateAction } from 'react'
+import { useAppSelector } from 'src/lib/hooks'
+import { studyAPI } from 'src/lib/api/study/StudyAPI'
+import { useNavigate } from 'react-router-dom'
 import { Container } from '../mainPage/StudyApplyModal/style'
-import { CloseButton, ModalWrapper, WarningMessage } from '../member/MemberModal'
+import { ModalWrapper, WarningMessage } from '../member/MemberModal'
 import { Icon } from './StudyDescription'
 
-const DeleteStudyModal = () => {
-  const test = 'test'
+interface Props {
+  isOpenDeleteModal: boolean
+  setIsOpenDeleteModal: Dispatch<SetStateAction<boolean>>
+}
+const DeleteStudyModal = ({ isOpenDeleteModal, setIsOpenDeleteModal }: Props) => {
+  const { studyId } = useAppSelector(({ studyItem }) => studyItem.studyInfo)
+  const navigate = useNavigate()
+
+  const onClickStudyDeleteButton = () => {
+    studyAPI.deleteStudy(studyId)
+    navigate('/user')
+  }
+
   return (
-    <Container isOpen={true}>
+    <Container isOpen={isOpenDeleteModal}>
       <ModalWrapper>
-        <CloseButton>
-          <AiOutlineClose />
-        </CloseButton>
         <Text>스터디를 삭제하시겠습니까?</Text>
         <WarningMessage isVisibility={true}>
           <Icon>
@@ -21,8 +33,8 @@ const DeleteStudyModal = () => {
           삭제된 데이터는 복구되지 않습니다.
         </WarningMessage>
         <ButtonWrapper>
-          <StudyDeleteButton>확인</StudyDeleteButton>
-          <StudyDeleteButton>취소</StudyDeleteButton>
+          <StudyDeleteButton onClick={onClickStudyDeleteButton}>확인</StudyDeleteButton>
+          <StudyDeleteButton onClick={() => setIsOpenDeleteModal(false)}>취소</StudyDeleteButton>
         </ButtonWrapper>
       </ModalWrapper>
     </Container>
@@ -32,7 +44,7 @@ const DeleteStudyModal = () => {
 export default DeleteStudyModal
 
 const Text = styled.h3`
-  margin-top: 2rem;
+  margin-top: 3rem;
 `
 
 const StudyDeleteButton = styled.button`

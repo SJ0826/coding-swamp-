@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'src/lib/hooks'
-import { cancelStudyApplication, changeTargetStudy } from 'src/lib/store/member/memberSlice'
-import { getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
+import { cancelStudyApplication, changeTargetStudy, withdrawStudy } from 'src/lib/store/member/memberSlice'
+import { changeTargetStudyId } from 'src/lib/store/studyItemSlice'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import styled from 'styled-components'
 
@@ -15,8 +15,7 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
 
   const onClickStudy = async (e: React.MouseEvent<HTMLLIElement>) => {
     if (status === 'participation') {
-      dispatch(changeTargetStudy(e.currentTarget.value))
-      await dispatch(getStudyDetailInfo(e.currentTarget.value))
+      dispatch(changeTargetStudyId(e.currentTarget.value))
       navigate('/study/home')
     }
   }
@@ -31,7 +30,8 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
           dispatch(cancelStudyApplication(targetId))
           break
         case 'participation':
-          console.log('participation')
+          dispatch(changeTargetStudy(targetId))
+          await dispatch(withdrawStudy(targetId)).unwrap()
           break
         default:
           break
@@ -39,9 +39,10 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
-      alert('요청하신 작업을 수행할 수 없습니다. 관리자에게 문의해주세요.')
+      alert('스터디장은 탈퇴할 수 없습니다.')
     }
   }
+
   return (
     <Container>
       <TableHeader>
@@ -64,9 +65,11 @@ const StudiesWithConditions = ({ studiesAppliedFor, status }: Props) => {
               {study.currentMemberCount} / {study.maxMemberCount}
             </TableElementDetail>
             <TableElementDetail>
-              <StudyConditionButton id={study.studyId.toString()} onClick={onClickStudyConditionButton}>
-                {status === 'application' ? '신청 취소' : '탈퇴'}
-              </StudyConditionButton>
+              {study.studyId && (
+                <StudyConditionButton id={study.studyId.toString()} onClick={onClickStudyConditionButton}>
+                  {status === 'application' ? '신청 취소' : '탈퇴'}
+                </StudyConditionButton>
+              )}
             </TableElementDetail>
           </TableElement>
         ))}

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import { EditMemberParam, UserInfoInterface } from '../../types/UserInterface'
@@ -58,6 +58,11 @@ export const cancelStudyApplication = createAsyncThunk('studyItem/cancelStudyApp
   studyAPI.patchCancelStudyApplication(studyId)
 })
 
+export const withdrawStudy = createAsyncThunk('studyItem/withdrawStudy', async (studyId: number) => {
+  const response = await studyAPI.patchWithdrawStudy(studyId)
+  return response.data
+})
+
 export const memberSlice = createSlice({
   name: 'member',
   initialState: initialMemberInfo,
@@ -85,10 +90,16 @@ export const memberSlice = createSlice({
       state.value.studyParticipated = { ...payload }
     })
     builder.addCase(cancelStudyApplication.fulfilled, (state) => {
-      const newStudyiesParticipanted = state.value.studiesAppliedFor.studyResponses.filter(
+      const newStudiesAppliedFor = state.value.studiesAppliedFor.studyResponses.filter(
         (participant) => participant.studyId !== state.value.targetStudyId,
       )
-      state.value.studiesAppliedFor.studyResponses = newStudyiesParticipanted
+      state.value.studiesAppliedFor.studyResponses = newStudiesAppliedFor
+    })
+    builder.addCase(withdrawStudy.fulfilled, (state) => {
+      const newStudyiesParticipanted = state.value.studyParticipated.studyResponses.filter(
+        (participant) => participant.studyId !== state.value.targetStudyId,
+      )
+      state.value.studyParticipated.studyResponses = newStudyiesParticipanted
     })
   },
 })

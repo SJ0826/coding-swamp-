@@ -66,11 +66,11 @@ const MemberImage = styled.img`
     width: 100%;
   }
 `
-const ReasonForApplication = styled.li`
+const ReasonForApplication = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 40%;
   padding: 0.5rem 0rem;
 `
 const PermissionToApplyButton = styled.button<{ bgColor: string }>`
@@ -82,6 +82,7 @@ const PermissionToApplyButton = styled.button<{ bgColor: string }>`
   }
   @media ${(props) => props.theme.small} {
     font-size: 0.8rem;
-    height: 60%;
+    width: 100%;
+    height: 2.5rem;
   }
 `

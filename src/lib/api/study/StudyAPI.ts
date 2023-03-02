@@ -70,6 +70,11 @@ class StudyAPI extends HttpClient {
   public patchCancelStudyApplication = (studyId: number) => {
     this.instance.patch(`${STUDY_URL}/${studyId}/apply-cancel`)
   }
+
+  public patchWithdrawStudy = async (studyId: number) => {
+    const response = await this.instance.patch(`${STUDY_URL}/${studyId}/withdraw`)
+    return response
+  }
 }
 
 const studyAPI = new StudyAPI()
