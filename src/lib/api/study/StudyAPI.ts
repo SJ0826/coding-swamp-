@@ -52,6 +52,29 @@ class StudyAPI extends HttpClient {
   public postEditedStudyForm = (data: { studyId: number; studyForm: StudyFormParams }) => {
     this.instance.put(`${STUDY_URL}/${data.studyId}`, data.studyForm)
   }
+
+  public patchStudyApprove = (data: { studyId: number; applicantId: number }) => {
+    const response = this.instance.patch(`${STUDY_URL}/${data.studyId}/approve/${data.applicantId}`)
+    return response
+  }
+
+  public patchKickoutMember = (data: { studyId: number; memberId: number }) => {
+    const resposne = this.instance.patch(`${STUDY_URL}/${data.studyId}/kick/${data.memberId}`)
+    return resposne
+  }
+
+  public deleteStudy = (studyId: number) => {
+    this.instance.delete(`${STUDY_URL}/${studyId}`)
+  }
+
+  public patchCancelStudyApplication = (studyId: number) => {
+    this.instance.patch(`${STUDY_URL}/${studyId}/apply-cancel`)
+  }
+
+  public patchWithdrawStudy = async (studyId: number) => {
+    const response = await this.instance.patch(`${STUDY_URL}/${studyId}/withdraw`)
+    return response
+  }
 }
 
 const studyAPI = new StudyAPI()

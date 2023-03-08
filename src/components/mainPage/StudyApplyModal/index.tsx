@@ -79,7 +79,7 @@ const StudyApplyModal = () => {
             <br />
             <S.InfoWrapper>
               <S.InfoTitle>스터디 소개</S.InfoTitle>
-              <S.InfoContents>{studyInfo.description}</S.InfoContents>
+              <S.InfoContents dangerouslySetInnerHTML={{ __html: studyInfo.description }} />
             </S.InfoWrapper>
           </S.Info>
           <DivisionLine />
