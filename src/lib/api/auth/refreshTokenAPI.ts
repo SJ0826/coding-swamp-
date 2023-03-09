@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
-import { setLocalStorageToken } from '../util/localStorage'
-import HttpClient from './httpClient'
-import { GET_REFRESH_URL } from '../constants/Url'
+import { setLocalStorageToken } from '../../util/localStorage'
+import HttpClient from '../httpClient'
+import { GET_REFRESH_URL } from '../../constants/Url'
 
 class RefreshTokenAPI extends HttpClient {
   public constructor() {

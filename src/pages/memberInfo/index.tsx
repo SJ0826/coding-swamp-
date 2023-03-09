@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getMemberInfo, getStudiesAppliedFor, getStudiesParticipated } from 'src/lib/store/member/memberSlice'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { Header } from 'src/components/Header'
 import { MemberProfile, StudiesWithConditions } from 'src/components/member'

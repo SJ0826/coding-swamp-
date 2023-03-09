@@ -4,16 +4,6 @@ import { StudyFormParams } from 'src/lib/types/StudyInterface'
 import HttpClient from '../httpClient'
 
 class StudyAPI extends HttpClient {
-  public constructor() {
-    super()
-
-    this._initializeResponseInterceptor()
-  }
-
-  private _initializeResponseInterceptor = () => {
-    this.instance.interceptors.response.use(this._handleRequest)
-  }
-
   public postNewStudy = async (data: StudyFormParams) => {
     const response = await this.instance.post(STUDY_URL, data)
     return response

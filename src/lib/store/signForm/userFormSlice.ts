@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { signUpAPI } from 'src/lib/api/Sign/SignUpAPI'
+import { signUpAPI } from 'src/lib/api/Member/SignUpAPI'
 
 import { UserParam } from 'src/lib/types/UserInterface'
 
