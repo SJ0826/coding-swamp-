@@ -6,7 +6,7 @@ import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from '
 import { UserParam } from 'src/lib/types/UserInterface'
 
 import { useNavigate } from 'react-router-dom'
-import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
+import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/member/userFormSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'

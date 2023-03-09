@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { changeUserValue, userValidation } from 'src/lib/store/signForm/userFormSlice'
+import { changeUserValue, userValidation } from 'src/lib/store/member/userFormSlice'
 import { ChangeEvent, useState } from 'react'
 import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import getValidation from 'src/lib/util/getValidation'

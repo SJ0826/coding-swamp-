@@ -9,7 +9,7 @@ import {
   allClearSignInForm,
   changeSignInForm,
   postSignInForm,
-} from 'src/lib/store/signForm/signInFormSlice'
+} from 'src/lib/store/auth/signInFormSlice'
 import { useNavigate } from 'react-router-dom'
 import { GITHUB_LOGIN_URL } from 'src/lib/constants/Url'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
