@@ -4,12 +4,7 @@ import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import { ChangeEvent, FormEvent, useMemo } from 'react'
 import getValidation from 'src/lib/util/getValidation'
 import { SignInParam, UserParam } from 'src/lib/types/UserInterface'
-import {
-  SignInValidation,
-  allClearSignInForm,
-  changeSignInForm,
-  postSignInForm,
-} from 'src/lib/store/auth/signInFormSlice'
+import { SignInValidation, allClearSignInForm, changeSignInForm, postSignInForm } from 'src/lib/store/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { GITHUB_LOGIN_URL } from 'src/lib/constants/Url'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
