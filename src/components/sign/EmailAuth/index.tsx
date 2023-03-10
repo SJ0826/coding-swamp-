@@ -1,16 +1,13 @@
 import { useDispatch } from 'react-redux'
-import { changeUserValue, userValidation } from 'src/lib/store/member/userFormSlice'
+import { changeUserValue } from 'src/lib/store/member/memberFormSlice'
 import { ChangeEvent, useState } from 'react'
-import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
-import getValidation from 'src/lib/util/getValidation'
-import { UserParam } from 'src/lib/types/UserInterface'
 import { useAppSelector } from 'src/lib/hooks'
 import { emailAuthAPI } from 'src/lib/api/auth/emailAuthAPI'
 import SignInput from '../signInput/SignInput'
 import * as S from './styles'
 
 const EmailAuth = () => {
-  const userData = useAppSelector(({ userForm }) => userForm.value[2])
+  const { memberForm, emailAuth } = useAppSelector(({ memberFormInfo }) => memberFormInfo)
   const dispatch = useDispatch()
   const [authCode, setAuthCode] = useState<string>('')
 
@@ -18,12 +15,11 @@ const EmailAuth = () => {
     const { id, value } = e.target
     const targetValue = value
     dispatch(changeUserValue({ key: id, value: targetValue }))
-    const regexp = getValidation(id as keyof Omit<UserParam, 'imageFile'>, value)
-    dispatch(userValidation({ key: id, isValidate: regexp }))
+    // const regexp = getValidation(id as keyof Omit<UserParam, 'imageFile'>, value)
   }
 
   const onClickEmailAuthButton = async () => {
-    await emailAuthAPI.emailAuth(userData.value!)
+    await emailAuthAPI.emailAuth(memberForm.email)
   }
 
   const onChangeCodeNumber = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,15 +36,15 @@ const EmailAuth = () => {
       <SignInput
         id="email"
         type="email"
-        value={userData.value!}
+        value={memberForm.email}
         onChange={onChangeInputText}
-        warningText={userData.isValidate || userData.value!.length === 0 ? '' : ValidationMessage.email}
+        warningText={''}
         placeholder={'example@example.com'}
       />
-      <S.EmailAuthButton type="button" onClick={onClickEmailAuthButton} disabled={!userData.isValidate}>
+      <S.EmailAuthButton type="button" onClick={onClickEmailAuthButton} disabled={false}>
         이메일 인증하기
       </S.EmailAuthButton>
-      <S.authResultMessage isAuthorizate={userData.emailAuth!}>인증 성공!</S.authResultMessage>
+      <S.authResultMessage isAuthorizate={emailAuth}>인증 성공!</S.authResultMessage>
 
       <S.EmailAuthWrapper>
         <S.EmailAuthInput value={authCode} onChange={onChangeCodeNumber} type="text" />

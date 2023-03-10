@@ -3,20 +3,18 @@ import logger from 'redux-logger'
 import storage from 'redux-persist/lib/storage'
 import persistReducer from 'redux-persist/es/persistReducer'
 import persistStore from 'redux-persist/es/persistStore'
-import userFormSlice from './member/userFormSlice'
 import signInFormSlice from './auth/authSlice'
 import memberSlice from './member/memberSlice'
-import editModeSlice from './member/editModeSlice'
 import userMenuSlice from './userMenuSlice'
 import studyFormSlice from './studyFormSlice'
 import studyListSlice from './studyListSlice'
 import studyItemSlice from './studyItemSlice'
+import memberFormSlice from './member/memberFormSlice'
 
 const rootReducer = combineReducers({
-  userForm: userFormSlice,
+  memberFormInfo: memberFormSlice,
   signInForm: signInFormSlice,
   member: memberSlice,
-  editMode: editModeSlice,
   userMenu: userMenuSlice,
   studyForm: studyFormSlice,
   studyList: studyListSlice,

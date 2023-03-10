@@ -3,7 +3,7 @@ import theme from 'src/style/theme'
 import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
 import { changeMemberInfo, postEditedMember } from 'src/lib/store/member/memberSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
-import { EditMemberParam } from 'src/lib/types/UserInterface'
+import { MemberFormParam } from 'src/lib/types/UserInterface'
 import * as S from './styles'
 
 const initialEditForm = {
@@ -11,12 +11,12 @@ const initialEditForm = {
   imageFile: null,
   username: '',
   imageUrl: '',
-}
+} as Omit<MemberFormParam, 'email' & 'password'>
 const MemberProfile = () => {
   const dispatch = useAppDispatch()
   const { memberInfo } = useAppSelector(({ member }) => member.value)
   const imgInputRef = useRef<HTMLInputElement>(null)
-  const [userForm, setUserForm] = useState<EditMemberParam>(initialEditForm)
+  const [memberForm, setMemberForm] = useState(initialEditForm)
   const [isOpenEdit, setIsOpenEdit] = useState(false)
 
   const onClickUploadButton = () => {
@@ -28,28 +28,28 @@ const MemberProfile = () => {
       const ImageFiles = (e.target as HTMLInputElement).files
       if (ImageFiles && ImageFiles[0]) {
         const url = URL.createObjectURL(ImageFiles[0])
-        setUserForm({ ...userForm, imageFile: ImageFiles[0] })
-        setUserForm({ ...userForm, imageUrl: url })
+        setMemberForm({ ...memberForm, imageFile: ImageFiles[0] })
+        setMemberForm({ ...memberForm, imageUrl: url })
       }
     },
     [imgInputRef],
   )
 
   const onClickRemoveButton = useCallback(() => {
-    setUserForm({ ...userForm, imageUrl: memberInfo.imageUrl })
+    setMemberForm({ ...memberForm, imageUrl: memberInfo.imageUrl })
   }, [imgInputRef])
 
   const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserForm({ ...userForm, username: e.target.value })
+    setMemberForm({ ...memberForm, username: e.target.value })
   }
 
   const onSubmitUserForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await dispatch(postEditedMember(userForm))
+    await dispatch(postEditedMember(memberForm))
     setIsOpenEdit(false)
-    dispatch(changeMemberInfo({ key: 'username', value: userForm.username }))
-    dispatch(changeMemberInfo({ key: 'imageUrl', value: userForm.imageUrl }))
-    setUserForm(initialEditForm)
+    dispatch(changeMemberInfo({ key: 'username', value: memberForm.username }))
+    dispatch(changeMemberInfo({ key: 'imageUrl', value: memberForm.imageUrl }))
+    setMemberForm(initialEditForm)
   }
 
   return isOpenEdit ? (
@@ -57,7 +57,7 @@ const MemberProfile = () => {
       <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
         <S.Profile>
           <S.Thumbnail>
-            <S.MemberImage image={userForm.imageUrl || memberInfo.imageUrl} />
+            <S.MemberImage image={memberForm.imageUrl || memberInfo.imageUrl} />
             <S.ImgUploadInput
               id="ImgUpload"
               type="file"
@@ -85,7 +85,7 @@ const MemberProfile = () => {
             />
           </S.Thumbnail>
           <S.MemberInfo>
-            <S.NameInput value={userForm.username} onChange={onChangeInputValue} />
+            <S.NameInput value={memberForm.username} onChange={onChangeInputValue} />
             <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
             <S.ButtonWrapper>
               <S.SaveButton>저장</S.SaveButton>

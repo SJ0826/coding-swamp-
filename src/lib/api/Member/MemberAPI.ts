@@ -1,6 +1,6 @@
 import decodeJWT from 'src/lib/util/decodeJWT'
 import { EDIT_MEMBER_URL, USER_URL } from 'src/lib/constants/Url'
-import { EditMemberParam } from 'src/lib/types/UserInterface'
+import { MemberFormParam } from 'src/lib/types/UserInterface'
 import HttpClient from '../httpClient'
 
 class MemberAPI extends HttpClient {
@@ -19,7 +19,7 @@ class MemberAPI extends HttpClient {
     return response.data
   }
 
-  public postMemberInfo = async (data: EditMemberParam) => {
+  public postMemberInfo = async (data: Omit<MemberFormParam, 'email' & 'password'>) => {
     const formData = new FormData()
     if (data.imageFile) formData.append('imageFile', data.imageFile)
     const params = new URLSearchParams()
