@@ -7,13 +7,10 @@ export interface ValidationParam extends SignInParam {
   username: string
 }
 
-export interface UserParam extends ValidationParam {
-  imageFile: File | null | string
-}
-
-export interface MemberFormParam extends UserParam {
+export interface MemberFormParam extends ValidationParam {
   profileUrl: string | null
   imageUrl: string
+  imageFile: File | null | string
 }
 
 export interface ParticipateParam {

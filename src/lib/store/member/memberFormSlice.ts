@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { signUpAPI } from 'src/lib/api/Member/SignUpAPI'
-import { MemberFormParam, UserParam } from 'src/lib/types/UserInterface'
+import { MemberFormParam } from 'src/lib/types/UserInterface'
 
 const initialMemberForm = {
   memberForm: {
@@ -9,11 +9,18 @@ const initialMemberForm = {
     email: '',
     password: '',
   } as Omit<MemberFormParam, 'profileUrl' & 'imageUrl'>,
+  isValidation: {
+    email: false,
+    password: false,
+  },
   emailAuth: false,
   isEditMode: false,
 }
 
-export const postUserForm = createAsyncThunk('user/postUser', (userForm: UserParam) => signUpAPI.SignUp(userForm))
+export const postUserForm = createAsyncThunk(
+  'user/postUser',
+  (userForm: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'>) => signUpAPI.SignUp(userForm),
+)
 
 export const memberFormSlice = createSlice({
   name: 'userValidation',

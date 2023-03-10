@@ -1,11 +1,11 @@
 import SignInput from 'src/components/sign/signInput/SignInput'
 import SignButton from 'src/components/sign/SignButton'
 import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
-import { UserParam } from 'src/lib/types/UserInterface'
 
 import { useNavigate } from 'react-router-dom'
 import { allClearSignUpForm, changeUserValue, postUserForm } from 'src/lib/store/member/memberFormSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { MemberFormParam } from 'src/lib/types/UserInterface'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
@@ -54,7 +54,7 @@ const SignUpForm = () => {
 
   const onSubmitUserForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const result: UserParam = {
+    const result: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'> = {
       imageFile: memberForm.imageFile,
       username: memberForm.username,
       email: memberForm.email,

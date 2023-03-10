@@ -3,7 +3,7 @@ import logger from 'redux-logger'
 import storage from 'redux-persist/lib/storage'
 import persistReducer from 'redux-persist/es/persistReducer'
 import persistStore from 'redux-persist/es/persistStore'
-import signInFormSlice from './auth/authSlice'
+import authSlice from './auth/authSlice'
 import memberSlice from './member/memberSlice'
 import userMenuSlice from './userMenuSlice'
 import studyFormSlice from './studyFormSlice'
@@ -13,7 +13,7 @@ import memberFormSlice from './member/memberFormSlice'
 
 const rootReducer = combineReducers({
   memberFormInfo: memberFormSlice,
-  signInForm: signInFormSlice,
+  auth: authSlice,
   member: memberSlice,
   userMenu: userMenuSlice,
   studyForm: studyFormSlice,
