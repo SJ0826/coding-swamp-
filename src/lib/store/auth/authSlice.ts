@@ -29,9 +29,6 @@ export const authSlice = createSlice({
       state.isValidation = { ...state.isValidation, [action.payload.key]: action.payload.value }
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(postSignInForm.fulfilled, (state) => state)
-  },
 })
 
 export const { changeSignInForm, isSignInValidation, allClearSignInForm } = authSlice.actions

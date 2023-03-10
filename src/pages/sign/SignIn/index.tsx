@@ -7,12 +7,13 @@ import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { SignButton, SignInput } from 'src/components/sign'
 import getValidation from 'src/lib/util/getValidation'
 import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
+import { signInAPI } from 'src/lib/api/auth/SignInAPI'
 import * as S from './styles'
 
 const SignIn = () => {
   const { signInForm, isValidation } = useAppSelector(({ auth }) => auth)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const navigator = useNavigate()
 
   const onChangeSignInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
@@ -23,13 +24,9 @@ const SignIn = () => {
 
   const onSubmitSignInForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const result: SignInParam = {
-      email: signInForm.email,
-      password: signInForm.password,
-    }
-    dispatch(postSignInForm(result))
+    await signInAPI.SignIn(signInForm)
     dispatch(allClearSignInForm())
-    navigate('/')
+    navigator('/')
   }
 
   return (
@@ -56,13 +53,13 @@ const SignIn = () => {
             onChange={onChangeSignInput}
             warningText={isValidation.password || signInForm.password.length === 0 ? '' : ValidationMessage.password}
           />
-          <SignButton signState="로그인" width="100%" disabled={isValidation.email && isValidation.password} />
+          <SignButton signState="로그인" width="100%" disabled={!(isValidation.email && isValidation.password)} />
         </S.SignInForm>
         <S.DivisionLine />
         <S.Footer>
           <S.TextWrapper>
             <span>다른 방법으로 로그인 하기</span>
-            <S.GoToSignUpButton onClick={() => navigate('/signUp')}>회원가입</S.GoToSignUpButton>
+            <S.GoToSignUpButton onClick={() => navigator('/signUp')}>회원가입</S.GoToSignUpButton>
           </S.TextWrapper>
           <a href={GITHUB_LOGIN_URL}>
             <S.GitHubLogin />
