@@ -9,7 +9,8 @@ const initialMemberForm = {
     email: '',
     password: '',
   } as Omit<MemberFormParam, 'profileUrl' & 'imageUrl'>,
-  isValidation: {
+  isMemberFormValidation: {
+    username: false,
     email: false,
     password: false,
   },
@@ -29,6 +30,10 @@ export const memberFormSlice = createSlice({
     changeUserValue: (state, action: PayloadAction<{ key: string; value: string | File | null }>) => {
       state.memberForm = { ...state.memberForm, [action.payload.key]: action.payload.value }
     },
+
+    MemberFormValidation: (state, action: PayloadAction<{ key: string; value: boolean }>) => {
+      state.isMemberFormValidation = { ...state.isMemberFormValidation, [action.payload.key]: action.payload.value }
+    },
     isAuthorizatedEmail: (state, action: PayloadAction<boolean>) => {
       state.emailAuth = action.payload
     },
@@ -45,5 +50,6 @@ export const memberFormSlice = createSlice({
   },
 })
 
-export const { changeUserValue, isAuthorizatedEmail, allClearSignUpForm, isEditMode } = memberFormSlice.actions
+export const { changeUserValue, MemberFormValidation, isAuthorizatedEmail, allClearSignUpForm, isEditMode } =
+  memberFormSlice.actions
 export default memberFormSlice.reducer
