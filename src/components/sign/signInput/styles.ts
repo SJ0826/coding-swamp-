@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
+  margin-top: 0.5rem;
 `
 export const InputLabel = styled.span`
   font-size: 14px;
