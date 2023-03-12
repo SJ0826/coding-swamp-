@@ -41,13 +41,13 @@ const SignUpForm = () => {
     setImageForBackGround(BGImage)
   }, [imgInputRef])
 
-  const onChangeInputText = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeInputText = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     const targetValue = value
     dispatch(changeUserValue({ key: id, value: targetValue }))
     const regexp = getValidation(id as keyof SignInParam, value)
     dispatch(MemberFormValidation({ key: id, value: regexp }))
-  }, [])
+  }
 
   const isValidation = useMemo(
     () => !(isMemberFormValidation?.email && isMemberFormValidation.password),
@@ -74,7 +74,12 @@ const SignUpForm = () => {
         <S.ShowImage imageUrl={imageForBackBround} />
         <S.ImgUploadInput id="ImgUpload" type="file" accept="image/*" onChange={onChangeProfileImg} ref={imgInputRef} />
         <S.ImageButtonWrapper>
-          <S.ImgUploadButton htmlFor="ImgUpload" onClick={() => imgInputRef.current?.click()}>
+          <S.ImgUploadButton
+            htmlFor="ImgUpload"
+            onChange={() => {
+              imgInputRef.current?.click()
+            }}
+          >
             이미지 업로드
           </S.ImgUploadButton>
           <S.ImgRemoveButton onClick={onClickImageRemoveButton}>이미지 삭제</S.ImgRemoveButton>
