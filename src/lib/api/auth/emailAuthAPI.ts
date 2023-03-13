@@ -31,13 +31,22 @@ class EmailAuth extends HttpClient {
   private _handleError = (error: AxiosError) => {
     const { response: errorResponse } = error
     const errorCode = errorResponse?.status
-
-    if (errorCode === 401) {
-      alert('인증번호를 다시 확인해주세요. 5분이 경과한 경우 다시 이메일 인증을 진행해주세요.')
+    switch (errorCode) {
+      case 401:
+        alert('인증번호를 다시 확인해주세요. 5분이 경과한 경우 다시 이메일 인증을 진행해주세요.')
+        break
+      case 409:
+        alert('중복된 이메일입니다.')
+        break
+      default:
+        break
     }
   }
 
-  public emailAuth = (data: string) => this.instance.post(EMAILAUTH_URL, { email: data })
+  public emailAuth = async (data: string) => {
+    const response = await this.instance.post(EMAILAUTH_URL, { email: data })
+    return response
+  }
 
   public emailAuthCode = async (data: string) => {
     const params = new URLSearchParams()

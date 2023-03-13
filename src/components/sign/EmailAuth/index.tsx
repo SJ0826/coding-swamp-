@@ -24,7 +24,10 @@ const EmailAuth = () => {
   }
 
   const onClickEmailAuthButton = async () => {
-    await emailAuthAPI.emailAuth(memberForm.email)
+    const response = await emailAuthAPI.emailAuth(memberForm.email)
+    if (response.status !== 201) {
+      return
+    }
     dispatch(isAuthorizatedEmail(false))
     setToggleEmailAuthButton(true)
   }
