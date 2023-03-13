@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { gitHubLoginAPI } from 'src/lib/api/Sign/GitHubLoginAPI'
+import { signInAPI } from 'src/lib/api/auth/SignInAPI'
 import styled from 'styled-components'
 
 const Callback = () => {
@@ -14,7 +14,7 @@ const Callback = () => {
       })
 
       try {
-        gitHubLoginAPI.gitHubLogin(code)
+        signInAPI.gitHubLogin(code)
         navigate('/')
       } catch (error) {
         alert('요청하신 작업을 수행할 수 없습니다. 관리자에게 문의해주세요.')

@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
-import { EditMemberParam, UserInfoInterface } from '../../types/UserInterface'
+import { MemberFormParam, MemberInfoInterface } from '../../types/UserInterface'
 import { memberAPI } from '../../api/Member/MemberAPI'
 
 const initialMemberInfo = {
@@ -15,7 +15,7 @@ const initialMemberInfo = {
       profileUrl: '',
       role: '',
       joinedAt: '',
-    } as UserInfoInterface,
+    } as MemberInfoInterface,
     studiesAppliedFor: {
       totalPage: 0,
       studyResponses: [{} as StudyWithCondition],
@@ -34,15 +34,13 @@ export const getMemberInfo = createAsyncThunk('member/getMember', async () => {
   return response
 })
 
-export const postMemberInfo = createAsyncThunk('member/postMember', async (data: EditMemberParam) => {
-  const resposne = await memberAPI.postMemberInfo(data)
-  return resposne
-})
-
-export const postEditedMember = createAsyncThunk('editMember/postMember', async (memberForm: EditMemberParam) => {
-  const response = await memberAPI.postMemberInfo(memberForm)
-  return response
-})
+export const postEditedMember = createAsyncThunk(
+  'editMember/postMember',
+  async (memberForm: Omit<MemberFormParam, 'email' & 'password'>) => {
+    const response = await memberAPI.postMemberInfo(memberForm)
+    return response
+  },
+)
 
 export const getStudiesAppliedFor = createAsyncThunk('member/getstudiesAppliedFor', async () => {
   const response = await studyAPI.getStudiesAppliedFor()

@@ -15,6 +15,16 @@ export const EmailAuthButton = styled.button`
     color: black;
   }
 `
+export const EmailAuthForm = styled.div<{ isVisible: boolean }>`
+  display: ${(props) => (props.isVisible ? '' : 'none')};
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.3rem 0rem;
+  border: 1px solid ${(props) => props.theme.border2};
+
+  background: ${(props) => props.theme.bgGroundColor2};
+`
+
 export const EmailAuthWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -27,8 +37,6 @@ export const EmailAuthInput = styled.input`
   width: 70%;
   height: 30px;
   text-align: center;
-
-  border-bottom: 1px solid black;
 
   font-size: 16px;
 `
@@ -46,21 +54,22 @@ export const AuthCodeButton = styled.button`
   }
 `
 
-export const authResultMessage = styled.span<{ isAuthorizate: boolean }>`
+export const MessageWrapper = styled.div`
+  width: 300px;
+  display: flex;
+`
+
+export const authResultMessage = styled.span`
   width: 100%;
   padding-right: 10px;
   text-align: right;
   font-size: 14px;
   color: #faab78;
-
-  display: ${(props) => (props.isAuthorizate ? '' : 'none')};
 `
 
 export const AuthCodeMessage = styled.div`
   width: 100%;
   margin: 4px 0 8px; 0;
-
-
   font-size: 14px;
   color: gray;
 `

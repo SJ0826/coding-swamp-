@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { useAppSelector } from 'src/lib/hooks'
 import styled from 'styled-components'
 

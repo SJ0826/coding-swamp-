@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Header from 'src/components/Header/Header'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { getMemberInfo } from 'src/lib/store/member/memberSlice'
 import SearchStudy from 'src/components/mainPage/SearchStudy'
 import PageList from 'src/components/mainPage/PageList'

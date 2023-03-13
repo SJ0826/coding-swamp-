@@ -1,27 +1,31 @@
-import getValidation from 'src/lib/util/getValidation'
 import SignInput from 'src/components/sign/signInput/SignInput'
 import SignButton from 'src/components/sign/SignButton'
-import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
-import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from 'react'
-import { UserParam } from 'src/lib/types/UserInterface'
-
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { allClearSignUpForm, changeUserValue, postUserForm, userValidation } from 'src/lib/store/signForm/userFormSlice'
+import {
+  MemberFormValidation,
+  allClearSignUpForm,
+  changeUserValue,
+  postUserForm,
+} from 'src/lib/store/member/memberFormSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import { MemberFormParam, SignInParam } from 'src/lib/types/UserInterface'
+import getValidation from 'src/lib/util/getValidation'
+import { ValidationMessage } from 'src/lib/constants/ValidationMessage'
 import * as S from './style'
 import BGImage from '../../../lib/assets/image/BG.png'
 import EmailAuth from '../EmailAuth'
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch()
-  const userData = useAppSelector(({ userForm }) => userForm.value)
+  const { memberForm, isMemberFormValidation } = useAppSelector(({ memberFormInfo }) => memberFormInfo)
   const imgInputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const [imageForBackBround, setImageForBackGround] = useState<string | null>(BGImage) // 보여주는 이미지 state
 
-  const onClickUploadButton = () => {
-    imgInputRef.current?.click()
-  }
+  useEffect(() => {
+    dispatch(allClearSignUpForm())
+  }, [])
 
   const onChangeProfileImg = useCallback(
     (e: ChangeEvent<HTMLElement>) => {
@@ -41,26 +45,26 @@ const SignUpForm = () => {
     setImageForBackGround(BGImage)
   }, [imgInputRef])
 
-  const onChangeInputText = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeInputText = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     const targetValue = value
     dispatch(changeUserValue({ key: id, value: targetValue }))
-    const regexp = getValidation(id as keyof Omit<UserParam, 'imageFile'>, value)
-    dispatch(userValidation({ key: id, isValidate: regexp }))
-  }, [])
+    const regexp = getValidation(id as keyof SignInParam, value)
+    dispatch(MemberFormValidation({ key: id, value: regexp }))
+  }
 
   const isValidation = useMemo(
-    () => !(userData[1].isValidate && userData[2].isValidate && userData[3].isValidate),
-    [userData],
+    () => !(isMemberFormValidation?.email && isMemberFormValidation.password),
+    [isMemberFormValidation],
   )
 
   const onSubmitUserForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const result: UserParam = {
-      imageFile: userData[0].value,
-      username: userData[1].value!,
-      email: userData[2].value!,
-      password: userData[3].value!,
+    const result: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'> = {
+      imageFile: memberForm.imageFile,
+      username: memberForm.username,
+      email: memberForm.email,
+      password: memberForm.password,
     }
 
     await dispatch(postUserForm(result))
@@ -74,7 +78,12 @@ const SignUpForm = () => {
         <S.ShowImage imageUrl={imageForBackBround} />
         <S.ImgUploadInput id="ImgUpload" type="file" accept="image/*" onChange={onChangeProfileImg} ref={imgInputRef} />
         <S.ImageButtonWrapper>
-          <S.ImgUploadButton htmlFor="ImgUpload" onClick={onClickUploadButton}>
+          <S.ImgUploadButton
+            htmlFor="ImgUpload"
+            onChange={() => {
+              imgInputRef.current?.click()
+            }}
+          >
             이미지 업로드
           </S.ImgUploadButton>
           <S.ImgRemoveButton onClick={onClickImageRemoveButton}>이미지 삭제</S.ImgRemoveButton>
@@ -83,18 +92,22 @@ const SignUpForm = () => {
       <SignInput
         id="username"
         type="username"
-        value={userData[1].value!}
+        value={memberForm.username}
         onChange={onChangeInputText}
-        warningText={userData[1].isValidate || userData[1].value!.length === 0 ? '' : ValidationMessage.username}
+        warningText={
+          isMemberFormValidation?.username || memberForm?.username.length === 0 ? '' : ValidationMessage?.username
+        }
         placeholder={'닉네임을 입력해주세요'}
       />
       <EmailAuth />
       <SignInput
         id="password"
         type="password"
-        value={userData[3].value!}
+        value={memberForm.password}
         onChange={onChangeInputText}
-        warningText={userData[3].isValidate || userData[3].value!.length === 0 ? '' : ValidationMessage.password}
+        warningText={
+          isMemberFormValidation?.password || memberForm?.password.length === 0 ? '' : ValidationMessage?.password
+        }
         placeholder={'비밀번호를 입력해주세요'}
       />
       <SignButton signState="회원가입" width="100%" disabled={isValidation} />

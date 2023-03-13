@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect } from 'react'
 import { Header } from 'src/components/Header'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { CreateStudyTag, SelectMaxMemberCount, SelectStudyColor, ToastEditor } from 'src/components/createStudy'
 import SelectDate from 'src/components/createStudy/SelectDate'
 

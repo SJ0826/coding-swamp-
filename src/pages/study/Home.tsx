@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Header } from 'src/components/Header'
 import { DefautStudyLayout, StudyDescription, StudyMember } from 'src/components/study'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { changeTargetedStudyNav, getStudyDetailInfo } from 'src/lib/store/studyItemSlice'
 

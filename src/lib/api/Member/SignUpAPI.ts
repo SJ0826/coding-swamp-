@@ -1,6 +1,6 @@
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
+import { MemberFormParam } from 'src/lib/types/UserInterface'
 import HttpClient from '../httpClient'
-import { UserParam } from '../../types/UserInterface'
 import { SIGNUP_URL } from '../../constants/Url'
 
 class SignUpAPI extends HttpClient {
@@ -30,9 +30,9 @@ class SignUpAPI extends HttpClient {
     return response
   }
 
-  protected _handleError = (error: any) => {
+  protected _handleError = (error: AxiosError) => {
     const { response: errorResponse } = error
-    const errorCode = errorResponse.status
+    const errorCode = errorResponse?.status
 
     switch (errorCode) {
       case 400:
@@ -46,7 +46,7 @@ class SignUpAPI extends HttpClient {
     }
   }
 
-  public SignUp = (data: UserParam) =>
+  public SignUp = (data: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'>) =>
     this.instance.post(SIGNUP_URL, data, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 

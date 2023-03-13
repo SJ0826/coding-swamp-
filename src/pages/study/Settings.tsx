@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Header } from 'src/components/Header'
 import { DefaultStudyLayout, EditStudy, StudyApplicantManagement } from 'src/components/study'
-import { refreshTokenAPI } from 'src/lib/api/refreshTokenAPI'
+import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import styled from 'styled-components'
 
 const Settings = () => {
