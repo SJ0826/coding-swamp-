@@ -1,10 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
 import { getLocalStorageToken } from '../util/localStorage'
 
 declare module 'axios' {
   type AxiosRequest<T> = Promise<T>
 }
-
 abstract class HttpClient {
   protected readonly instance: AxiosInstance
 

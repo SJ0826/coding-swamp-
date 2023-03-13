@@ -14,7 +14,7 @@ const CreateStudyTag = () => {
   }
 
   const onClickTagButton = () => {
-    const newTagData = [...tagData, tagValue]
+    const newTagData = [...new Set([...tagData, tagValue])]
     dispatch(changeStudyForm({ key: 'tags', value: newTagData }))
     setTagValue('')
   }
@@ -37,15 +37,13 @@ const CreateStudyTag = () => {
         </InputWrapper>
       </>
       <TagWrapper>
-        {tagData.map((tag, index) => (
-          <>
-            <Tag id={tag} key={index}>
-              #{tag}
-            </Tag>
-            <RemoveButton id={tag} key={index + 1} type="button" onClick={onClickRemoveTag}>
+        {tagData.map((tag) => (
+          <Tag key={tag}>
+            <TagText id={tag}>#{tag}</TagText>
+            <RemoveButton id={tag} type="button" onClick={onClickRemoveTag}>
               <AiOutlineDelete />
             </RemoveButton>
-          </>
+          </Tag>
         ))}
       </TagWrapper>
     </Container>
@@ -95,8 +93,11 @@ const TagWrapper = styled.div`
   align-items: center;
   margin-top: 1.5rem;
 `
-
 const Tag = styled.div`
+  display: flex;
+  align-items: center;
+`
+const TagText = styled.div`
   height: 2rem;
   margin-right: 0.5rem;
   padding: 0.1rem 1rem 0 1rem;

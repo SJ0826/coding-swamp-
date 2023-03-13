@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect } from 'react'
 import { SignInParam } from 'src/lib/types/UserInterface'
-import { allClearSignInForm, changeSignInForm, isSignInValidation, postSignInForm } from 'src/lib/store/auth/authSlice'
+import { allClearSignInForm, changeSignInForm, isSignInValidation } from 'src/lib/store/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { GITHUB_LOGIN_URL } from 'src/lib/constants/Url'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
