@@ -21,8 +21,11 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: none;
   cursor: pointer;
+  outline: none;
+  border: none;
+
+  transition: box-shadow 300ms ease-in-out, 300ms ease-in-out;
 }
 `
 
