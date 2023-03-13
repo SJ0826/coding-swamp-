@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from 'react'
+import { ChangeEvent, FormEvent, useEffect } from 'react'
 import { SignInParam } from 'src/lib/types/UserInterface'
 import { allClearSignInForm, changeSignInForm, isSignInValidation, postSignInForm } from 'src/lib/store/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +14,10 @@ const SignIn = () => {
   const { signInForm, isValidation } = useAppSelector(({ auth }) => auth)
   const dispatch = useAppDispatch()
   const navigator = useNavigate()
+
+  useEffect(() => {
+    dispatch(allClearSignInForm())
+  }, [])
 
   const onChangeSignInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target

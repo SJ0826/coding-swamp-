@@ -43,11 +43,12 @@ class EmailAuth extends HttpClient {
     const params = new URLSearchParams()
     params.append('authCode', data)
 
-    await this.instance.post(
+    const response = await this.instance.post(
       '/api/auth/email/confirm',
       {},
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, params },
     )
+    return response
   }
 }
 

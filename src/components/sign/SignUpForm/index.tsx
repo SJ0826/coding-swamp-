@@ -1,6 +1,6 @@
 import SignInput from 'src/components/sign/signInput/SignInput'
 import SignButton from 'src/components/sign/SignButton'
-import { ChangeEvent, FormEvent, useCallback, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   MemberFormValidation,
@@ -22,6 +22,10 @@ const SignUpForm = () => {
   const imgInputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const [imageForBackBround, setImageForBackGround] = useState<string | null>(BGImage) // 보여주는 이미지 state
+
+  useEffect(() => {
+    dispatch(allClearSignUpForm())
+  }, [])
 
   const onChangeProfileImg = useCallback(
     (e: ChangeEvent<HTMLElement>) => {
