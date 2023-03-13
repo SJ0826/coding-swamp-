@@ -1,8 +1,0 @@
-export { default as StudyItem } from '../mainPage/StudyItem'
-export { default as Banner } from '../mainPage/Banner'
-export { default as SearchStudy } from '../mainPage/SearchStudy'
-export { default as StudyList } from '../mainPage/StudyList'
-export { default as StudyApplyModal } from '../mainPage/StudyApplyModal'
-export { default as StudyStatusFilter } from '../mainPage/StudyStatusFilter'
-export { default as DividingLine } from '../DividingLine'
-export { default as DefaultButton } from '../DefaultButton'
