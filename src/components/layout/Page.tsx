@@ -1,27 +1,17 @@
 import styled from 'styled-components'
+import theme from '../../style/theme'
 
 interface Props {
   children: React.ReactNode
 }
 
 export default function Page({ children }: Props) {
-  return <Container>{children}</Container>
+  return <Container bgColor={theme.bgGroundColor}>{children}</Container>
 }
 
-const Container = styled.div`
+const Container = styled.div<{ bgColor: string }>`
   position: relative;
-  width: 70vw;
+  width: 100vw;
   height: 100vh;
-  margin-left: 15%;
-  background-color: ${(props) => props.theme.bgGroundColor1};
-
-  @media ${(props) => props.theme.medium} {
-    width: calc(100% - 4rem);
-    margin-left: 3%;
-  }
-
-  @media ${(props) => props.theme.small} {
-    width: 100%;
-    margin-left: 0%;
-  }
+  background-color: ${(props) => props.bgColor};
 `
