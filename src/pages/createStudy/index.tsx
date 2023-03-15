@@ -3,7 +3,6 @@ import { Header } from 'src/components/Header'
 import { refreshTokenAPI } from 'src/lib/api/auth/refreshTokenAPI'
 import { CreateStudyTag, SelectMaxMemberCount, SelectStudyColor, ToastEditor } from 'src/components/createStudy'
 import SelectDate from 'src/components/createStudy/SelectDate'
-
 import { allClearForm, changeStudyForm } from 'src/lib/store/studyFormSlice'
 import StudyTypeSelector from 'src/components/createStudy/StudyTypeSelector'
 import { useNavigate } from 'react-router-dom'
@@ -18,6 +17,7 @@ const CreateStudy = () => {
 
   useEffect(() => {
     refreshTokenAPI.getRefreshToken()
+    dispatch(allClearForm())
   }, [])
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {

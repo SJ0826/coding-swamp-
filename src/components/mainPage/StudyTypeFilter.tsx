@@ -2,11 +2,13 @@ import styled from 'styled-components'
 import { RxDividerVertical } from 'react-icons/rx'
 import { changeCurrentStudyType } from 'src/lib/store/studyListSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
+import settingStudyTypeName from 'src/lib/util/settingStudyTypeName'
 
 const StudyTypeFilter = () => {
   const dispatch = useAppDispatch()
   const currentStudytype = useAppSelector(({ studyList }) => studyList.value.currentStudyType)
-  const studyTypeArr = ['All', 'Study', 'Mogakko']
+  const studyTypeArr = ['All', 'STUDY', 'MOGAKKO']
+
   const onClickStudyType = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(changeCurrentStudyType(e.currentTarget.value))
   }
@@ -25,7 +27,7 @@ const StudyTypeFilter = () => {
               active={currentStudytype === studyType}
               onClick={onClickStudyType}
             >
-              {studyType}
+              {settingStudyTypeName(studyType)}
             </StudyType>
             <DivisionLine key={`divider`}>
               <RxDividerVertical key={`divider${studyType}`} />

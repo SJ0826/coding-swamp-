@@ -8,7 +8,6 @@ import { DefaultButton, DividingLine } from 'src/components'
 import styled from 'styled-components'
 import { TbHeartPlus, TbHeart } from 'react-icons/tb'
 import { AiOutlineUserDelete } from 'react-icons/ai'
-import { StudyWithCondition } from 'src/lib/types/StudyInterface'
 import theme from 'src/style/theme'
 import { memberAPI } from 'src/lib/api/Member/MemberAPI'
 import { removeToken } from 'src/lib/util/localStorage'
@@ -17,7 +16,6 @@ import { useNavigate } from 'react-router-dom'
 const MemberInfo = () => {
   const dispatch = useAppDispatch()
   const { studiesAppliedFor, studyParticipated } = useAppSelector((member) => member.member.value)
-  const [studiesParticipated] = useState<StudyWithCondition[]>([])
   const [isOpenUserDelete, setIsOpenUserDelete] = useState<boolean>(false)
   const navigate = useNavigate()
 

@@ -16,13 +16,12 @@ const StudyList = () => {
 
   useEffect(() => {
     switch (currentStudyType) {
-      case 'study': {
+      case 'STUDY': {
         const filteredStudyResponse = studyResponses.filter((study) => study.studyType === 'STUDY')
-
         setFilterdStudies(filteredStudyResponse)
         break
       }
-      case 'mogakko': {
+      case 'MOGAKKO': {
         const filteredStudyResponse = studyResponses.filter((study) => study.studyType === 'MOGAKKO')
         setFilterdStudies(filteredStudyResponse)
         break
