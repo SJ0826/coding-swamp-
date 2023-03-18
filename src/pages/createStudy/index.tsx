@@ -65,10 +65,12 @@ const CreateStudy = () => {
         <ToastEditor />
 
         <S.ButtonWrapper>
-          <S.SubmitButton onClick={onClickSubmitButton}>저장</S.SubmitButton>
-          <S.DeleteButton type="button" onClick={onClickDeleteButton}>
+          <S.CreateButton type="button" onClick={onClickSubmitButton} buttonName={'create'}>
+            저장
+          </S.CreateButton>
+          <S.CreateButton type="button" onClick={onClickDeleteButton} buttonName={'esc'}>
             취소
-          </S.DeleteButton>
+          </S.CreateButton>
         </S.ButtonWrapper>
       </S.Content>
     </>

@@ -93,48 +93,28 @@ export const DivisionLine = styled.div`
     visibility: hidden;
   }
 `
-
-export const SubmitButton = styled.button`
-  width: 5rem;
-  height: 2rem;
-  border-radius: 20px;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  background: ${(props) => props.theme.button};
-  color: ${(props) => props.theme.buttonText};
-  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
-  :hover {
-    cursor: pointer;
-    background: ${(props) => props.theme.buttonLightColor};
-    color: ${(props) => props.theme.buttonText};
-  }
-`
-
-export const DeleteButton = styled.button`
-  width: 5rem;
-  height: 2rem;
-  border-radius: 20px;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  background: ${(props) => props.theme.warning2};
-  color: ${(props) => props.theme.buttonText};
-  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
-
-  :hover {
-    cursor: pointer;
-    background: #f48484;
-    color: ${(props) => props.theme.buttonText};
-  }
-`
-
 export const ButtonWrapper = styled.div`
   margin-top: 2rem;
-  width: 15rem;
-  height: 3rem;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
+`
+
+export const CreateButton = styled.button<{ buttonName: string }>`
+  width: 5rem;
+  height: 2rem;
+  margin-left: 2rem;
+
+  font-size: 1.2rem;
+
+  border: 1px solid ${(props) => props.theme.border3};
+  border-radius: 20px;
+  background: ${(props) => props.theme.bgGroundColor1};
+  color: ${(props) => props.theme.text1};
+  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
+  :hover {
+    cursor: pointer;
+    background: ${(props) => (props.buttonName === 'create' ? props.theme.blue : props.theme.warning2)};
+    color: ${(props) => props.theme.buttonText};
+  }
 `
