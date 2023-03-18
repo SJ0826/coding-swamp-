@@ -53,8 +53,8 @@ const CreateStudyTag = () => {
 export default CreateStudyTag
 
 const Container = styled.div`
-  margin-top: 2rem;
-
+  margin-top: 1rem;
+  margin-left: 1rem;
   color: ${(props) => props.theme.text1};
 `
 
@@ -89,13 +89,15 @@ const SubmitTagButton = styled.button`
 `
 
 const TagWrapper = styled.div`
+  min-height: 3rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-top: 1.5rem;
 `
 const Tag = styled.div`
   display: flex;
   align-items: center;
+  margin: 0.5rem 0rem;
 `
 const TagText = styled.div`
   height: 2rem;

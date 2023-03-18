@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { changeTargetedStudyNav } from 'src/lib/store/studyItemSlice'
 import { Container, Icon, Title } from './StudyDescription'
 import { StudyFormParams } from '../../lib/types/StudyInterface'
-import { EndDate, StartDate } from '../createStudy/SelectDate'
+import { Date } from '../createStudy/SelectDate'
 import DeleteStudyModal from './DeleteStudyModal'
 
 const EditStudy = () => {
@@ -110,11 +110,11 @@ const EditStudy = () => {
         </EditContentWrapper>
         <EditContentWrapper>
           <SubTitle>스터디 시작일</SubTitle>
-          <StartDate type="date" id="startDate" value={studyForm.startDate} onChange={onChangeContent} required />
+          <Date type="date" id="startDate" value={studyForm.startDate} onChange={onChangeContent} required />
         </EditContentWrapper>
         <EditContentWrapper>
           <SubTitle>스터디 종료일</SubTitle>
-          <EndDate type="date" id="endDate" value={studyForm.endDate} onChange={onChangeContent} />
+          <Date type="date" id="endDate" value={studyForm.endDate} onChange={onChangeContent} />
         </EditContentWrapper>
         <EditContentWrapper>
           <SubTitle>스터디 최대인원</SubTitle>

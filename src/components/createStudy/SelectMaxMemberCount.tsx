@@ -14,7 +14,6 @@ const SelectMaxMemberCount = () => {
 
   return (
     <Container>
-      <SubTitle>스터디 최대 인원</SubTitle>
       <CountInput value={maxnumber} onChange={onChangeMaxNumber} />명
     </Container>
   )
@@ -24,31 +23,26 @@ export default SelectMaxMemberCount
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
   height: 3rem;
-  padding-left: 1rem;
 
   font-size: 18px;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
-`
-
-const SubTitle = styled.div`
-  width: 10.5rem;
 `
 
 const CountInput = styled.input`
   width: 3rem;
   height: 2rem;
-  margin-left: 1rem;
 
   text-align: center;
   font-size: 18px;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
-  background-color: ${(props) => props.theme.bgGroundColor3};
-
-  border: 1px solid ${(props) => props.theme.border4};
-  border-radius: 15px;
+  background-color: ${(props) => props.theme.bgGroundColor1};
+  outline: none;
+  border-radius: 1rem;
+  box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   :active {
     border: 1px solid ${(props) => props.theme.border2};
   }

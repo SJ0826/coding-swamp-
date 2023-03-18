@@ -44,27 +44,32 @@ export const Title = styled.h1<{ bgColor: string }>`
 
 export const StudyName = styled.input`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   padding-left: 1rem;
 
   font-size: 24px;
   font-weight: bold;
+
+  border-bottom: 1px solid ${(props) => props.theme.border3};
 `
 
-export const SelectStudyType = styled.div`
+export const SubMenu = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   height: 3rem;
   padding-left: 1rem;
 
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
+
+  border-bottom: 1px solid ${(props) => props.theme.border3};
 `
 
 export const SubTitle = styled.div`
-  width: 10rem;
+  width: 13rem;
   @media ${(props) => props.theme.small} {
     width: 8rem;
   }
