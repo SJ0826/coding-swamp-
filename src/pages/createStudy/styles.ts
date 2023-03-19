@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Content = styled.div`
+  font-size: 
   padding-bottom: 5rem;
 
   margin-top: 2rem;
@@ -35,36 +36,53 @@ export const Title = styled.h1<{ bgColor: string }>`
   }
 
   @media ${(props) => props.theme.small} {
-    width: 100%;
-    margin-top: 1.5rem;
-    font-size: 16px;
-    height: 2rem;
+    font-size: 1rem;
+    padding-top: 0.6rem;
+    height: 2.5rem;
   }
 `
 
 export const StudyName = styled.input`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   padding-left: 1rem;
 
   font-size: 24px;
   font-weight: bold;
+
+  border-bottom: 1px solid ${(props) => props.theme.border3};
+
+  @media ${(props) => props.theme.small} {
+    height: 3rem;
+    font-size: 1.2rem;
+  }
 `
 
-export const SelectStudyType = styled.div`
+export const SubMenu = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   height: 3rem;
   padding-left: 1rem;
 
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
+
+  border-bottom: 1px solid ${(props) => props.theme.border3};
+
+  @media ${(props) => props.theme.small} {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0.5rem 0rem;
+    font-size: 0.8rem;
+  }
 `
 
 export const SubTitle = styled.div`
-  width: 10rem;
+  width: 13rem;
   @media ${(props) => props.theme.small} {
     width: 8rem;
   }
@@ -81,55 +99,42 @@ export const DivisionLine = styled.div`
   widht: 100%;
   height: 5px;
   background: ${(props) => props.theme.border4};
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0rem;
 
   @media ${(props) => props.theme.small} {
-    visibility: hidden;
+    height: 5px;
+    margin: 0.3rem 0rem;
   }
 `
-
-export const SubmitButton = styled.button`
-  width: 5rem;
-  height: 2rem;
-  border-radius: 20px;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  background: ${(props) => props.theme.button};
-  color: ${(props) => props.theme.buttonText};
-  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
-  :hover {
-    cursor: pointer;
-    background: ${(props) => props.theme.buttonLightColor};
-    color: ${(props) => props.theme.buttonText};
-  }
-`
-
-export const DeleteButton = styled.button`
-  width: 5rem;
-  height: 2rem;
-  border-radius: 20px;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  background: ${(props) => props.theme.warning2};
-  color: ${(props) => props.theme.buttonText};
-  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
-
-  :hover {
-    cursor: pointer;
-    background: #f48484;
-    color: ${(props) => props.theme.buttonText};
-  }
-`
-
 export const ButtonWrapper = styled.div`
-  margin-top: 2rem;
-  width: 15rem;
-  height: 3rem;
+  padding: 1rem 0rem;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
+`
+
+export const CreateOrEscButton = styled.button<{ buttonName: string }>`
+  margin-left: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+
+  border: 1px solid ${(props) => props.theme.border3};
+  border-radius: 1rem;
+  background: ${(props) => props.theme.bgGroundColor1};
+  color: ${(props) => props.theme.text1};
+  transition: box-shadow 300ms ease-in-out, 100ms ease-in-out;
+  :hover {
+    cursor: pointer;
+    background: ${(props) => (props.buttonName === 'create' ? props.theme.blue : props.theme.warning2)};
+    color: ${(props) => props.theme.buttonText};
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+  }
+`
+
+export const Footer = styled.div`
+  height: 13rem;
+  border-top: 1px solid ${(props) => props.theme.border4};
 `

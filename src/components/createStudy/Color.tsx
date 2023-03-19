@@ -43,8 +43,6 @@ const ColorButton = styled.input`
 const ColorView = styled.div<{ value: string }>`
   width: 2rem;
   height: 2rem;
-  margin-top: 0.5rem;
-  margin-left: 2rem;
   background: ${(props) => props.value};
 
   border-radius: 50%;

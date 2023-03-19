@@ -53,14 +53,24 @@ const CreateStudyTag = () => {
 export default CreateStudyTag
 
 const Container = styled.div`
-  margin-top: 2rem;
-
+  margin-top: 1rem;
+  margin-left: 1rem;
   color: ${(props) => props.theme.text1};
+
+  @media ${(props) => props.theme.small} {
+    align-items: flex-start;
+    margin-top: 0.5rem;
+  }
 `
 
 const SubTitle = styled.span`
   font-size: 18px;
   font-weight: bold;
+
+  @media ${(props) => props.theme.small} {
+    width: 8rem;
+    font-size: 0.8rem;
+  }
 `
 const InputWrapper = styled.div`
   display: flex;
@@ -76,6 +86,11 @@ const TagInput = styled.input`
   background-color: ${(props) => props.theme.bgGroundColor3};
   border: 1px solid ${(props) => props.theme.border4};
   border-radius: 15px;
+
+  @media ${(props) => props.theme.small} {
+    width: 14rem;
+    font-size: 1rem;
+  }
 `
 
 const SubmitTagButton = styled.button`
@@ -86,21 +101,27 @@ const SubmitTagButton = styled.button`
   line-height: 1rem;
 
   background: ${(props) => props.theme.green6};
+
+  @media ${(props) => props.theme.small} {
+    width: 3rem;
+    font-size: 0.8rem;
+  }
 `
 
 const TagWrapper = styled.div`
+  min-height: 3rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-top: 1.5rem;
 `
 const Tag = styled.div`
   display: flex;
   align-items: center;
+  margin: 0.5rem 0rem;
 `
 const TagText = styled.div`
-  height: 2rem;
   margin-right: 0.5rem;
-  padding: 0.1rem 1rem 0 1rem;
+  padding: 0.3rem 1rem 0.3rem 1rem;
 
   font-size: 20px;
   font-weight: bold;
@@ -109,6 +130,12 @@ const TagText = styled.div`
 
   border-radius: 20px;
   background: ${(props) => props.theme.bgGroundColor4};
+
+  @media ${(props) => props.theme.small} {
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    margin-right: 0.2rem;
+    font-size: 0.7rem;
+  }
 `
 
 const RemoveButton = styled.button`
@@ -123,5 +150,11 @@ const RemoveButton = styled.button`
 
   &:hover {
     color: ${(props) => props.theme.warning};
+  }
+
+  @media ${(props) => props.theme.small} {
+    margin-bottom: 0rem;
+    margin-right: 0.8rem;
+    font-size: 1rem;
   }
 `
