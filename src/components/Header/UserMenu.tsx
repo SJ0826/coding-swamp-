@@ -19,9 +19,6 @@ const Positioner = styled.div<{ isVisible: boolean }>`
   right: 2rem;
   top: 6rem;
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
-  @media ${(props) => props.theme.large} {
-    right: 12rem;
-  }
 
   @media ${(props) => props.theme.medium} {
     right: 6rem;
