@@ -14,7 +14,7 @@ const StudyTypeSelector = () => {
   }
 
   return (
-    <>
+    <Container>
       <StudyType
         id="study"
         onClick={() => dispatch(changeStudyForm({ key: 'studyType', value: 'STUDY' }))}
@@ -28,20 +28,33 @@ const StudyTypeSelector = () => {
       >
         모각코
       </StudyType>
-    </>
+    </Container>
   )
 }
 
 export default StudyTypeSelector
 
-const StudyType = styled.div<{ isClicked: boolean }>`
-  background: none;
-  font-size: 18px;
+const Container = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  @media ${(props) => props.theme.small} {
+    margin: 0.6rem 0rem;
+  }
+`
+
+const StudyType = styled.div<{ isClicked: boolean }>`
+  font-size: 18px;
   margin-right: 2rem;
   color: ${(props) => (props.isClicked ? props.theme.text1 : props.theme.text4)};
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
   }
 `

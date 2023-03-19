@@ -29,6 +29,10 @@ const Container = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
+
+  @media ${(props) => props.theme.small} {
+    font-size: 0.8rem;
+  }
 `
 
 const CountInput = styled.input`
@@ -45,5 +49,11 @@ const CountInput = styled.input`
   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
   :active {
     border: 1px solid ${(props) => props.theme.border2};
+  }
+
+  @media ${(props) => props.theme.small} {
+    width: 2.3rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
   }
 `

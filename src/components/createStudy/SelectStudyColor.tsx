@@ -20,6 +20,6 @@ const Palette = styled.div`
   margin-top: 1rem;
   @media ${(props) => props.theme.small} {
     margin-top: 0.8rem;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 `

@@ -33,4 +33,10 @@ const SubTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: ${(props) => props.theme.text1};
+
+  @media ${(props) => props.theme.small} {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
 `

@@ -60,19 +60,20 @@ const CreateStudy = () => {
           <SelectDate />
         </S.SubMenu>
         <CreateStudyTag />
-
         <S.DivisionLine />
         <ToastEditor />
 
         <S.ButtonWrapper>
-          <S.CreateButton type="button" onClick={onClickSubmitButton} buttonName={'create'}>
+          <S.CreateOrEscButton type="button" onClick={onClickSubmitButton} buttonName={'create'}>
             저장
-          </S.CreateButton>
-          <S.CreateButton type="button" onClick={onClickDeleteButton} buttonName={'esc'}>
+          </S.CreateOrEscButton>
+          <S.CreateOrEscButton type="button" onClick={onClickDeleteButton} buttonName={'esc'}>
             취소
-          </S.CreateButton>
+          </S.CreateOrEscButton>
         </S.ButtonWrapper>
       </S.Content>
+
+      <S.Footer />
     </>
   )
 }
