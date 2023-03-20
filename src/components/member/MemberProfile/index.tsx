@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
 import { changeMemberInfo, postEditedMember } from 'src/lib/store/member/memberSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { MemberFormParam } from 'src/lib/types/UserInterface'
+import { AiOutlineWarning } from 'react-icons/ai'
 import * as S from './styles'
 
 const initialEditForm = {
@@ -12,6 +13,7 @@ const initialEditForm = {
   username: '',
   imageUrl: '',
 } as Omit<MemberFormParam, 'email' & 'password'>
+
 const MemberProfile = () => {
   const dispatch = useAppDispatch()
   const { memberInfo } = useAppSelector(({ member }) => member.value)
@@ -52,6 +54,7 @@ const MemberProfile = () => {
     setMemberForm(initialEditForm)
   }
 
+  const isGithubLoginUser = () => memberInfo.githubId !== null
   return isOpenEdit ? (
     <>
       <form encType="multipart/form-data" onSubmit={onSubmitUserForm}>
@@ -102,19 +105,26 @@ const MemberProfile = () => {
       <S.Profile>
         <S.Thumbnail>
           <S.MemberImage image={memberInfo.imageUrl} />
-          <S.ImgUploadInput
-            id="ImgUpload"
-            type="file"
-            accept="image/*"
-            onChange={onChangeProfileImg}
-            ref={imgInputRef}
-          />
         </S.Thumbnail>
         <S.MemberInfo>
           <S.Name>{memberInfo.username}</S.Name>
           <S.Email>{memberInfo.email === 'null' ? '' : memberInfo.email}</S.Email>
-          <S.EditButton type="button" onClick={() => setIsOpenEdit(true)}>
-            회원정보 수정
+          <S.EditButton type="button" onClick={() => setIsOpenEdit(true)} disabled={isGithubLoginUser()}>
+            {isGithubLoginUser() ? (
+              <>
+                <AiOutlineWarning style={{ marginRight: '1rem' }} />
+                <h5 style={{ textAlign: 'left' }}>
+                  깃허브 로그인 사용자는 회원정보 수정이 불가합니다.
+                  <br />
+                  <a style={{ textDecoration: 'none' }} href={memberInfo.profileUrl}>
+                    깃허브 페이지
+                  </a>
+                  에서 회원정보를 수정해주세요.
+                </h5>
+              </>
+            ) : (
+              <h5>회원정보 수정</h5>
+            )}
           </S.EditButton>
         </S.MemberInfo>
       </S.Profile>
