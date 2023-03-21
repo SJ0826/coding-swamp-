@@ -4,7 +4,7 @@ import { MemberFormParam } from 'src/lib/types/UserInterface'
 
 const initialMemberForm = {
   memberForm: {
-    imageFile: null,
+    imageFile: {},
     username: '',
     email: '',
     password: '',
