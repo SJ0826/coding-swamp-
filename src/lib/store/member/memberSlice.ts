@@ -34,13 +34,13 @@ export const getMemberInfo = createAsyncThunk('member/getMember', async () => {
   return response
 })
 
-export const postEditedMember = createAsyncThunk(
-  'editMember/postMember',
-  async (memberForm: Omit<MemberFormParam, 'email' & 'password'>) => {
-    const response = await memberAPI.postMemberInfo(memberForm)
-    return response
-  },
-)
+// export const postEditedMember = createAsyncThunk(
+//   'editMember/postMember',
+//   async (memberForm: Omit<MemberFormParam, 'email' & 'password'>) => {
+//     const response = await memberAPI.postMemberInfo(memberForm)
+//     return response
+//   },
+// )
 
 export const getStudiesAppliedFor = createAsyncThunk('member/getstudiesAppliedFor', async () => {
   const response = await studyAPI.getStudiesAppliedFor()

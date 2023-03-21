@@ -1,6 +1,5 @@
 import decodeJWT from 'src/lib/util/decodeJWT'
 import { EDIT_MEMBER_URL, USER_URL } from 'src/lib/constants/Url'
-import { MemberFormParam } from 'src/lib/types/UserInterface'
 import HttpClient from '../httpClient'
 
 class MemberAPI extends HttpClient {
@@ -19,18 +18,14 @@ class MemberAPI extends HttpClient {
     return response.data
   }
 
-  public postMemberInfo = async (data: Omit<MemberFormParam, 'email' & 'password'>) => {
-    const formData = new FormData()
-    if (data.imageFile) formData.append('imageFile', data.imageFile)
+  public postMemberInfo = async (data: { username: string; imageFile: File | object }) => {
     const params = new URLSearchParams()
     params.append('username', data.username)
-
-    const response = this.instance.post(
+    this.instance.post(
       EDIT_MEMBER_URL,
       { imageFile: data.imageFile },
       { headers: { 'Content-Type': 'multipart/form-data' }, params },
     )
-    return response
   }
 
   public deleteMember = () => {

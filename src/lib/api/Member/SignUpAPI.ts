@@ -46,8 +46,9 @@ class SignUpAPI extends HttpClient {
     }
   }
 
-  public SignUp = (data: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'>) =>
+  public SignUp = (data: Omit<MemberFormParam, 'profileUrl' | 'imageUrl'>) => {
     this.instance.post(SIGNUP_URL, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+  }
 }
 
 const signUpAPI = new SignUpAPI()
