@@ -9,7 +9,7 @@ abstract class HttpClient {
 
   public constructor() {
     this.instance = axios.create({
-      baseURL: 'http://52.79.50.196:8080/',
+      baseURL: '',
     })
 
     this._initializeRequestInterceptor()
