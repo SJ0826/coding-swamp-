@@ -16,7 +16,7 @@ jobs:
       - run: echo SUCCESS
       - run: npm run build
       - name: deploy to s3
-         uses: jakejarvis/s3-sync-action@master 
+         uses: jakejarvis/s3-sync-action@master
          with:
             args: --delete // 버킷에 있는 모든 객체 삭제
          env: // 환경변수 세팅
