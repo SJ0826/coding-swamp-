@@ -39,7 +39,9 @@
     "eject": "react-scripts eject",
     "postinstall": "husky install",
     "format": "prettier --cache --write src",
-    "lint": "eslint --cache src"
+    "lint": "eslint --cache src",
+    "deploy": "aws s3 sync ./build s3://coding-swamp --profile=sujin"
+    
   },
   "eslintConfig": {
     "extends": [
