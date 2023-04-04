@@ -9,6 +9,6 @@ export const GET_REFRESH_URL = '/api/auth/refresh'
 export const STUDY_URL = '/api/study'
 
 export const GITHUB_LOGIN_URL =
-  'https://github.com/login/oauth/authorize?client_id=75cd6db13c045cad11e6&redirect_uri=http://localhost:3000/callback'
+  'https://github.com/login/oauth/authorize?client_id=75cd6db13c045cad11e6&redirect_uri=http://coding-swamp.s3-website.ap-northeast-2.amazonaws.com/callback'
 
 export const USER_URL = '/api/member/'
