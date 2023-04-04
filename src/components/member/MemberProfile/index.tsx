@@ -1,6 +1,6 @@
 import DefaultButton from 'src/components/DefaultButton'
 import theme from 'src/style/theme'
-import { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
 import { changeMemberInfo } from 'src/lib/store/member/memberSlice'
 import { useAppDispatch, useAppSelector } from 'src/lib/hooks'
 import { AiOutlineWarning } from 'react-icons/ai'

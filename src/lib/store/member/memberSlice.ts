@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { studyAPI } from 'src/lib/api/study/StudyAPI'
 import { StudyWithCondition } from 'src/lib/types/StudyInterface'
-import { MemberFormParam, MemberInfoInterface } from '../../types/UserInterface'
+import { MemberInfoInterface } from '../../types/UserInterface'
 import { memberAPI } from '../../api/Member/MemberAPI'
 
 const initialMemberInfo = {
