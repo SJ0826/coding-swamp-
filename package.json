@@ -18,8 +18,8 @@
     "axios": "^1.3.2",
     "immutable": "^4.2.4",
     "qs": "^6.11.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
@@ -33,7 +33,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",  
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -41,7 +41,6 @@
     "format": "prettier --cache --write src",
     "lint": "eslint --cache src",
     "deploy": "aws s3 sync ./build s3://coding-swamp --profile=sujin"
-    
   },
   "eslintConfig": {
     "extends": [
