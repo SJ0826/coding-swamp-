@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - run: echo SUCCESS
-      - run:  yarn build
+      - run:  npm run build
       - name: deploy to s3
         uses: jakejarvis/s3-sync-action@master
         with:
