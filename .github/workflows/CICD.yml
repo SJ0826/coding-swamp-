@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - name: Install dependecies
-        - run: |
+      - run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
