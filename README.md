@@ -1,9 +1,7 @@
-# 모여봐요 코딩의 늪 🐊
+# 모여봐요 코딩의 늪 (진행 중)🐊 
+
 모여봐요 코딩의 늪은 스터디를 모집하는 목적을 가진 웹 프로젝트입니다.<br/>
 스터디/모각코 두가지 타입으로 나누어 사용자에게 목적에 따른 스터디원 모집이 가능하도록 만들었습니다.
-
-![image](https://user-images.githubusercontent.com/56298540/229520311-f29df4c3-050e-4b9f-9f98-db4c152de443.png)
-
 
 ## :heavy_check_mark: 사용 라이브러리 및 툴
 
@@ -31,9 +29,4 @@ npm start
 ```
 ### 2️⃣ 배포 링크 
 http://coding-swamp.s3-website.ap-northeast-2.amazonaws.com by <img src="https://img.shields.io/badge/AWS S3-569A31?style=for-the-badge&logo=aws&logoColor=white">
-
-### ✔ 주요 기능 정리
-
-[📑 로그인 / 회원가입](https://github.com/SJ0826/coding-swamp-/wiki/%5BFeature-1-%5D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%231)
-
 
